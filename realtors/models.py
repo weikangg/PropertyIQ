@@ -4,7 +4,7 @@ from datetime import datetime
 # Create your models here.
 class Realtor(models.Model):
     name = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d/')
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d/') # this will upload to media folder together with the year month date of when it was uploaded.
     description = models.TextField(blank = True)
     phone = models.CharField(max_length=20)
     email = models.CharField(max_length=50)
