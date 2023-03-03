@@ -6,10 +6,19 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 
 1) Create Python virtual environment in VS Code 
 2) Start virtual environment
-3) Install dependencies & start server
+3) Install dependencies 
+
 ```
 pip install -r requirements.txt
-python manage.py runserver
+
+```
+
+4) Setup PostgreSQL (Read below).
+5) Create a .env file & store relevant information.
+
+```
+POSTGRE_USER: <YOUR POSTGRESQL USER>
+POSTGRE_PASSWORD: <YOUR POSTGRESQL PASSWORD>
 ```
 
 ## PostgreSQL Setup
