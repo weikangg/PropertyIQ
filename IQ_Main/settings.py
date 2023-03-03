@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'listings',
     'realtors',
     'accounts',
+    'bookmarks',
+    'contacts'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
