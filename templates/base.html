@@ -19,9 +19,18 @@
 
 
   <body>
+    {% comment %} 
+        Top bar
+        {% include 'includes/topbar.html' %} 
+    {% endcomment %}
 
+    {% comment %} Navbar {% endcomment %}
+    {% include 'includes/navbar.html' %}
 
-  
+    {% block content %}{% endblock  %}
+    
+    {% comment %} Footer {% endcomment %}
+    {% include 'includes/footer.html' %}
 
     <script src= {% static 'js/jquery-3.3.1.min.js' %}></script>
     <script src= {% static 'js/bootstrap.bundle.min.js ' %}></script>
