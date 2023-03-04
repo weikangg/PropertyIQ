@@ -72,7 +72,7 @@ Click on server database icon top left and add the password which you entered in
 
 Follow the below commands in the PSQL shell.
 
-postgres=# CREATE DATABASE btredb OWNER postgres; #Click enter here
+postgres=# CREATE DATABASE propertyIQ OWNER postgres; #Click enter here
 CREATE DATABASE #result
 postgres=# \l #to get the below datbase list
 
