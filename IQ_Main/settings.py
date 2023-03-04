@@ -90,10 +90,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'propertyiq',
-        'USER': 'postgres',
-        # 'USER': getenv("POSTGRE_USER"),
-        'PASSWORD': 'ninabedog1',
-        # 'PASSWORD': getenv("POSTGRE_PASSWORD"),
+        'USER': getenv("POSTGRE_USER"),
+        'PASSWORD': getenv("POSTGRE_PASSWORD"),
         'HOST': 'localhost'
     }
 }
@@ -161,8 +159,8 @@ MESSAGE_TAGS = {
 # Email config
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'chongweikang5@gmail.com'
-EMAIL_HOST_PASSWORD = 'dgqbknnwdljzgaxj'
+EMAIL_HOST_USER = getenv('GMAIL_EMAIL')
+EMAIL_HOST_PASSWORD = getenv('GMAIL_APP_PASSWORD')
 EMAIL_USE_TLS = True
 
 try:
