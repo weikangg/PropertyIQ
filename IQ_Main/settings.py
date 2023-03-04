@@ -90,8 +90,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'propertyiq',
-        'USER': getenv("POSTGRE_USER"),
-        'PASSWORD': getenv("POSTGRE_PASSWORD"),
+        'USER': 'postgres',
+        # 'USER': getenv("POSTGRE_USER"),
+        'PASSWORD': 'ninabedog1',
+        # 'PASSWORD': getenv("POSTGRE_PASSWORD"),
         'HOST': 'localhost'
     }
 }
