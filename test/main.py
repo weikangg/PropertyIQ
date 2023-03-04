@@ -21,4 +21,4 @@ print(data[0]['rental'][0]['rent']) # get rent of first element
 
 # store it into json file for now , not database yet
 with open("./test/propertyData.json", "w") as outfile:
-    json.dump(data[:5], outfile)
+    json.dump(data[:5], outfile, indent = 4)
