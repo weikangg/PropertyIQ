@@ -41,7 +41,7 @@ def login(request):
     if request.method == "POST":
         # Login User
         username = request.POST.get("username")
-        password = request.POST.get("password")\
+        password = request.POST.get("password")
         
         user = auth.authenticate(username=username,password=password)
 
