@@ -50,9 +50,8 @@ contact_date: DATE
 
 ### OUR UPDATED PROPERTY
 id: INT
-title: STR
+project_Title: STR
 street: STR
-project: STR
 x_coordinates: STR
 y_coordinates:STR
 rental_price:INT
