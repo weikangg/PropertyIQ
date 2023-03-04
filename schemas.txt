@@ -48,7 +48,7 @@ phone: STR
 message: TEXT
 contact_date: DATE
 
-### OUR UPDATED LISTING
+### OUR UPDATED PROPERTY
 id: INT
 title: STR
 street: STR
@@ -60,25 +60,12 @@ sqft: STR
 bedrooms: STR
 leaseDate: DATE
 propertyType: STR
-
-state: STR
-zipcode: STR
-description: TEXT
-price: INT
-
-bathrooms: INT
-garage: INT [0]
-
-lot_size: FLOAT
-is_published: BOOL [true]
+bookmark: INT(FOREIGN KEY(BOOKMARK))
 list_date: DATE
-photo_main: STR
-photo_1: STR
-photo_2: STR
-photo_3: STR
-photo_4: STR
-photo_5: STR
-photo_6: STR
+
+### OUR UPDATED BOOKMARK
+id: INT
+property: INT(FOREIGN KEY(PROPERTY))
 
 
 

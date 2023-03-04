@@ -14,12 +14,24 @@ pip install -r requirements.txt
 ```
 
 4) Setup PostgreSQL (Read below).
+
 5) Create a .env file & store relevant information.
 ```
 POSTGRE_USER: <YOUR POSTGRESQL USER>
 POSTGRE_PASSWORD: <YOUR POSTGRESQL PASSWORD>
 ```
-6) Setup Gmail Sending
+
+6) Get URA API Key from URA Website & Add it to the .env file.
+```
+URA_API_KEY = <YOUR URA API KEY>
+```
+
+7) Get Google Maps API Key & Add it to the .env file
+```
+GOOGLE_MAPS_KEY = <YOUR GOOGLE MAPS KEY>
+```
+
+8) Setup Gmail Sending
 ```
 https://stackoverflow.com/questions/6914687/django-sending-email
 
