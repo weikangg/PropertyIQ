@@ -72,3 +72,9 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
 Username: propertyIQ    
 Password: sc2006_1234
 
+## Testing URA API 
+- Go to test folder and run Main.py
+- Data received should be outputted to propertyData.json
+
+## Testing Google Maps API
+- Go to test.html and run it on live server (VSCode Extension)

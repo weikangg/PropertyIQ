@@ -48,6 +48,38 @@ phone: STR
 message: TEXT
 contact_date: DATE
 
+### OUR UPDATED LISTING
+id: INT
+title: STR
+street: STR
+project: STR
+x_coordinates: STR
+y_coordinates:STR
+rental_price:INT
+sqft: STR
+bedrooms: STR
+leaseDate: DATE
+propertyType: STR
+
+state: STR
+zipcode: STR
+description: TEXT
+price: INT
+
+bathrooms: INT
+garage: INT [0]
+
+lot_size: FLOAT
+is_published: BOOL [true]
+list_date: DATE
+photo_main: STR
+photo_1: STR
+photo_2: STR
+photo_3: STR
+photo_4: STR
+photo_5: STR
+photo_6: STR
+
 
 
 
