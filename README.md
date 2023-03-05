@@ -18,7 +18,7 @@ Creating an environment using Venv
 pip install -r requirements.txt
 ```
 
-4) Setup [PostgreSQL](##-PostgreSQL-Setup).
+4) Setup [PostgreSQL](#postgresql-setup).
 
 5) Create a .env file & store relevant information.
 ```
