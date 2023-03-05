@@ -89,8 +89,16 @@ Username: propertyIQ
 Password: sc2006_1234
 
 ## Testing URA API 
-- Go to test folder and run Main.py
-- Data received should be outputted to propertyData.json
+- To save all the data of the properties, uncomment Line 54 - 57 of views.py in property app. 
+- After that, comment it back as those lines will run everytime you try to make migrations / migrate / runserver.
+- Run it once, and check the database for the updated records.
+- If you ever want to delete the records from the database for some reason , do the following:
+
+```
+python manage.py shell
+from property.models import Property
+Property.objects.all().delete()
+```
 
 ## Testing Google Maps API
 - Go to test.html and run it on live server (VSCode Extension)
