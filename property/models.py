@@ -1,30 +1,26 @@
 from django.db import models
-from datetime import datetime
-from bookmarks.models import Bookmark
 
 # Create your models here.
 class Property(models.Model):
-    project_Title = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
-    street = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
-    x_coordinates = models.CharField(max_length=20)
-    y_coordinates = models.CharField(max_length=20)
-    bedrooms = models.CharField(max_length=10)
-    sqft = models.CharField(max_length=20)
-    leaseDate = models.DateField(default = datetime.now, blank=True)
-    propertyType = models.CharField(max_length=200)
-    rental_price = models.IntegerField()
-    photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/')
-    photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    photo_5 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    photo_6 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    list_date = models.DateTimeField(default = datetime.now, blank = True)
-    bookmark = models.OneToOneField(to=Bookmark, on_delete=models.CASCADE)
+    project_Title = models.CharField(max_length=200,blank=True, null=True)
+    street = models.CharField(max_length=200, blank = True, null = True)
+    x_coordinates = models.CharField(max_length=20, null = True, blank=True)
+    y_coordinates = models.CharField(max_length=20, null = True, blank=True)
+    bedrooms = models.CharField(max_length=10, null=True, blank= True, default = 0)
+    sqft = models.CharField(max_length=20, null=True,blank=True)
+    leaseDate = models.CharField(max_length=20, blank=True,null=True)
+    propertyType = models.CharField(max_length=200, blank=True, null=True)
+    rent = models.IntegerField(blank=True)
+    photo_main = models.CharField(max_length=200, blank=True)
+    photo_1 = models.CharField(max_length=200, blank=True)
+    photo_2 = models.CharField(max_length=200, blank=True)
+    photo_3 = models.CharField(max_length=200, blank=True)
+    photo_4 = models.CharField(max_length=200, blank=True)
+    photo_5 = models.CharField(max_length=200, blank=True)
+    photo_6 = models.CharField(max_length=200, blank=True)
     def __str__(self):
         return self.project_Title
 
-
+class PropertyIQUser(models.Model):
+    username = models.CharField(max_length=200)
+    bookmarks = models.ForeignKey('Property', on_delete=models.DO_NOTHING)
