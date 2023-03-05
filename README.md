@@ -8,12 +8,17 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 2) Start virtual environment
 3) Install dependencies 
 
+
+https://code.visualstudio.com/docs/python/environments#_using-the-create-environment-command
 ```
+opening the Command Palette (Ctrl+Shift+P), start typing the Python: Create Environment 
+
+Creating an environment using Venv
+
 pip install -r requirements.txt
-
 ```
 
-4) Setup PostgreSQL (Read below).
+4) Setup [PostgreSQL](##-PostgreSQL-Setup).
 
 5) Create a .env file & store relevant information.
 ```
@@ -32,9 +37,8 @@ GOOGLE_MAPS_KEY = <YOUR GOOGLE MAPS KEY>
 ```
 
 8) Setup Gmail Sending
-```
 https://stackoverflow.com/questions/6914687/django-sending-email
-
+```
 Follow this link and create an application specific password, then store the relevant information in he same .env file.
 
 GMAIL_EMAIL : <YOUR EMAIL> (e.g. test@test.com)
