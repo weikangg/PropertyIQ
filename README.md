@@ -82,6 +82,10 @@ Finally, go to pgAdmin, and refresh the page.
 Note: Should you need to uninstall/re-install you will need to manually delete the folder where you have installed Postgres and pgadmin. This is even after uninstalling from system settings. For some reason, Postgres folder's don't remove entirely even though you select the option.
 
 ## Super-user for Django-admin
+```python manage.py createsuperuser```
+
+Type your password here even though it doesn't look like it is being keyed in. Press enter once done.
+
 Username: propertyIQ    
 Password: sc2006_1234
 
