@@ -10,9 +10,9 @@
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4">{{listing.project_Title}}</h1>
+          <h1 class="display-4">{{listing.project_Title | title}}</h1>
           <p class="lead">
-            <i class="fas fa-map-marker"></i> {{listing.street}} </p>
+            <i class="fas fa-map-marker"></i> {{listing.street | title}} </p>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
           <li class="breadcrumb-item">
             <a href= {% url 'listings' %}>Listings</a>
           </li>
-          <li class="breadcrumb-item active">{{listing.project_Title}}</li>
+          <li class="breadcrumb-item active">{{listing.project_Title | title}}</li>
         </ol>
       </nav>
     </div>

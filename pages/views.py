@@ -2,7 +2,7 @@ from django.shortcuts import render
 from property.models import Property
 from django.core.paginator import Paginator
 from realtors.models import Realtor
-from listings.choices import bedroom_choices, state_choices, price_choices
+from listings.choices import bedroom_choices, price_choices
 
 # Create your views here.
 
