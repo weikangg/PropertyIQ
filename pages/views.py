@@ -1,15 +1,19 @@
 from django.shortcuts import render
-from listings.models import Listing
+from property.models import Property
+from django.core.paginator import Paginator
 from realtors.models import Realtor
 from listings.choices import bedroom_choices, state_choices, price_choices
 
 # Create your views here.
 
 def index(request):
-    listings = Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
+    listings = Property.objects.all().order_by("-leaseDate")[:3]
+    paginator = Paginator(listings,6) # 6 property on each page
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
+    
     context = {
-        'listings': listings,
-        'state_choices': state_choices,
+        'listings' : paged_listings,
         'bedroom_choices': bedroom_choices,
         'price_choices': price_choices
     }

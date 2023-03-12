@@ -72,45 +72,44 @@
       <div class="row">
         {% if listings %}
             {% for listing in listings %}
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card listing-preview">
-                    <img class="card-img-top" src= {% static 'img/home-4.jpg' %} alt="">
-                    <div class="card-img-overlay">
-                        <h2>
-                        <span class="badge badge-secondary text-white">${{listing.rent | intcomma }}</span>
-                        </h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="listing-heading text-center">
-                        <h4 class="text-primary">{{listing.project_Title}}</h4>
-                        <p>
-                            <i class="fas fa-map-marker text-secondary"></i> {{listing.street}} </p>
-                        </div>
-                        <hr>
-                        <div class="row py-2 text-secondary">
-                        <div class="col-6">
-                            <i class="fas fa-th-large"></i> Sqft: {{listing.sqft}}</div>
-                        <div class="col-6">
-                            <i class="fas fa-car"></i> Garage: {{listing.garage}}</div>
-                        </div>
-                        <div class="row py-2 text-secondary">
-                        <div class="col-6">
-                            <i class="fas fa-bath"></i> Type: {{listing.propertyType}}</div>
-                        <div class="col-6">
-                            <i class="fas fa-bed"></i> Bedrooms: {{listing.bedrooms}}</div>
-                        </div>
-                        <hr>
-                        <div class="row text-secondary pb-2">
-                        <div class="col-12">
-                            <i class="fas fa-clock"></i> {{listing.leaseDate | timesince }}</div>
-                        </div>
-                        <hr>
-                        <a href = "{% url 'listing' listing.id %}"class="btn btn-primary btn-block">More Info</a>
-                    </div>
-                    </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card listing-preview">
+                <img class="card-img-top" src= {% static 'img/home-4.jpg' %}
+                alt="">
+                <div class="card-img-overlay">
+                  <h2>
+                    <span class="badge badge-secondary text-white">${{listing.rent | intcomma}}</span>
+                  </h2>
                 </div>
-      
-            {% endfor %}
+                <div class="card-body">
+                  <div class="listing-heading text-center">
+                    <h4 class="text-primary">{{listing.project_Title}}</h4>
+                    <p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{listing.street}}
+                    </p>
+                  </div>
+                  <hr />
+                  <div class="row py-2 text-secondary">
+                    <div class="col-6">
+                      <i class="fas fa-th-large"></i> Sqft: {{listing.sqft}}
+                    </div>
+                    <div class="col-6"><i class="fas fa-bed"></i> Bedrooms: {{listing.bedrooms}}</div>
+                  </div>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-12"><i class="fas fa-bath"></i> Type: {{listing.propertyType}}</div>
+                  </div>
+                  <hr />
+                  <div class="row text-secondary pb-2">
+                    <div class="col-12"><i class="fas fa-clock"></i> {{listing.leaseDate | timesince}}</div>
+                  </div>
+                  <hr />
+                  <a href= {% url 'listing' listing.id %} class="btn btn-primary btn-block"
+                    >More Info</a
+                  >
+                </div>
+              </div>
+            </div>
+          {% endfor %}
         {% else %}
             <div class = "col-md-12">
                 <p>No Listings Available.</p>

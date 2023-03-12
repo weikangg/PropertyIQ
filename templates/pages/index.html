@@ -20,38 +20,22 @@
           <form action= '{% url 'search' %}'>
             <!-- Form Row 1 -->
             <div class="form-row">
-              <div class="col-md-4 mb-3">
+              <div class="col-md-6 mb-3">
                 <label class="sr-only">Keywords</label>
                 <input
                   type="text"
                   name="keywords"
                   class="form-control"
-                  placeholder="Keyword (Pool, Garage, etc)"
+                  placeholder="Keyword (Project Title, Street, etc)"
                 />
               </div>
 
-              <div class="col-md-4 mb-3">
-                <label class="sr-only">City</label>
-                <input
-                  type="text"
-                  name="city"
-                  class="form-control"
-                  placeholder="City"
-                />
-              </div>
+              <div class="col-md-6 mb-3">
+                <label class="sr-only">Property Type</label>
+                <input type="text" name="property_type" class="form-control" placeholder="Property Type">
+              </div>    
+            </div> 
 
-              <div class="col-md-4 mb-3">
-                <label class="sr-only">State</label>
-                <select name="state" class="form-control">
-                  <option selected="true" disabled="disabled">
-                    State (All)
-                  </option>
-                  {% for key,value in state_choices.items %}
-                    <option value="{{key}}">{{value}}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
             <!-- Form Row 2 -->
             <div class="form-row">
               <div class="col-md-6 mb-3">
@@ -68,7 +52,7 @@
               <div class="col-md-6 mb-3">
                 <select name="price" class="form-control" id="type">
                   <option selected="true" disabled="disabled">
-                    Max Price (Any)
+                    Max Rental Price (All)
                   </option>
                   {% for key,value in price_choices.items %}
                   <option value="{{key}}">{{value}}</option>
@@ -99,18 +83,18 @@
         {% for listing in listings %}
           <div class="col-md-6 col-lg-4 mb-4">
             <div class="card listing-preview">
-              <img class="card-img-top" src= "{{listing.photo_main.url}}"
+              <img class="card-img-top" src= {% static 'img/home-4.jpg' %}
               alt="">
               <div class="card-img-overlay">
                 <h2>
-                  <span class="badge badge-secondary text-white">${{listing.price | intcomma}}</span>
+                  <span class="badge badge-secondary text-white">${{listing.rent | intcomma}}</span>
                 </h2>
               </div>
               <div class="card-body">
                 <div class="listing-heading text-center">
-                  <h4 class="text-primary">{{listing.title}}</h4>
+                  <h4 class="text-primary">{{listing.project_Title}}</h4>
                   <p>
-                    <i class="fas fa-map-marker text-secondary"></i> {{listing.city}} {{listing.state}}, {{listing.zipcode}}
+                    <i class="fas fa-map-marker text-secondary"></i> {{listing.street}}
                   </p>
                 </div>
                 <hr />
@@ -118,18 +102,14 @@
                   <div class="col-6">
                     <i class="fas fa-th-large"></i> Sqft: {{listing.sqft}}
                   </div>
-                  <div class="col-6"><i class="fas fa-car"></i> Garage: {{listing.garage}}</div>
+                  <div class="col-6"><i class="fas fa-bed"></i> Bedrooms: {{listing.bedrooms}}</div>
                 </div>
                 <div class="row py-2 text-secondary">
-                  <div class="col-6"><i class="fas fa-bed"></i> Bedrooms: {{listing.bedrooms}}</div>
-                  <div class="col-6"><i class="fas fa-bath"></i> Bathrooms: {{listing.bathrooms}}</div>
+                  <div class="col-12"><i class="fas fa-bath"></i> Type: {{listing.propertyType}}</div>
                 </div>
                 <hr />
-                <div class="row py-2 text-secondary">
-                  <div class="col-6"><i class="fas fa-user"></i> {{listing.realtor}}</div>
-                </div>
                 <div class="row text-secondary pb-2">
-                  <div class="col-6"><i class="fas fa-clock"></i> {{listing.list_date | timesince}}</div>
+                  <div class="col-12"><i class="fas fa-clock"></i> {{listing.leaseDate | timesince}}</div>
                 </div>
                 <hr />
                 <a href= {% url 'listing' listing.id %} class="btn btn-primary btn-block"
