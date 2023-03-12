@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from .choices import bedroom_choices, price_choices
+from .choices import bedroom_choices, price_choices, propertyType_Choices
 from property.models import Property
 
 # Create your views here.
@@ -11,6 +11,7 @@ def index(request):
     paged_listings = paginator.get_page(page)
     
     context = {
+        'propertyType_choices': propertyType_Choices, 
         'listings' : paged_listings,
         'bedroom_choices': bedroom_choices,
         'price_choices': price_choices
@@ -32,13 +33,15 @@ def search(request):
     if 'keywords' in request.GET:
         keywords = request.GET.get('keywords')
         if keywords:
-            queryset_list = queryset_list.filter(description__icontains=keywords) # Check that the description contains the keywords
+            # Check that the title contains the keywords
+            queryset_list = queryset_list.filter(project_Title__icontains=keywords).filter(street__icontains=keywords)
+            
 
-    # City
+    # Property Type
     if 'property_type' in request.GET:
         property_type = request.GET.get('property_type')
         if property_type:
-            queryset_list = queryset_list.filter(property_type__iexact=property_type) # Check that the property_type matches the city inputted
+            queryset_list = queryset_list.filter(propertyType__iexact=property_type) # Check that the property_type matches the city inputted
 
     # Bedrooms
     if 'bedrooms' in request.GET:
@@ -57,6 +60,7 @@ def search(request):
     paged_listings = paginator.get_page(page)
 
     context = {
+        'propertyType_choices': propertyType_Choices, 
         'bedroom_choices': bedroom_choices,
         'price_choices': price_choices,
         'listings': paged_listings,

@@ -34,18 +34,25 @@
       <div class="row">
         <div class="col-md-12">
           <h2>Welcome {{user.first_name}}</h2>
-            {% if contacts %}
-              <p>Here are the property listings that you have inquired about!</p>
+            {% if user.is_superuser%}
+              <p>
+                <a href="{%url 'properties' %}">
+                  <input type="button" class = "col-md-4 btn btn-primary btn-block" value="Update Database">
+                </a>
+              </p>
+            {% endif %}
+            {% comment %} {% if contacts %} {% endcomment %}
+              <p>Here are the property listings that you have bookmarked before!</p>
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Enquiry #</th>
+                    <th scope="col">Bookmark #</th>
                     <th scope="col">Property</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {% for contact in contacts %}
+                  {% comment %} {% for contact in contacts %}
                     <tr>  
                       <td>{{contact.id}}</td>
                       <td>{{contact.listing}}</td>
@@ -53,12 +60,12 @@
                         <a class="btn btn-light" href="{% url 'listing' contact.listing_id %}">View Listing</a>
                       </td>                    
                     </tr>
-                  {% endfor %}
+                  {% endfor %} {% endcomment %}
                 </tbody>
               </table>
-            {% else %}
-              <p>You have not made any inquiries before!</p>
-            {% endif %}
+            {% comment %} {% else %} {% endcomment %}
+              <p>You have not bookmarked any properties before!</p>
+            {% comment %} {% endif %} {% endcomment %}
         </div>
       </div>
     </div>

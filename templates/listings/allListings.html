@@ -20,7 +20,12 @@
     
                   <div class="col-md-6 mb-3">
                     <label class="sr-only">Property Type</label>
-                    <input type="text" name="property_type" class="form-control" placeholder="Property Type">
+                    <select name="property_type" class="form-control">
+                      <option selected="true" disabled="disabled">Property Type</option>
+                      {% for key,value in propertyType_choices.items %}
+                        <option value="{{key}}">{{value}}</option>
+                      {% endfor %}
+                    </select>
                   </div>    
                 </div> 
 

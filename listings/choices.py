@@ -26,3 +26,11 @@ price_choices = {
   '9000':'$9,000',
   '10000':'$10,000+',
 }
+
+propertyType_Choices = {
+    'Non-landed Properties' : 'Non-landed Properties',
+    'Detached House': 'Detached House',
+    'Semi-Detached House': 'Semi-Detached House',
+    'Terrace House': 'Terrace House',
+    'Executive Condominium': 'Executive Condominium'
+}

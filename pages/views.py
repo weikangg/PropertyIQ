@@ -2,7 +2,7 @@ from django.shortcuts import render
 from property.models import Property
 from django.core.paginator import Paginator
 from realtors.models import Realtor
-from listings.choices import bedroom_choices, price_choices
+from listings.choices import bedroom_choices, price_choices, propertyType_Choices
 
 # Create your views here.
 
@@ -13,6 +13,7 @@ def index(request):
     paged_listings = paginator.get_page(page)
     
     context = {
+        'propertyType_choices': propertyType_Choices, 
         'listings' : paged_listings,
         'bedroom_choices': bedroom_choices,
         'price_choices': price_choices
