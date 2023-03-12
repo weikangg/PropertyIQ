@@ -47,8 +47,8 @@ def savePropertyToDatabase():
             x,y = float(project.get('x')),float(project.get('y'))   
         x2,y2 = xfm.transform(x,y)
 
-        property_item['x'] = str(x2)
-        property_item['y'] = str(y2)
+        property_item['x'] = x2
+        property_item['y'] = y2
         property_item['project'] = project.get('project')
         
         for property in project['rental']:
@@ -83,8 +83,8 @@ def savePropertyToDatabase():
                 else:
                     inner_photo_link3 = 'img/home-inside' + str(random_index) + '.jpg'
                     
-            property = Property(project_Title = property_item.get('project_Title'),street=property_item.get('street'),x_coordinates=property_item.get('x'),
-                                y_coordinates = property_item.get('y'),bedrooms=property_item.get('noOfBedRoom'), sqft = property_item.get('areaSqft'),
+            property = Property(project_Title = property_item.get('project_Title'),street=property_item.get('street'),latitude=property_item.get('x'),
+                                longitude = property_item.get('y'),bedrooms=property_item.get('noOfBedRoom'), sqft = property_item.get('areaSqft'),
                                 leaseDate = lease_Date, propertyType = property_item.get('propertyType'), rent = property_item.get('rent'), photo_main = photo_link,
                                 photo_1 = inner_photo_link1,photo_2 = inner_photo_link2, photo_3 = inner_photo_link3)
             property.save()
