@@ -1,22 +1,25 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .choices import bedroom_choices, state_choices, price_choices
-from .models import Listing
+from property.models import Property
 
 # Create your views here.
 def index(request):
-    listings = Listing.objects.all().order_by("-list_date").filter(is_published=True)
+    listings = Property.objects.all().order_by("-leaseDate")
     paginator = Paginator(listings,6) # 6 property on each page
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     
     context = {
-        'listings' : paged_listings
+        'listings' : paged_listings,
+        'bedroom_choices': bedroom_choices,
+        'price_choices': price_choices
     }
     return render(request,'listings/allListings.html', context)
 
 def listing(request, listing_id):
-    listing = get_object_or_404(Listing, pk=listing_id)
+    listing = get_object_or_404(Property, pk=listing_id)
 
     context = {
         'listing': listing
@@ -24,7 +27,7 @@ def listing(request, listing_id):
     return render(request,'listings/singleListing.html', context)
 
 def search(request):
-    queryset_list = Listing.objects.order_by('-list_date')
+    queryset_list = Property.objects.order_by('-lease_date')
 
     # Keywords
     if 'keywords' in request.GET:

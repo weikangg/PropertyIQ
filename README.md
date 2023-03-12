@@ -101,5 +101,29 @@ from property.models import Property
 Property.objects.all().delete()
 ```
 
+- If you want to drop the whole database but cannot do so via PGADMIN:
+
+Open the SQL shell by entering ```psql``` in your Windows search menu.
+
+Inside SQL shell, keep pressing enter until it prompts you for your **password** which you created during the installation. Type your password here even though it doesn't look like it is being keyed in. Press enter once done.
+
+It should look like...
+```
+Server [localhost]:
+Database [postgres]:
+Port [5432]:
+Username [postgres]:
+Password for user postgres:
+
+postgres=# 
+```
+
+RUN THESE COMMANDS and change the database name appropriately to your own database name. This should work.
+```
+update pg_database set datallowconn = 'false' where datname = 'propertyiq';
+select pg_terminate_backend(pg_stat_activity.pid) from pg_stat_activity where pg_stat_activity.datname = 'propertyiq';
+drop database propertyiq;
+```
+
 ## Testing Google Maps API
 - Go to test.html and run it on live server (VSCode Extension)
