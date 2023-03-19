@@ -2,7 +2,7 @@
 {% load humanize %}
 {% load static %}
 {% block title %}
-  | {{listing.project_Title}}
+  | {{listing.project_Title | title}}
 {% endblock  %}
 
 {% block content %}

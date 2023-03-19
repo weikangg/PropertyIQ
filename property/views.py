@@ -5,7 +5,7 @@ load_dotenv()
 from django.shortcuts import render
 from .models import Property
 from random import randint
-from pyproj import Proj, Transformer
+from pyproj import Proj
 import pyproj
 
 # Create your views here.

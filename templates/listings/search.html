@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% load static %}
+{% load pagination_tags %}
 {% block title %}| Search Results{% endblock  %}
 {% block content %}
 <section id="showcase-inner" class="py-5 text-white">
@@ -144,7 +145,7 @@
             <ul class = "pagination">
               {% if listings.has_previous %}
               <li class = "page-item">
-                <a href="?page={{listings.previous_page_number}}" class="page-link">&laquo;</a>
+                <a href="?page={{listings.previous_page_number}}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}" class="page-link">&laquo;</a>
               </li>
               {% else %}
               <li class="page-item disabled">
@@ -162,16 +163,16 @@
                     <a class="page-link">{{i}}</a>
                   </li>
                   {% elif i > listings.number|add:'-5' and i < listings.number|add:'5' %}
-                      <li class = "page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                      <li class = "page-item"><a class="page-link" href="?page={{ i }}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}">{{ i }}</a></li>
                   {% endif %}
               {% endfor %}
               
               {% if listings.paginator.num_pages > listings.number|add:'4' %}
-                  <li class = "page-item"><a class="page-link" href="?page={{ listings.number|add:'5' }}">&hellip;</a></li>
+                  <li class = "page-item"><a class="page-link" href="?page={{ listings.number|add:'5' }}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}">&hellip;</a></li>
               {% endif %}
               
               {% if listings.has_next %}
-                  <li class = "page-item"><a class="page-link" href="?page={{ listings.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                  <li class = "page-item"><a class="page-link" href="?page={{ listings.next_page_number }}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
               {% else %}
                 <li class="page-item disabled">
                   <a class="page-link">&raquo;</a>

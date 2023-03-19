@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .choices import bedroom_choices, price_choices, propertyType_Choices
 from property.models import Property
 
@@ -34,8 +35,8 @@ def search(request):
         keywords = request.GET.get('keywords')
         if keywords:
             # Check that the title contains the keywords
-            queryset_list = queryset_list.filter(project_Title__icontains=keywords).filter(street__icontains=keywords)
-            
+            queryset_list = queryset_list.filter(Q(project_Title__icontains=keywords) | Q(street__icontains = keywords))
+            print(queryset_list)
 
     # Property Type
     if 'property_type' in request.GET:
