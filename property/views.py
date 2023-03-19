@@ -12,7 +12,6 @@ import pyproj
 
 def savePropertyToDatabase():
     URA_API_KEY = os.getenv('URA_API_KEY')
-    cv = SVY21()
     ura = ura_api.ura_api(URA_API_KEY)
     year = '23'
     quarter = '1'
