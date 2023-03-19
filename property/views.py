@@ -12,7 +12,7 @@ import pyproj
 
 def savePropertyToDatabase():
     URA_API_KEY = os.getenv('URA_API_KEY')
-
+    cv = SVY21()
     ura = ura_api.ura_api(URA_API_KEY)
     year = '23'
     quarter = '1'
@@ -40,7 +40,6 @@ def savePropertyToDatabase():
     for project in data:
         property_item['project_Title'] = project.get('project')
         property_item['street'] = project.get('street')
-        xfm = Transformer.from_crs('EPSG:3414', 'EPSG:4326')
 
         # Temporary Fix
         svy21 = Proj("+init=EPSG:3414")
