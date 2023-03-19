@@ -5,13 +5,14 @@ load_dotenv()
 from django.shortcuts import render
 from .models import Property
 from random import randint
-from pyproj import Proj, Transformer
+from pyproj import Transformer
+from latLongConverter import SVY21
 
 # Create your views here.
 
 def savePropertyToDatabase():
     URA_API_KEY = os.getenv('URA_API_KEY')
-
+    cv = SVY21()
     ura = ura_api.ura_api(URA_API_KEY)
     year = '23'
     quarter = '1'
@@ -38,17 +39,16 @@ def savePropertyToDatabase():
     for project in data:
         property_item['project_Title'] = project.get('project')
         property_item['street'] = project.get('street')
-        xfm = Transformer.from_crs('EPSG:3414', 'EPSG:4326')
 
         # Temporary Fix
         if project.get('x') is None or project.get('y') is None:
-            x,y = data[0].get('x'), data[0].get('y')
+            x,y = float(data[0].get('x')), float(data[0].get('y'))
         else:
             x,y = float(project.get('x')),float(project.get('y'))   
-        x2,y2 = xfm.transform(x,y)
-
-        property_item['x'] = x2
-        property_item['y'] = y2
+        
+        lat, lon = cv.computeLatLon(x, y)
+        property_item['x'] = lat
+        property_item['y'] = lon
         property_item['project'] = project.get('project')
         
         for property in project['rental']:
