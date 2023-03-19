@@ -6,6 +6,7 @@ from django.shortcuts import render
 from .models import Property
 from random import randint
 from pyproj import Proj, Transformer
+import pyproj
 
 # Create your views here.
 
@@ -21,6 +22,7 @@ def savePropertyToDatabase():
     property_list = []
 
     property_item = {
+        "project title" : None,
         "street": None,
         "x": None,
         "y": None,
@@ -41,18 +43,20 @@ def savePropertyToDatabase():
         xfm = Transformer.from_crs('EPSG:3414', 'EPSG:4326')
 
         # Temporary Fix
+        svy21 = Proj("+init=EPSG:3414")
+        lat_long = Proj("+init=EPSG:4326")
         if project.get('x') is None or project.get('y') is None:
-            x,y = data[0].get('x'), data[0].get('y')
+            x,y = pyproj.transform(svy21, lat_long, data[0].get('x'), data[0].get('y'))
+           #x, y = data[0].get('x'), data[0].get('y')
         else:
-            x,y = float(project.get('x')),float(project.get('y'))   
-        x2,y2 = xfm.transform(x,y)
-
-        property_item['x'] = x2
-        property_item['y'] = y2
+            x,y = pyproj.transform(svy21, lat_long, project.get('x'), project.get('y'))  
+            #x, y = project.get('x'), project.get('y')
+        property_item['x'] = x
+        property_item['y'] = y
         property_item['project'] = project.get('project')
         
-        for property in project['rental']:
-            property_item['leaseDate'] = property.get('leaseDate')
+        for property_i in project['rental']:
+            property_item['leaseDate'] = property_i.get('leaseDate')
             year = '20' + property_item['leaseDate'][2:]
             if property_item['leaseDate'][:2] == '01':
                 month = '01'
@@ -64,13 +68,13 @@ def savePropertyToDatabase():
                 month = '10'
             day = '01'
             lease_Date = f"{year}-{month}-{day}"
-            property_item['propertyType'] = property.get('propertyType')
-            property_item['district'] = property.get('district')
-            property_item['areaSqft'] = property.get('areaSqft')
-            property_item['noOfBedRoom'] = property.get('noOfBedRoom')
+            property_item['propertyType'] = property_i.get('propertyType')
+            property_item['district'] = property_i.get('district')
+            property_item['areaSqft'] = property_i.get('areaSqft')
+            property_item['noOfBedRoom'] = property_i.get('noOfBedRoom')
             if property_item['noOfBedRoom'] == 'NA':
                 property_item['noOfBedRoom'] = str(randint(1,5))
-            property_item['rent'] = property.get('rent')
+            property_item['rent'] = property_i.get('rent')
             property_list.append(property_item)
             random_index = randint(1,6)
             photo_link = 'img/home-' + str(random_index) + '.jpg'
@@ -83,8 +87,8 @@ def savePropertyToDatabase():
                 else:
                     inner_photo_link3 = 'img/home-inside' + str(random_index) + '.jpg'
                     
-            property = Property(project_Title = property_item.get('project_Title'),street=property_item.get('street'),latitude=property_item.get('x'),
-                                longitude = property_item.get('y'),bedrooms=property_item.get('noOfBedRoom'), sqft = property_item.get('areaSqft'),
+            property = Property(project_Title = property_item.get('project_Title'),street=property_item.get('street'),latitude=property_item.get('y'),
+                                longitude = property_item.get('x'),bedrooms=property_item.get('noOfBedRoom'), sqft = property_item.get('areaSqft'),
                                 leaseDate = lease_Date, propertyType = property_item.get('propertyType'), rent = property_item.get('rent'), photo_main = photo_link,
                                 photo_1 = inner_photo_link1,photo_2 = inner_photo_link2, photo_3 = inner_photo_link3)
             property.save()
