@@ -17,58 +17,7 @@
           Consectetur, id commodi!
         </p>
         <div class="search">
-          <form action= '{% url 'search' %}'>
-            <!-- Form Row 1 -->
-            <div class="form-row">
-              <div class="col-md-6 mb-3">
-                <label class="sr-only">Keywords</label>
-                <input
-                  type="text"
-                  name="keywords"
-                  class="form-control"
-                  placeholder="Keyword (Project Title, Street, etc)"
-                />
-              </div>
-
-              <div class="col-md-6 mb-3">
-                <label class="sr-only">Property Type</label>
-                <select name="property_type" class="form-control">
-                  <option selected="true" disabled="disabled">Property Type</option>
-                  {% for key,value in propertyType_choices.items %}
-                    <option value="{{key}}">{{value}}</option>
-                  {% endfor %}
-                </select>
-              </div>       
-            </div> 
-
-            <!-- Form Row 2 -->
-            <div class="form-row">
-              <div class="col-md-6 mb-3">
-                <label class="sr-only">Bedrooms</label>
-                <select name="bedrooms" class="form-control">
-                  <option selected="true" disabled="disabled">
-                    Bedrooms (All)
-                  </option>
-                  {% for key,value in bedroom_choices.items %}
-                    <option value="{{key}}">{{value}}</option>
-                  {% endfor %}
-                </select>
-              </div>
-              <div class="col-md-6 mb-3">
-                <select name="price" class="form-control" id="type">
-                  <option selected="true" disabled="disabled">
-                    Max Rental Price (All)
-                  </option>
-                  {% for key,value in price_choices.items %}
-                  <option value="{{key}}">{{value}}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-            <button class="btn btn-secondary btn-block mt-4" type="submit">
-              Submit form
-            </button>
-          </form>
+          {% include 'includes/searchBar.html' %}
         </div>
       </div>
     </div>
@@ -97,9 +46,9 @@
               </div>
               <div class="card-body">
                 <div class="listing-heading text-center">
-                  <h4 class="text-primary">{{listing.project_Title}}</h4>
+                  <h4 class="text-primary">{{listing.project_Title | title }}</h4>
                   <p>
-                    <i class="fas fa-map-marker text-secondary"></i> {{listing.street}}
+                    <i class="fas fa-map-marker text-secondary"></i> {{listing.street | title}}
                   </p>
                 </div>
                 <hr />

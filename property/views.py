@@ -68,7 +68,20 @@ def savePropertyToDatabase():
             lease_Date = f"{year}-{month}-{day}"
             property_item['propertyType'] = property_i.get('propertyType')
             property_item['district'] = property_i.get('district')
-            property_item['areaSqft'] = property_i.get('areaSqft')
+            areaSqft = property_i.get('areaSqft')
+            # Case 1: '<=' is in the string. e.g. '<=1000'
+            if '<=' in areaSqft:
+                areaSqft = areaSqft.replace('<','').replace('=','').strip()
+                property_item['areaSqft'] = int(areaSqft)
+            # Case 2: '>' is in the string. e.g. '>5000'
+            elif '>' in areaSqft:
+                areaSqft = areaSqft.replace('>','').strip()
+                property_item['areaSqft'] = int(areaSqft)
+            # Case 3: No arrows. means it's given in a range. e.g. '5000-6000'
+            else:
+                areaSqftList = areaSqft.split('-')
+                property_item['areaSqft'] = int(areaSqftList[0]) + int(areaSqftList[1]) // 2
+            
             property_item['noOfBedRoom'] = property_i.get('noOfBedRoom')
             if property_item['noOfBedRoom'] == 'NA':
                 property_item['noOfBedRoom'] = str(randint(1,5))
