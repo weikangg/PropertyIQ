@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import update_session_auth_hash
 from contacts.models import Contact
 
 # Create your views here.
@@ -72,3 +74,52 @@ def dashboard(request):
     # }
     # return render(request,'accounts/dashboard.html', context)
     return render(request,'accounts/dashboard.html')
+
+def update(request):
+    id = request.user.id
+    user = User.objects.get(pk=id)
+    if request.method == "POST":
+        # Update User Account
+        # Get form values
+        first_name = request.POST.get('first_name')
+        user.first_name = first_name
+        last_name = request.POST.get('last_name')
+        user.last_name = last_name
+        email = request.POST.get('email')
+        user.email = email
+        username = request.POST.get('username')
+        user.username = username
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+        if password == password2:
+            user.password = make_password(password)
+
+        user.save()
+        update_session_auth_hash(request, user)
+        messages.success(request,"Account details successfully updated!")
+        return redirect('dashboard')
+        # # Check if passwords match
+        # if password == password2:
+        #     # check if the username exists
+        #     if User.objects.filter(username=username).exists():
+        #         messages.error(request, 'Username is taken!')
+        #         return redirect('register')
+        #     # check if the email exists
+        #     else:
+        #         if User.objects.filter(email=email).exists():
+        #             messages.error(request, 'Email is taken!')
+        #             return redirect('register')
+        #         else:
+        #             user = User.objects.create_user(username=username,password=password, email = email, first_name = first_name, last_name = last_name)
+        #             user.save()
+        #             messages.success(request,'You are now registered and can log in!')
+        #             return redirect('login')
+        # else:
+        #     messages.error(request,"Passwords do not match!")
+            # return redirect('register')
+                
+    else:
+        context = {
+            'user' : request.user
+        }
+        return render(request,'accounts/update.html', context)

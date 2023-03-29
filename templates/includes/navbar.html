@@ -54,8 +54,17 @@
             class="nav-item mr-3"
           {% endif %}
           >
-            <a class="nav-link" href="{% url 'dashboard' %}">
-             Welcome {{ user.username }}</a>
+            <div class="dropdown show">
+              <a class="nav-link dropdown-toggle" href="{% url 'dashboard' %}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Welcome {{ user.username }}
+              </a>
+            
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
+                <a class="dropdown-item" href="{% url 'update' %}">Update Profile</a>
+              </div>
+            </div>
+
           </li>
           <li class="nav-item mr-3">
             <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
