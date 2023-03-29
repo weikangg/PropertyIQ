@@ -22,21 +22,22 @@
           <li class="breadcrumb-item">
             <a href={% url 'index' %}>
               <i class="fas fa-home"></i> Home</a>
-          </li>
-          <li class="breadcrumb-item active"> Dashboard</li>
-        </ol>
-      </nav>
-    </div>
-  </section>
-
-  <section id="dashboard" class="py-4">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2>Welcome {{user.first_name}}</h2>
+            </li>
+            <li class="breadcrumb-item active"> Dashboard</li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+    
+    <section id="dashboard" class="py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+          {% include 'includes/alerts.html' %}
+          <h2>Welcome {{user.username}}</h2>
             {% if user.is_superuser%}
               <p>
-                <a href="{%url 'properties' %}">
+                <a href="{% url 'properties' %}">
                   <input type="button" class = "col-md-4 btn btn-primary btn-block" value="Update Database">
                 </a>
               </p>

@@ -1,0 +1,105 @@
+<form action= {% url 'search' %}> 
+    <!-- Form Row 1 -->
+    <div class="form-row">
+      <div class="col-md-12 mb-3">
+        <label class="sr-only">Keywords</label>
+        <input type="text" name="keywords" class="form-control" placeholder="Keyword (Project Title, Street, etc)"
+        {% if values.keywords %} value = {{values.keywords}}{% endif %}>
+      </div> 
+    </div>
+    
+    <!-- Form Row 2 -->
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label class="sr-only">Property Type</label>
+        <select name="property_type" class="form-control">
+          {% comment %} Got Property Type Submitted in the form {% endcomment %}
+          {% if values.property_type %} 
+            <option value = "All">Property Type</option>
+            {% for key,value in propertyType_choices.items %}
+              {% if key == values.property_type %}
+                <option value="{{key}}" selected = "true">{{value}}</option>
+              {% else %}
+                <option value="{{key}}">{{value}}</option>
+              {% endif %}
+            {% endfor %}
+          {% comment %} No property type submitted {% endcomment %}
+          {% else %}
+            <option selected="true" disabled="disabled">Property Type</option>
+            {% for key,value in propertyType_choices.items %}
+              <option value="{{key}}">{{value}}</option>
+            {% endfor %}
+          {% endif %}
+        </select>
+      </div>    
+    
+    
+      <div class="col-md-6 mb-3">
+        <label class="sr-only">Bedrooms</label>
+        <select name="bedrooms" class="form-control">
+          {% if values.bedrooms %} 
+            <option value = "All">Bedrooms (Any)</option>
+            {% for key,value in bedroom_choices.items %}
+              {% if key == values.bedrooms %}
+                <option value="{{key}}" selected = "true">{{value}}</option>
+              {% else %}
+                <option value="{{key}}">{{value}}</option>
+              {% endif %}
+            {% endfor %}
+          {% comment %} No property type submitted {% endcomment %}
+          {% else %}
+            <option selected="true" disabled="disabled">Bedrooms (Any)</option>
+            {% for key,value in bedroom_choices.items %}
+              <option value="{{key}}">{{value}}</option>
+            {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+    </div> 
+
+    <!-- Form Row 3 -->
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <select name="price" class="form-control">
+          {% if values.price %} 
+            <option value = "All">Max Rental Price (All)</option>
+            {% for key,value in price_choices.items %}
+              {% if key == values.price %}
+                <option value="{{key}}" selected = "true">{{value}}</option>
+              {% else %}
+                <option value="{{key}}">{{value}}</option>
+              {% endif %}
+            {% endfor %}
+          {% comment %} No property type submitted {% endcomment %}
+          {% else %}
+            <option selected="true" disabled="disabled">Max Rental Price (All)</option>
+            {% for key,value in price_choices.items %}
+              <option value="{{key}}">{{value}}</option>
+            {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <select name="area" class="form-control">
+          {% if values.area %} 
+            <option value = "All">Max House Area (All)</option>
+            {% for key,value in area_choices.items %}
+              {% if key == values.area %}
+                <option value="{{key}}" selected = "true">{{value}}</option>
+              {% else %}
+                <option value="{{key}}">{{value}}</option>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <option selected="true" disabled="disabled">Max House Area (All)</option>
+            {% for key,value in area_choices.items %}
+              <option value="{{key}}">{{value}}</option>
+            {% endfor %}
+          {% endif %}
+        </select>
+      </div>  
+    </div>
+
+    <button class="btn btn-secondary btn-block mt-4" type="submit" >Submit form</button>
+  </form>

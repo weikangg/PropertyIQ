@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% load static %}
-{% load pagination_tags %}
 {% block title %}| Search Results{% endblock  %}
 {% block content %}
 <section id="showcase-inner" class="py-5 text-white">
@@ -13,59 +12,110 @@
             <form action= {% url 'search' %}> 
               <!-- Form Row 1 -->
               <div class="form-row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-12 mb-3">
                   <label class="sr-only">Keywords</label>
                   <input type="text" name="keywords" class="form-control" placeholder="Keyword (Project Title, Street, etc)"
                   {% if values.keywords %} value = {{values.keywords}}{% endif %}>
-                </div>
-  
+                </div> 
+              </div>
+              
+              <!-- Form Row 2 -->
+              <div class="form-row">
                 <div class="col-md-6 mb-3">
                   <label class="sr-only">Property Type</label>
                   <select name="property_type" class="form-control">
+                    {% comment %} Got Property Type Submitted in the form {% endcomment %}
                     {% if values.property_type %} 
-                      <option selected="true" disabled="disabled">{{values.property_type}}</option>
+                      <option value = "All">Property Type</option>
+                      {% for key,value in propertyType_choices.items %}
+                        {% if key == values.property_type %}
+                          <option value="{{key}}" selected = "true">{{value}}</option>
+                        {% else %}
+                          <option value="{{key}}">{{value}}</option>
+                        {% endif %}
+                      {% endfor %}
+                    {% comment %} No property type submitted {% endcomment %}
                     {% else %}
                       <option selected="true" disabled="disabled">Property Type</option>
+                      {% for key,value in propertyType_choices.items %}
+                        <option value="{{key}}">{{value}}</option>
+                      {% endfor %}
                     {% endif %}
-                    {% for key,value in propertyType_choices.items %}
-                      <option value="{{key}}">{{value}}</option>
-                    {% endfor %}
                   </select>
                 </div>    
-              </div> 
-
-              <!-- Form Row 2 -->
-              <div class="form-row">
+              
+              
                 <div class="col-md-6 mb-3">
                   <label class="sr-only">Bedrooms</label>
                   <select name="bedrooms" class="form-control">
                     {% if values.bedrooms %} 
-                      <option selected="true" disabled="disabled">{{values.bedrooms}}</option>
+                      <option value = "All">Bedrooms (Any)</option>
+                      {% for key,value in bedroom_choices.items %}
+                        {% if key == values.bedrooms %}
+                          <option value="{{key}}" selected = "true">{{value}}</option>
+                        {% else %}
+                          <option value="{{key}}">{{value}}</option>
+                        {% endif %}
+                      {% endfor %}
+                    {% comment %} No property type submitted {% endcomment %}
                     {% else %}
                       <option selected="true" disabled="disabled">Bedrooms (Any)</option>
+                      {% for key,value in bedroom_choices.items %}
+                        <option value="{{key}}">{{value}}</option>
+                      {% endfor %}
                     {% endif %}
-                    {% for key,value in bedroom_choices.items %}
-                      <option value="{{key}}">{{value}}</option>
-                    {% endfor %}
                   </select>
                 </div>
+              </div> 
+
+              <!-- Form Row 3 -->
+              <div class="form-row">
                 <div class="col-md-6 mb-3">
                   <select name="price" class="form-control">
                     {% if values.price %} 
-                      <option selected="true" disabled="disabled">${{values.price | intcomma}}</option>
+                      <option value = "All">Max Rental Price (All)</option>
+                      {% for key,value in price_choices.items %}
+                        {% if key == values.price %}
+                          <option value="{{key}}" selected = "true">{{value}}</option>
+                        {% else %}
+                          <option value="{{key}}">{{value}}</option>
+                        {% endif %}
+                      {% endfor %}
+                    {% comment %} No property type submitted {% endcomment %}
                     {% else %}
                       <option selected="true" disabled="disabled">Max Rental Price (All)</option>
+                      {% for key,value in price_choices.items %}
+                        <option value="{{key}}">{{value}}</option>
+                      {% endfor %}
                     {% endif %}
-                    {% for key,value in price_choices.items %}
-                      <option value="{{key}}">{{value}}</option>
-                    {% endfor %}
                   </select>
                 </div>
+
+                <div class="col-md-6 mb-3">
+                  <select name="area" class="form-control">
+                    {% if values.area %} 
+                      <option value = "All">Max House Area (All)</option>
+                      {% for key,value in area_choices.items %}
+                        {% if key == values.area %}
+                          <option value="{{key}}" selected = "true">{{value}}</option>
+                        {% else %}
+                          <option value="{{key}}">{{value}}</option>
+                        {% endif %}
+                      {% endfor %}
+                    {% else %}
+                      <option selected="true" disabled="disabled">Max House Area (All)</option>
+                      {% for key,value in area_choices.items %}
+                        <option value="{{key}}">{{value}}</option>
+                      {% endfor %}
+                    {% endif %}
+                  </select>
+                </div>  
               </div>
-              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+
+              <button class="btn btn-secondary btn-block mt-4" type="submit" >Submit form</button>
             </form>
           </div>
-      
+        </div> 
     </div>
   </div>
 </section>
@@ -94,8 +144,8 @@
       <div class="row">
         {% if listings %}
             {% for listing in listings %}
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="card listing-preview">
+            <div class="col-md-6 col-lg-4 mb-4 d-flex align-items-stretch">
+              <div class="card listing-preview ">
                 <img class="card-img-top" src= {% static 'img/home-4.jpg' %}
                 alt="">
                 <div class="card-img-overlay">
@@ -105,7 +155,7 @@
                 </div>
                 <div class="card-body">
                   <div class="listing-heading text-center">
-                    <h4 class="text-primary">{{listing.project_Title | title}}</h4>
+                    <h5 class="text-primary">{{listing.project_Title | title}}</h5>
                     <p>
                       <i class="fas fa-map-marker text-secondary"></i> {{listing.street | title}}
                     </p>
@@ -145,7 +195,7 @@
             <ul class = "pagination">
               {% if listings.has_previous %}
               <li class = "page-item">
-                <a href="?page={{listings.previous_page_number}}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}" class="page-link">&laquo;</a>
+                <a href="?page={{listings.previous_page_number}}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}&area={{values.area}}" class="page-link">&laquo;</a>
               </li>
               {% else %}
               <li class="page-item disabled">
@@ -163,16 +213,16 @@
                     <a class="page-link">{{i}}</a>
                   </li>
                   {% elif i > listings.number|add:'-5' and i < listings.number|add:'5' %}
-                      <li class = "page-item"><a class="page-link" href="?page={{ i }}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}">{{ i }}</a></li>
+                      <li class = "page-item"><a class="page-link" href="?page={{ i }}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}&area={{values.area}}">{{ i }}</a></li>
                   {% endif %}
               {% endfor %}
               
               {% if listings.paginator.num_pages > listings.number|add:'4' %}
-                  <li class = "page-item"><a class="page-link" href="?page={{ listings.number|add:'5' }}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}">&hellip;</a></li>
+                  <li class = "page-item"><a class="page-link" href="?page={{ listings.number|add:'5' }}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}&area={{values.area}}">&hellip;</a></li>
               {% endif %}
               
               {% if listings.has_next %}
-                  <li class = "page-item"><a class="page-link" href="?page={{ listings.next_page_number }}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                  <li class = "page-item"><a class="page-link" href="?page={{ listings.next_page_number }}&keywords={{values.keywords}}&property_type={{values.property_type}}&bedrooms={{values.bedrooms}}&price={{values.price}}&area={{values.area}}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
               {% else %}
                 <li class="page-item disabled">
                   <a class="page-link">&raquo;</a>
