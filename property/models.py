@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import uuid
 # Create your models here.
 class Property(models.Model):
@@ -16,6 +17,10 @@ class Property(models.Model):
     photo_1 = models.CharField(max_length=200, blank=True)
     photo_2 = models.CharField(max_length=200, blank=True)
     photo_3 = models.CharField(max_length=200, blank=True)
+
+    # Every user that adds a property to their bookmarks, that individual property has a bookmarks field where the individual ID resides
+    # we can look for all the properties where the USER ID is.
+    bookmarks = models.ManyToManyField(User, related_name='bookmark', default = None, blank = True)
     def __str__(self):
         return self.project_Title
 

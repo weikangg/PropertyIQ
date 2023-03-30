@@ -156,7 +156,17 @@
               </div>
             </div>
           </div>
-          <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Bookmark</button>
+          {% if user.is_authenticated %}
+            {% if bookmarked %}
+              <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#bookmarkModal">Remove Bookmark</button>
+            {% else %}
+              <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#bookmarkModal">Add Bookmark</button>
+            {% endif %}
+          {% else %}
+            <form>
+              <button class="btn-primary btn-block btn-lg" formaction = "{% url 'register' %}">Register/Login to Bookmark</button>
+            </form>
+          {% endif %}
         </div>
     </div>
   </section>
@@ -164,7 +174,7 @@
    <!-- recommendation -->
   <section id="recommendation" class="py-0">
     <div class="container">
-      <h2><p><center> View Recommended properties </center></p></h2>
+      <h2><p><center>Recommendations</center></p></h2>
       <div class="row">
         {% if rec %}
             {% for prop in rec %}
@@ -215,49 +225,52 @@
     </div>
   </section>
 
-  <!-- Inquiry Modal -->
-  <div class="modal fade" id="inquiryModal" role="dialog">
+  <!-- Bookmark Modal -->
+  <div class="modal fade" id="bookmarkModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+          <h5 class="modal-title" id="bookmarkModalLabel">Bookmark Property</h5>
           <button type="button" class="close" data-dismiss="modal">
             <span>&times;</span>
           </button>
         </div>
+
         <div class="modal-body">
-          <form action = "{% url 'contact' %}" method = "POST">
-            {% csrf_token %}
-            {% if user.is_authenticated %}
-              <input type="hidden" name = "user_id" value = {{user.id}}>
-            {% else %}
-              <input type="hidden" name = "user_id" value = 0>
-            {% endif %}
-            <input type="hidden" name = "realtor_email" value = {{listing.realtor}}>
-            <input type="hidden" name = "listing_id" value = {{listing.id}}>
-            <div class="form-group">
-              <label for="property_name" class="col-form-label">Property:</label>
-              <input type="text" name="listing" class="form-control" value="{{listing.title}}">
-            </div>
-            <div class="form-group">
-              <label for="name" class="col-form-label">Name:</label>
-              <input type="text" name="name" class="form-control" {% if user.is_authenticated %} value ="{{user.first_name}} {{user.last_name}} "{% endif %} required>
-            </div>
-            <div class="form-group">
-              <label for="email" class="col-form-label">Email:</label>
-              <input type="email" name="email" class="form-control" {% if user.is_authenticated %} value ="{{user.email}}"{% endif %} required>
-            </div>
-            <div class="form-group">
-              <label for="phone" class="col-form-label">Phone:</label>
-              <input type="text" name="phone" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="message" class="col-form-label">Message:</label>
-              <textarea name="message" class="form-control"></textarea>
-            </div>
+          {% if bookmarked %}
+            <p> Are you sure you want to remove this bookmarked property? </p>
             <hr>
-            <input type="submit" value="Send" class="btn btn-block btn-secondary">
-          </form>
+            <form action = "#" method = "POST">
+              {% csrf_token %}
+              <div class = "form-group row">
+                <div class = "input-group col-6">
+                  <input type="button" value="Back" class="mb-xs-3 btn btn-block btn-danger" data-dismiss="modal">
+                </div>
+                <div class = "input-group col-6 ">
+                  <form>
+                    <button formaction="{% url 'bookmarks' listing.id %}" class = "btn btn-block btn-secondary">Remove Bookmark</button>
+                  </form>
+                </div>
+            </div>
+            </form>
+          {% else %}
+            <p> Are you sure you want to bookmark this property? </p>
+            <hr>
+            <form action = "#" method = "POST">
+              {% csrf_token %}
+              <div class = "form-group row">
+                <div class = "input-group col-6">
+                  <input type="button" value="Back" class="mb-xs-3 btn btn-block btn-danger" data-dismiss="modal">
+                </div>
+                <div class = "input-group col-6 ">
+                  <form>
+                    <button formaction="{% url 'bookmarks' listing.id %}" class = "btn btn-block btn-secondary">Add Bookmark</button>
+                  </form>
+                </div>
+            </div>
+            </form>
+          {% endif %}
+
         </div>
       </div>
     </div>

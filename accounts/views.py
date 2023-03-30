@@ -1,9 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
+from django.urls import reverse
+from urllib.parse import urlencode
 from .validators import validate
+from property.models import Property
 
 # Create your views here.
 def register(request):
@@ -76,12 +79,13 @@ def logout(request):
     return redirect('index')
 
 def dashboard(request):
-    # user_contacts = Contact.objects.order_by('-contact_date').filter(user_id=request.user.id)
-    # context = {
-    #     'contacts': user_contacts
-    # }
-    # return render(request,'accounts/dashboard.html', context)
-    return render(request,'accounts/dashboard.html')
+    # if we find a property that has a bookmarks field with the userid within, we return it
+    bookmarks = Property.objects.filter(bookmarks=request.user)
+
+    context = {
+        'bookmarks': bookmarks
+    }
+    return render(request,'accounts/dashboard.html', context)
 
 def update(request):
     id = request.user.id
@@ -134,3 +138,17 @@ def update(request):
             'user' : request.user
         }
         return render(request,'accounts/update.html', context)
+    
+def bookmarks(request, listing_id):
+    property = get_object_or_404(Property, pk = listing_id)
+    print(property)
+    print(listing_id)
+    # If the user id is inside this field, the user has already added this to the bookmarks
+    if property.bookmarks.filter(id = request.user.id).exists():
+        # remove it 
+        property.bookmarks.remove(request.user)
+    else:
+        # add it
+        property.bookmarks.add(request.user)
+
+    return redirect('dashboard')

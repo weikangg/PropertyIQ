@@ -42,31 +42,33 @@
                 </a>
               </p>
             {% endif %}
-            {% comment %} {% if contacts %} {% endcomment %}
+            {% if bookmarks %}
               <p>Here are the property listings that you have bookmarked before!</p>
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Bookmark #</th>
-                    <th scope="col">Property</th>
+                    <th scope="col">Project Title</th>
+                    <th scope="col">Street</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {% comment %} {% for contact in contacts %}
-                    <tr>  
-                      <td>{{contact.id}}</td>
-                      <td>{{contact.listing}}</td>
-                      <td>
-                        <a class="btn btn-light" href="{% url 'listing' contact.listing_id %}">View Listing</a>
-                      </td>                    
-                    </tr>
-                  {% endfor %} {% endcomment %}
+                {% for bookmark in bookmarks %}
+                  <tr>  
+                    <td>{{bookmark.project_Title |title}}</td>
+                    <td>{{bookmark.street | title}}</td>
+                    <td>
+                      <a href= {% url 'listing' bookmark.id %} class="btn btn-primary btn-block"
+                      >View Listing
+                      </a>
+                    </td>                    
+                  </tr>
+                {% endfor %} 
                 </tbody>
               </table>
-            {% comment %} {% else %} {% endcomment %}
+            {% else %}
               <p>You have not bookmarked any properties before!</p>
-            {% comment %} {% endif %} {% endcomment %}
+            {% endif %}
         </div>
       </div>
     </div>

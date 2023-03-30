@@ -23,6 +23,7 @@ def index(request):
 
 def listing(request, listing_id):
     listing = get_object_or_404(Property, pk=listing_id)
+    bookmarked = False
     rec_temp = Property.objects
     # Extending the latitude 
     lat_range = [listing.latitude + decimal.Decimal(0.009), listing.latitude - decimal.Decimal(0.009)]
@@ -36,9 +37,14 @@ def listing(request, listing_id):
     rec_temp.order_by("rent")
     # Show top 3 recommendations
     rec = rec_temp[:3]
+
+    # To show whether the property was already bookmarked before or not
+    if listing.bookmarks.filter(id=request.user.id).exists():
+        bookmarked = True
     context = {
         'listing': listing,
-        'rec' : rec
+        'rec' : rec,
+        'bookmarked': bookmarked
     }
     return render(request,'listings/singleListing.html', context)
 
