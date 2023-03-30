@@ -3,8 +3,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
-from django.urls import reverse
-from urllib.parse import urlencode
+from django.core.paginator import Paginator
 from .validators import validate
 from property.models import Property
 
@@ -81,9 +80,11 @@ def logout(request):
 def dashboard(request):
     # if we find a property that has a bookmarks field with the userid within, we return it
     bookmarks = Property.objects.filter(bookmarks=request.user)
-
+    paginator = Paginator(bookmarks,6) # 6 property on each page
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
     context = {
-        'bookmarks': bookmarks
+        'bookmarks': paged_listings
     }
     return render(request,'accounts/dashboard.html', context)
 
@@ -147,8 +148,9 @@ def bookmarks(request, listing_id):
     if property.bookmarks.filter(id = request.user.id).exists():
         # remove it 
         property.bookmarks.remove(request.user)
+        messages.success(request,"Bookmark successfully removed!")
     else:
         # add it
         property.bookmarks.add(request.user)
-
-    return redirect('dashboard')
+        messages.success(request,"Bookmark successfully added!")
+    return redirect('listing', listing_id)

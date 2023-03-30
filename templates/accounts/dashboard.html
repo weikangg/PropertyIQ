@@ -29,6 +29,7 @@
       </div>
     </section>
     
+    <!-- Dashboard -->
     <section id="dashboard" class="py-4">
       <div class="container">
         <div class="row">
@@ -37,9 +38,7 @@
           <h2>Welcome {{user.username}}</h2>
             {% if user.is_superuser%}
               <p>
-                <a href="{% url 'properties' %}">
-                  <input type="button" class = "col-md-4 btn btn-primary btn-block" value="Update Database">
-                </a>
+                <a href= {% url 'properties' %} class="col-md-4 btn btn-secondary py-3">Update Properties List</a>
               </p>
             {% endif %}
             {% if bookmarks %}
@@ -71,6 +70,50 @@
             {% endif %}
         </div>
       </div>
-    </div>
-  </section>
+      
+    <!-- Pagination -->
+        <div class = "row">
+          <div class="col-md-12">
+            <ul class = "pagination">
+              {% if bookmarks.has_previous %}
+              <li class = "page-item">
+                <a href="?page={{bookmarks.previous_page_number}}" class="page-link">&laquo;</a>
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                <a class="page-link">&laquo;</a>
+              </li>
+              {% endif %}
+              
+              {% if bookmarks.number|add:'-4' > 1 %}
+                  <li class = "page-item"><a class="page-link" href="?page={{ bookmarks.number|add:'-5' }}">&hellip;</a></li>
+              {% endif %}
+              
+              {% for i in bookmarks.paginator.page_range %}
+                  {% if bookmarks.number == i %}
+                  <li class="page-item active">
+                    <a class="page-link">{{i}}</a>
+                  </li>
+                  {% elif i > bookmarks.number|add:'-5' and i < bookmarks.number|add:'5' %}
+                      <li class = "page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+              {% endfor %}
+              
+              {% if bookmarks.paginator.num_pages > bookmarks.number|add:'4' %}
+                  <li class = "page-item"><a class="page-link" href="?page={{ bookmarks.number|add:'5' }}">&hellip;</a></li>
+              {% endif %}
+              
+              {% if bookmarks.has_next %}
+                  <li class = "page-item"><a class="page-link" href="?page={{ bookmarks.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">&raquo;</a>
+                </li>
+              {% endif %}
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 {% endblock  %}
