@@ -24,14 +24,18 @@ def index(request):
 def listing(request, listing_id):
     listing = get_object_or_404(Property, pk=listing_id)
     rec_temp = Property.objects
+    # Extending the latitude 
     lat_range = [listing.latitude + decimal.Decimal(0.009), listing.latitude - decimal.Decimal(0.009)]
+    # Extending the longitude
     long_range = [listing.longitude + decimal.Decimal(0.009), listing.longitude - decimal.Decimal(0.009)]
+    # Filtering nearby properties based on location
     rec_temp = rec_temp.filter(Q(Q(latitude__lte = lat_range[0]) & Q(latitude__gte = lat_range[1])) | Q(Q(longitude__lte = long_range[0]) & Q(longitude__gte = long_range[1])))
+    # Filtering nearby properties based on project title if possible
     rec_temp = rec_temp.filter(~Q(project_Title__iexact = listing.project_Title))
+    # Ordering them by ascending rent.
     rec_temp.order_by("rent")
+    # Show top 3 recommendations
     rec = rec_temp[:3]
-    '''for ppt in rec:
-        print(ppt.project_Title)'''
     context = {
         'listing': listing,
         'rec' : rec
