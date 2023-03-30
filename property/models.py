@@ -21,6 +21,7 @@ class Property(models.Model):
     # Every user that adds a property to their bookmarks, that individual property has a bookmarks field where the individual ID resides
     # we can look for all the properties where the USER ID is.
     bookmarks = models.ManyToManyField(User, related_name='bookmark', default = None, blank = True)
+    searchHistory = models.ManyToManyField(User,related_name='searchHistory',default = None, blank = True)
     def __str__(self):
         return self.project_Title
 

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">404 Error Page</h1>
+          <p class="lead">Uh-oh.. Seems like you got an error!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href={% url 'index' %}>
+              <i class="fas fa-home"></i> Home</a>
+            </li>
+          </ol>
+        </nav>
+        <h1>Page not found</h1>
+        <p>We're sorry, but the page you're looking for could not be found. Would you like to try navigating through the following links instead?</p>
+        {% if user.is_authenticated %}
+        <div class = "row">
+            <div class="col-md-6">
+                <a href="{% url 'dashboard' %}" class="btn btn-warning py-2 mb-3 mt-2 w-100">Dashboard</a>
+            </div>
+            <div class="col-md-6">
+                <a href="{% url 'searchHistory' %}" class="btn btn-warning py-2 mb-3 mt-2 w-100">Recently Viewed Properties</a>
+            </div>
+        </div>
+        {% endif %}
+        <div class = "row">
+            <div class="col-md-12">
+                <a href="{% url 'listings' %}" class="btn btn-warning py-2 mb-3 mt-2 w-100">Featured Listings</a>
+            </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}

@@ -80,11 +80,13 @@ def logout(request):
 def dashboard(request):
     # if we find a property that has a bookmarks field with the userid within, we return it
     bookmarks = Property.objects.filter(bookmarks=request.user)
+    queryset_length = bookmarks.count()
     paginator = Paginator(bookmarks,6) # 6 property on each page
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     context = {
-        'bookmarks': paged_listings
+        'bookmarks': paged_listings,
+        'queryset_length':queryset_length
     }
     return render(request,'accounts/dashboard.html', context)
 
@@ -142,8 +144,6 @@ def update(request):
     
 def bookmarks(request, listing_id):
     property = get_object_or_404(Property, pk = listing_id)
-    print(property)
-    print(listing_id)
     # If the user id is inside this field, the user has already added this to the bookmarks
     if property.bookmarks.filter(id = request.user.id).exists():
         # remove it 
@@ -154,3 +154,23 @@ def bookmarks(request, listing_id):
         property.bookmarks.add(request.user)
         messages.success(request,"Bookmark successfully added!")
     return redirect('listing', listing_id)
+
+
+
+def searchHistory(request):
+    recentListings = Property.objects.filter(searchHistory=request.user).order_by('-id')
+    queryset_length = recentListings.count()
+    paginator = Paginator(recentListings,6) # 6 property on each page
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
+    context = {
+        'recentListings': paged_listings,
+        'queryset_length': queryset_length
+    }
+    return render(request,'accounts/searchHistory.html', context)
+
+def clearSearchHistory(request):
+    recentListings = Property.objects.filter(searchHistory=request.user)
+    recentListings.all().delete()
+    messages.success(request,'Search History successfully cleared!')
+    return redirect('searchHistory')

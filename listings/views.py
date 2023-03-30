@@ -23,6 +23,7 @@ def index(request):
 
 def listing(request, listing_id):
     listing = get_object_or_404(Property, pk=listing_id)
+    listing.searchHistory.add(request.user)
     bookmarked = False
     rec_temp = Property.objects.all()
     # Extending the latitude 
