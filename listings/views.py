@@ -27,15 +27,22 @@ def listing(request, listing_id):
     # Actual Listing
     listing = get_object_or_404(Property, pk=listing_id)
 
-    # Add to Property
-    user_property,created = UserProperty.objects.get_or_create(user=request.user, property=listing)
-    
-    # Whether it's created or not, we want to update the last viewed whenever they click on something and save it in the database
-    user_property.last_viewed = datetime.now()
-    user_property.save()
-
     # Whether the variable is bookmarked already or not
-    bookmarked = False
+    bookmarked = False  
+
+    # only if the user is logged in, then can do bookmarks
+    if request.user.is_authenticated:
+
+        # Add to Property
+        user_property, created = UserProperty.objects.get_or_create(user=request.user, property=listing)
+
+        # Whether it's created or not, we want to update the last viewed whenever they click on something and save it in the database
+        user_property.last_viewed = datetime.now()
+        user_property.save()
+
+        # To show whether the property was already bookmarked before or not in our templates
+        if listing.bookmarks.filter(id=request.user.id).exists():
+            bookmarked = True
 
     # Recommendations
     rec_temp = Property.objects.all()
@@ -51,10 +58,6 @@ def listing(request, listing_id):
     rec_temp.order_by("rent")
     # Show top 3 recommendations
     rec = rec_temp[:3]
-
-    # To show whether the property was already bookmarked before or not in our templates
-    if listing.bookmarks.filter(id=request.user.id).exists():
-        bookmarked = True
     
     context = {
         'listing': listing,
