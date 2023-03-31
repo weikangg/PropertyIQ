@@ -4,7 +4,8 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.conf import settings
 from .choices import bedroom_choices, price_choices, propertyType_Choices, area_choices
-from property.models import Property
+from property.models import Property,UserProperty
+from datetime import datetime
 
 # Create your views here.
 def index(request):
@@ -23,9 +24,20 @@ def index(request):
     return render(request,'listings/allListings.html', context)
 
 def listing(request, listing_id):
+    # Actual Listing
     listing = get_object_or_404(Property, pk=listing_id)
-    listing.searchHistory.add(request.user)
+
+    # Add to Property
+    user_property,created = UserProperty.objects.get_or_create(user=request.user, property=listing)
+    
+    # Whether it's created or not, we want to update the last viewed whenever they click on something and save it in the database
+    user_property.last_viewed = datetime.now()
+    user_property.save()
+
+    # Whether the variable is bookmarked already or not
     bookmarked = False
+
+    # Recommendations
     rec_temp = Property.objects.all()
     # Extending the latitude 
     lat_range = [listing.latitude + decimal.Decimal(0.009), listing.latitude - decimal.Decimal(0.009)]
@@ -40,9 +52,10 @@ def listing(request, listing_id):
     # Show top 3 recommendations
     rec = rec_temp[:3]
 
-    # To show whether the property was already bookmarked before or not
+    # To show whether the property was already bookmarked before or not in our templates
     if listing.bookmarks.filter(id=request.user.id).exists():
         bookmarked = True
+    
     context = {
         'listing': listing,
         'rec' : rec,

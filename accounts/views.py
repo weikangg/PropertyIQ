@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .validators import validate
-from property.models import Property
+from property.models import Property, UserProperty
 
 # Create your views here.
 def register(request):
@@ -158,7 +159,9 @@ def bookmarks(request, listing_id):
 
 
 def searchHistory(request):
-    recentListings = Property.objects.filter(searchHistory=request.user).order_by('-id')
+    recentListings = Property.objects.filter(
+        userproperty__user=request.user
+    ).order_by('-userproperty__last_viewed').distinct()
     queryset_length = recentListings.count()
     paginator = Paginator(recentListings,6) # 6 property on each page
     page = request.GET.get('page')
