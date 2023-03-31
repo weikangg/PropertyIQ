@@ -1,4 +1,5 @@
-<h1 align="center"> :house_with_garden: PropertyIQ:</h1>
+<h1 align="center"> :house_with_garden: PropertyIQ</h1>
+
 ![Screenshot 2023-03-01 193840](https://user-images.githubusercontent.com/95838788/222974513-96d5ad6a-55ca-4d5b-b0d1-1ba060eaee57.png)
 
 PropertyIQ is a web application that organises and makes accessible relevant market data and is the the go-to source for up-to-date information and trends in the Singapore housing rental market.
@@ -44,7 +45,9 @@ Follow this link and create an application specific password, then store the rel
 GMAIL_EMAIL = <YOUR EMAIL> (e.g. test@test.com)
 GMAIL_APP_PASSWORD = <YOUR GMAIL APP PASSWORD> (e.g. asdadadadsada [16 characters long])
 ```
-<h2 align="center"> ![](https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png) PostgreSQL Setup</h2>
+<h2 align="center">
+	<code><img height="50" src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png" alt="PostgreSQL" title="PostgreSQL" /></code> PostgreSQL Setup
+</h2>
 
 - Download and install both pgAdmin and PostgreSQL.
 
