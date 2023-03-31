@@ -126,7 +126,7 @@ drop database propertyiq;
 ```
 
 ## FAQ
-> 1. How do I start the production server?
+> <strong>1. How do I start the production server?</strong>
 ```
 Run python manage.py runserver in the console.
 ```
