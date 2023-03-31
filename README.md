@@ -135,3 +135,21 @@ Run python manage.py runserver in the console.
 ```
 Run python manage.py createsuperuser in the console and follow the instructions.
 ```
+
+<h2 align="center"> 🛠 Tech Stack:</h2>
+
+<div align="center">
+  <h3>Frontend</h3>
+  <p>
+    <a href="https://skillicons.dev">
+      <img src="https://skillicons.dev/icons?i=html,css,js,bootstrap,django" />
+    </a>
+  </p>
+  <h3>Backend</h3>
+  <p>
+    <a href="https://skillicons.dev">
+      <img src="https://skillicons.dev/icons?i=django,postgresql,py" />
+    </a>
+  </p>
+  <br />
+</div>
