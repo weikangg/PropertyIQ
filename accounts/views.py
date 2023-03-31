@@ -4,9 +4,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
 from django.core.paginator import Paginator
-from django.db.models import Q
 from .validators import validate
-from property.models import Property, UserProperty
+from property.models import Property
+from django.utils import timezone   
+from django.http import HttpResponseServerError
+from .models import UserLogin
 
 # Create your views here.
 def register(request):
@@ -53,25 +55,82 @@ def register(request):
         return render(request,'accounts/register.html')
 
 def login(request):
+    # If POST request
     if request.method == "POST":
-        # Login User
+        # Get username and password from request
         username = request.POST.get("username")
         password = request.POST.get("password")
-        
-        user = auth.authenticate(username=username,password=password)
 
-        # If user matched.
+        # Check if user exists
+        user = auth.authenticate(username=username, password=password)
+
+        # If user matched
         if user is not None:
-            auth.login(request,user)
+            # If user had previous wrong password attempts, reset counter
+            user_login = UserLogin.objects.filter(user=user).last()
+            if user_login:
+                user_login.wrong_password_count = 0
+                user_login.wrong_password_timeout = None
+                user_login.save()
+            auth.login(request, user)
             return redirect('dashboard')
-        
+
         # If failed to match
         else:
-            messages.error(request,"Invalid credentials! Try again!")
-            return redirect('login')
+            # Increment wrong password counter in session
+            user_login = UserLogin.objects.filter(user__username=username).last()
 
+            if user_login:
+                if user_login.wrong_password_count < 3:
+                    user_login.wrong_password_count += 1
+                user_login.save()
+            else:
+                user_login = UserLogin.objects.create(user=User.objects.get(username=username), wrong_password_count=1)
+            
+            # only show message if they still have attempts left
+            if user_login.wrong_password_count < 3:
+                messages.error(request, f"Invalid credentials! Try again! You have {3 - user_login.wrong_password_count} attempts left.")
+
+            # Check if user has exceeded max number of attempts
+            if user_login.wrong_password_count >= 3:
+                # Set timeout if it hasn't already been set
+                if user_login.wrong_password_timeout is None:
+                    user_login.wrong_password_timeout = timezone.now() + timezone.timedelta(hours=1)
+                    user_login.save()
+                    remaining_time = user_login.wrong_password_timeout - timezone.now()
+                    remaining_time_minutes, remaining_time_seconds = divmod(remaining_time.seconds, 60)
+                    remaining_time_str = f"{remaining_time_minutes} minutes and {remaining_time_seconds} seconds"
+                    context = {'remaining_time': remaining_time_str}
+                    content = render(request, 'accounts/lockedOut.html', context=context)
+                    return HttpResponseServerError(content)
+                    # return HttpResponseServerError(f"You have been timed out for {remaining_time_str}. Please try again later.")
+
+                # Check if user is still timed out
+                if user_login.wrong_password_timeout > timezone.now():
+                    remaining_time = user_login.wrong_password_timeout - timezone.now()
+                    remaining_time_minutes, remaining_time_seconds = divmod(remaining_time.seconds, 60)
+                    remaining_time_str = f"{remaining_time_minutes} minutes and {remaining_time_seconds} seconds"
+                    context = {'remaining_time': remaining_time_str}
+                    content = render(request, 'accounts/lockedOut.html', context=context)
+                    return HttpResponseServerError(content)
+                    # return HttpResponseServerError(f"You have been timed out for {remaining_time_str}. Please try again later.")
+
+
+                else:
+                    # Reset counter and timeout if remaining time is zero or less than zero
+
+                    # Reset count to 1, because if reached here, means they already failed once. hence, we set it to 1 instead of 0.
+                    user_login.wrong_password_count = 1
+                    user_login.wrong_password_timeout = None
+                    user_login.save()
+                    messages.error(request, f"Invalid credentials! Try again! You have {3 - user_login.wrong_password_count} attempts left.")
+                
+            return render(request, 'accounts/login.html')
+
+    # If GET request
     else:
-        return render(request,'accounts/login.html')
+        return render(request, 'accounts/login.html')
+
 
 def logout(request):
     if request.method == "POST":
