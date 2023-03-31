@@ -131,7 +131,7 @@ drop database propertyiq;
 Run python manage.py runserver in the console.
 ```
 
-> 2. How do I create a super user?
+> <strong>2. How do I create a super user?</strong>
 ```
 Run python manage.py createsuperuser in the console and follow the instructions.
 ```
