@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 4) Setup [PostgreSQL](#postgresql-setup).
 
-5) Create a .env file & store relevant information.
+5) Create a .env file & store relevant information. <strong>Ensure that the names match exactly. e.g. 'POSTGRE_USER' must be stored exactly as POSTGRE_USER in the .env file without any typos. </strong>
 ```
 POSTGRE_USER = <YOUR POSTGRESQL USER>
 POSTGRE_PASSWORD = <YOUR POSTGRESQL PASSWORD>
@@ -31,7 +31,7 @@ POSTGRE_PASSWORD = <YOUR POSTGRESQL PASSWORD>
 URA_API_KEY = <YOUR URA API KEY>
 ```
 
-7) Get Google Maps API Key & Add it to the .env file
+7) Get Google Maps API Key & Add it to the .env file.
 ```
 GOOGLE_MAPS_KEY = <YOUR GOOGLE MAPS KEY>
 ```
