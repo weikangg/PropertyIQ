@@ -1,9 +1,9 @@
-# PropertyIQ
+<h1 align="center"> :house_with_garden: PropertyIQ:</h1>
 ![Screenshot 2023-03-01 193840](https://user-images.githubusercontent.com/95838788/222974513-96d5ad6a-55ca-4d5b-b0d1-1ba060eaee57.png)
 
 PropertyIQ is a web application that organises and makes accessible relevant market data and is the the go-to source for up-to-date information and trends in the Singapore housing rental market.
 
-## Setup
+<h2 align="center"> :hammer_and_wrench:	Setup</h2>
 
 1) Create Python virtual environment in VS Code 
 2) Start virtual environment
@@ -44,8 +44,7 @@ Follow this link and create an application specific password, then store the rel
 GMAIL_EMAIL = <YOUR EMAIL> (e.g. test@test.com)
 GMAIL_APP_PASSWORD = <YOUR GMAIL APP PASSWORD> (e.g. asdadadadsada [16 characters long])
 ```
-
-## PostgreSQL Setup
+<h2 align="center"> ![](https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png) PostgreSQL Setup</h2>
 
 - Download and install both pgAdmin and PostgreSQL.
 
@@ -125,7 +124,8 @@ select pg_terminate_backend(pg_stat_activity.pid) from pg_stat_activity where pg
 drop database propertyiq;
 ```
 
-## FAQ
+<h2 align="center"> :question:	 FAQ:</h2>
+
 > <strong>1. How do I start the production server?</strong>
 ```
 Run python manage.py runserver in the console.
