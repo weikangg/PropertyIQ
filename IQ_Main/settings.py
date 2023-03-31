@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-tw4dvh^rxr#fcv07zu#=vngq^3%%=#4q2@tr%%mgd@-nbd8_#r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -167,6 +167,8 @@ EMAIL_HOST_USER = getenv('GMAIL_EMAIL')
 EMAIL_HOST_PASSWORD = getenv('GMAIL_APP_PASSWORD')
 EMAIL_USE_TLS = True
 
+# Google maps Configuration
+GOOGLE_MAPS_API_KEY = getenv('GOOGLE_MAPS_KEY')
 # try:
 #     from .local_settings import *
 # except ImportError:

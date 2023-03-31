@@ -2,6 +2,7 @@ import decimal
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.conf import settings
 from .choices import bedroom_choices, price_choices, propertyType_Choices, area_choices
 from property.models import Property
 
@@ -45,7 +46,8 @@ def listing(request, listing_id):
     context = {
         'listing': listing,
         'rec' : rec,
-        'bookmarked': bookmarked
+        'bookmarked': bookmarked,
+        'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY
     }
     return render(request,'listings/singleListing.html', context)
 
