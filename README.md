@@ -125,5 +125,13 @@ select pg_terminate_backend(pg_stat_activity.pid) from pg_stat_activity where pg
 drop database propertyiq;
 ```
 
-## Testing Google Maps API
-- Go to test.html and run it on live server (VSCode Extension)
+## FAQ
+> 1. How do I start the production server?
+```
+Run python manage.py runserver in the console.
+```
+
+> 2. How do I create a super user?
+```
+Run python manage.py createsuperuser in the console and follow the instructions.
+```
