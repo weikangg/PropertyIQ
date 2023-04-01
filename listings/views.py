@@ -138,14 +138,14 @@ def listing(request, listing_id):
     ax.set_xticklabels(date_range.strftime('%Y-%m-%d'), rotation='vertical', fontsize=10)
     ax.set_xlabel('Lease Date')
     ax.set_ylabel('Rental Price')
-    ax.set_title('Historical and Predicted Trends for {}'.format(listing.project_Title.lower().capitalize()))
+    ax.set_title('Historical and Predicted Trends for {}'.format(listing.project_Title.title()))
     # Add data labels to the bars
     for i, row in df.iterrows():
         ax.text(row['ds'], row['y'], f"{row['y']:.0f}", ha='center', va='bottom', fontsize=12, color='red', rotation=45)
     ax.annotate('Predicted Prices',
                 xy=(0.87, 0.5), xycoords='axes fraction',
                 xytext=(15, 0), textcoords='offset points',
-                fontsize=10, color='black',
+                fontsize=14, color='black',
                 bbox=dict(facecolor='none', edgecolor='black', boxstyle='round'))
 
     # Plot the time series (nearby plot)
@@ -155,7 +155,7 @@ def listing(request, listing_id):
     ax.set_xticklabels(date_range2.strftime('%Y-%m-%d'), rotation='vertical', fontsize=10)
     ax.set_xlabel('Lease Date')
     ax.set_ylabel('Rental Price')
-    ax.set_title('Nearby Trends for {}'.format(listing.project_Title.lower().capitalize()))
+    ax.set_title('Nearby Trends for {}'.format(listing.project_Title.title()))
     # Add data labels to the bars
     for i, row in df2.iterrows():
         ax.text(row['ds'], row['y'], f"{row['y']:.0f}", ha='center', va='bottom', fontsize=12, color='red', rotation=45)
