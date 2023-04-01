@@ -189,7 +189,7 @@
                 </div>
                 <div class="card-body">
                   <div class="listing-heading text-center">
-                    <h4 class="text-primary">{{prop.project_Title | title}}</h4>
+                    <h5 class="text-primary">{{prop.project_Title | title}}</h5>
                     <p>
                       <i class="fas fa-map-marker text-secondary"></i> {{prop.street | title}}
                     </p>
@@ -225,6 +225,33 @@
     </div>
   </section>
 
+  <!-- Trends-->
+  <section id="recommendation" class="py-0">
+    <div class="container">
+      <h2><p><center>Historical and Nearby Trends</center></p></h2>
+      <div class="row">
+        <div class = "col-md-12">
+          <center><button class = "btn btn-primary mt-5 mb-0" type = "button" disabled>Historical Trends</button></center>
+          <blockquote class="blockquote text-center mt-3 mb-0">
+            <p class="">Past data and forecasted trends for the rental flats  of <strong>{{listing.project_Title | title}} </strong> (4 Quarters ahead)</p>
+            <footer class="blockquote-footer">Provided by the <cite title="Source Title">PropertyIQ Team</cite></footer>
+          </blockquote>
+          <img src="{% static historical_trend %}" alt="Historical Rent Trend Plot" class="img-fluid zoomable-image">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class = "col-md-12">
+          <center><button class = "btn btn-primary mt-5 mb-0" type = "button" disabled>Nearby Trends</button></center>
+          <blockquote class="blockquote text-center mt-3 mb-0">
+            <p class="">Past data and forecasted trends for the alternative rental flats <strong>near {{listing.project_Title | title}} </strong> (4 Quarters ahead)</p>
+            <footer class="blockquote-footer">Provided by the <cite title="Source Title">PropertyIQ Team</cite></footer>
+          </blockquote>
+          <img src="{% static nearby_trend %}" alt="Nearby Rent Trend Plot" class="img-fluid mb-5 zoomable-image">
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- Bookmark Modal -->
   <div class="modal fade" id="bookmarkModal" role="dialog">
     <div class="modal-dialog">

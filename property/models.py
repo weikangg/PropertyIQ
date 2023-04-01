@@ -10,7 +10,7 @@ class Property(models.Model):
     longitude = models.DecimalField(max_digits=20, decimal_places = 15,null = True, blank=True)
     bedrooms = models.CharField(max_length=10, null=True, blank= True, default = 0)
     sqft = models.CharField(max_length=20, null=True,blank=True)
-    leaseDate = models.DateField(auto_now=True)
+    leaseDate = models.DateField()
     propertyType = models.CharField(max_length=200, blank=True, null=True)
     rent = models.IntegerField(blank=True)
     photo_main = models.CharField(max_length=200, blank=True)
