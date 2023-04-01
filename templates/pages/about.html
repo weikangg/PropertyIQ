@@ -34,7 +34,7 @@
   <section id="about" class="py-4">
     <div class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <h2>We Search For The Perfect Home</h2>
           <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
           <img src= {% static 'img/about.jpg' %} alt="">
@@ -42,7 +42,7 @@
             neque quod accusamus rem quia magnam magni dolorum facilis ullam minima perferendis? Exercitationem at quaerat
             commodi id libero eveniet harum perferendis laborum molestias quia.</p>
         </div>
-        <div class="col-md-4">
+        {% comment %} <div class="col-md-4">
           <div class="card">
             {% if mvp_realtors %}
               {% for mvp_realtor in mvp_realtors %}
@@ -59,7 +59,7 @@
                 <h3 class = "pt-3 pb-0 text-center">No mvp realtor for this month.</h3>
               </div>
             {% endif %}
-          </div>
+          </div> {% endcomment %}
         </div>
       </div>
     </div>
