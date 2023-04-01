@@ -232,7 +232,7 @@ def searchHistory(request):
     return render(request,'accounts/searchHistory.html', context)
 
 def clearSearchHistory(request):
-    recentListings = Property.objects.filter(searchHistory=request.user)
+    recentListings = Property.objects.filter(userproperty__user=request.user)
     recentListings.all().delete()
     messages.success(request,'Search History successfully cleared!')
     return redirect('searchHistory')

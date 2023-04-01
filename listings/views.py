@@ -143,10 +143,10 @@ def listing(request, listing_id):
     for i, row in df.iterrows():
         ax.text(row['ds'], row['y'], f"{row['y']:.0f}", ha='center', va='bottom', fontsize=12, color='red', rotation=45)
     ax.annotate('Predicted Prices',
-                xy=(0.87, 0.5), xycoords='axes fraction',
+                xy=(0.87, 0.05), xycoords='axes fraction',
                 xytext=(15, 0), textcoords='offset points',
-                fontsize=14, color='black',
-                bbox=dict(facecolor='none', edgecolor='black', boxstyle='round'))
+                fontsize=14, color='red',
+                bbox=dict(facecolor='none', edgecolor='red', boxstyle='round'))
 
     # Plot the time series (nearby plot)
     fig2, ax = plt.subplots(figsize=(20,12))
@@ -160,10 +160,10 @@ def listing(request, listing_id):
     for i, row in df2.iterrows():
         ax.text(row['ds'], row['y'], f"{row['y']:.0f}", ha='center', va='bottom', fontsize=12, color='red', rotation=45)
     ax.annotate('Predicted Prices',
-                xy=(0.87, 0.5), xycoords='axes fraction',
+                xy=(0.87, 0.05), xycoords='axes fraction',
                 xytext=(15, 0), textcoords='offset points',
-                fontsize=14, color='black',
-                bbox=dict(facecolor='none', edgecolor='black', boxstyle='round'))
+                fontsize=14, color='red',
+                bbox=dict(facecolor='none', edgecolor='red', boxstyle='round'))
 
     # Build the path for the static file
     historical_trend = f'plots/historicalTrends/{listing.id}.png'
