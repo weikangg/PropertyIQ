@@ -39,7 +39,7 @@ GOOGLE_MAPS_KEY = <YOUR GOOGLE MAPS KEY>
 
 <h2 align="center">
 	<a href="https://skillicons.dev">
-      		<img src="https://skillicons.dev/icons?i=django,postgresql,py" />
+      		<img src="https://skillicons.dev/icons?i=postgresql" />
     	</a> 
 	PostgreSQL Setup
 </h2>
