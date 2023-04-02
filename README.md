@@ -37,14 +37,6 @@ URA_API_KEY = <YOUR URA API KEY>
 GOOGLE_MAPS_KEY = <YOUR GOOGLE MAPS KEY>
 ```
 
-8) Setup Gmail Sending
-https://stackoverflow.com/questions/6914687/django-sending-email
-
-Follow this link and create an application specific password, then store the relevant information in he same .env file.
-```
-GMAIL_EMAIL = <YOUR EMAIL> (e.g. test@test.com)
-GMAIL_APP_PASSWORD = <YOUR GMAIL APP PASSWORD> (e.g. asdadadadsada [16 characters long])
-```
 <h2 align="center">
 	<code><img height="50" src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png" alt="PostgreSQL" title="PostgreSQL" /></code> PostgreSQL Setup
 </h2>
@@ -91,19 +83,24 @@ Type your password here even though it doesn't look like it is being keyed in. P
 Username: propertyIQ    
 Password: sc2006_1234
 
-## Testing URA API 
-- To save all the data of the properties, uncomment Line 54 - 57 of views.py in property app. 
-- After that, comment it back as those lines will run everytime you try to make migrations / migrate / runserver.
-- Run it once, and check the database for the updated records.
-- If you ever want to delete the records from the database for some reason , do the following:
+<h2 align="center"> :question:	 FAQ:</h2>
 
+> <strong>1. How do I start the production server?</strong>
+```
+Run python manage.py runserver in the console.
+```
+
+> <strong>2. How do I create a super user?</strong>
+```
+Run python manage.py createsuperuser in the console and follow the instructions.
+```
+> <strong>3. How do I delete the properties from my database?</strong>
 ```
 python manage.py shell
 from property.models import Property
 Property.objects.all().delete()
 ```
-
-- If you want to drop the whole database but cannot do so via PGADMIN:
+> <strong>4. How do I drop the database? I can't do it from the Pgadmin GUI.
 
 Open the SQL shell by entering ```psql``` in your Windows search menu.
 
@@ -119,24 +116,11 @@ Password for user postgres:
 
 postgres=# 
 ```
-
 RUN THESE COMMANDS and change the database name appropriately to your own database name. This should work.
 ```
 update pg_database set datallowconn = 'false' where datname = 'propertyiq';
 select pg_terminate_backend(pg_stat_activity.pid) from pg_stat_activity where pg_stat_activity.datname = 'propertyiq';
 drop database propertyiq;
-```
-
-<h2 align="center"> :question:	 FAQ:</h2>
-
-> <strong>1. How do I start the production server?</strong>
-```
-Run python manage.py runserver in the console.
-```
-
-> <strong>2. How do I create a super user?</strong>
-```
-Run python manage.py createsuperuser in the console and follow the instructions.
 ```
 
 <h2 align="center"> 🛠 Tech Stack:</h2>
