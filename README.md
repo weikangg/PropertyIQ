@@ -103,7 +103,7 @@ python manage.py shell
 from property.models import Property
 Property.objects.all().delete()
 ```
-> <strong>4. How do I drop the database? I can't do it from the Pgadmin GUI.
+> <strong>4. How do I drop the database? I can't do it from the Pgadmin GUI.</strong>
 
 Open the SQL shell by entering ```psql``` in your Windows search menu.
 
@@ -124,6 +124,14 @@ RUN THESE COMMANDS and change the database name appropriately to your own databa
 update pg_database set datallowconn = 'false' where datname = 'propertyiq';
 select pg_terminate_backend(pg_stat_activity.pid) from pg_stat_activity where pg_stat_activity.datname = 'propertyiq';
 drop database propertyiq;
+```
+> <strong>5. I don't see any properties after I set everything up. Why is that so?</strong>
+```
+1. Create a super user by typing python manage.py createsuperuser in the console.
+2. Login on the web page with that super user account.
+3. Go to the Dashboard.
+4. Press Update Listings Button.
+5. Wait for about 1-2 minutes patiently and grab a cup of coffee.
 ```
 
 <h2 align="center"> 🛠 Tech Stack:</h2>
