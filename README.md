@@ -38,7 +38,7 @@ GOOGLE_MAPS_KEY = <YOUR GOOGLE MAPS KEY>
 ```
 
 <h2 align="center">
-	<code><img height="50" src= "https://skillicons.dev/icons?i=postgresql"/>" alt="PostgreSQL" title="PostgreSQL" /></code> PostgreSQL Setup
+	<code><img height="50" src= "https://skillicons.dev/icons?i=postgresql" /></code> PostgreSQL Setup
 </h2>
 
 - Download and install both pgAdmin and PostgreSQL.
