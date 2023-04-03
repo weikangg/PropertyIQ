@@ -207,6 +207,14 @@ def update(request):
                     messages.error(request, 'Email is taken!')
                     return redirect('update')
                 else:
+                    validator = EmailValidator()
+                    try:
+                        validator(email)
+                    except ValidationError:
+                        # Handle the validation error
+                        messages.error(request,'Please enter a valid email!')
+                        return redirect('update')
+                    
                     user.first_name = first_name
                     user.last_name = last_name
                     user.email = email
