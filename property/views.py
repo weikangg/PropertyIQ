@@ -122,7 +122,7 @@ def savePropertyToDatabase():
     num_rows = Property.objects.count()
     print()
 
-    print("You might see the same project title being saved multiple times. This is perfectly fine as a project can have multiple rental flats. \nThe details of each project will be different although the titles are similar.\n")
+    print("You might see the same project title being saved multiple times. This is perfectly fine as a project can have multiple rental flats. \nThe details of each rental flat will be different although their project title are the same.\n")
     print(f"Properties saved: {num_rows}")
     print(f"Time taken: {int(timeTakenFormatted[0])} minutes {int(timeTakenFormatted[1])} seconds")
 
