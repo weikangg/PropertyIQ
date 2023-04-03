@@ -129,7 +129,7 @@ def savePropertyToDatabase():
 def index(request):
     if request.user.is_superuser:
         savePropertyToDatabase()
-    return render(request,'pages/index.html')
+    return render(request,'pages/about.html')
 
 def property(request):
     pass
