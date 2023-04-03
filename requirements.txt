@@ -3,8 +3,10 @@ certifi==2022.12.7
 charset-normalizer==3.0.1
 Django==4.1.7
 idna==3.4
+matplotlib==3.7.1
 numpy==1.24.2
 pandas==1.5.3
+pmdarima==2.0.3
 Pillow==9.4.0
 psycopg2==2.9.5
 psycopg2-binary==2.9.5
@@ -15,6 +17,7 @@ pytz==2023.3
 requests==2.28.2
 six==1.16.0
 sqlparse==0.4.3
+statsmodels==0.13.5
 tzdata==2022.7
 ura-api==0.0.6
 urllib3==1.26.14
