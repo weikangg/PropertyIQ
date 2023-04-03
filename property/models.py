@@ -8,7 +8,7 @@ class Property(models.Model):
     street = models.CharField(max_length=200, blank = True, null = True)
     latitude = models.DecimalField(max_digits=20,decimal_places=15, null = True, blank=True)
     longitude = models.DecimalField(max_digits=20, decimal_places = 15,null = True, blank=True)
-    bedrooms = models.CharField(max_length=10, null=True, blank= True, default = 0)
+    bedrooms = models.IntegerField(null=True, blank=True)
     sqft = models.IntegerField(null=True, blank=True)
     leaseDate = models.DateField()
     propertyType = models.CharField(max_length=200, blank=True, null=True)

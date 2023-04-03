@@ -81,7 +81,7 @@ def login(request):
             user_login = UserLogin.objects.filter(user=user).last()
             if user_login:
                 # Check if user is still timed out
-                if user_login.wrong_password_timeout > timezone.now():
+                if user_login.wrong_password_timeout is not None and user_login.wrong_password_timeout > timezone.now():
                     remaining_time = user_login.wrong_password_timeout - timezone.now()
                     remaining_time_minutes, remaining_time_seconds = divmod(remaining_time.seconds, 60)
                     remaining_time_str = f"{remaining_time_minutes} minutes and {remaining_time_seconds} seconds"
