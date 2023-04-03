@@ -66,7 +66,7 @@ def listing(request, listing_id):
     # Show top 3 recommendations
     rec = rec_temp[:3]
     
-    print(rec_temp.count())   
+    print(f'Amount of listings for recommended properties: {rec_temp.count()}')   
 
     # Trend plots (df is for Historical Trend, df2 is for Nearby Trend)
 
@@ -236,8 +236,9 @@ def search(request):
         area = request.GET.get('area')
         if area != 'All' and area != '':
             if area != '5001':
-                queryset_list = queryset_list.filter(sqft__lte=area) # Check that the area is less than or equal to the area inserted
+                queryset_list = queryset_list.filter(sqft__lte=int(area)) # Check that the area is less than or equal to the area inserted
             else:
+                print('reached here')
                 queryset_list = queryset_list.filter(sqft__gt=5000) # Check that the area is greater than 5000 sqft
 
     paginator = Paginator(queryset_list,6) # 6 property on each page
@@ -252,5 +253,4 @@ def search(request):
         'listings': paged_listings,
         'values': request.GET
     }
-    print('end queryset list:', queryset_list)
     return render(request,'listings/search.html', context)

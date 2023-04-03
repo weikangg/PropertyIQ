@@ -4,11 +4,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
 from django.core.paginator import Paginator
-from .validators import validate
+from .validators import validatePassword
 from property.models import Property
 from django.utils import timezone   
 from django.http import HttpResponseServerError
 from .models import UserLogin
+from django.core.validators import EmailValidator
+from django.core.exceptions import ValidationError
 
 # Create your views here.
 def register(request):
@@ -28,9 +30,18 @@ def register(request):
             # 2. 1 Uppercase Character
             # 3. 1 Lowercase Character
             # 4. At least 8 characters long
-        if validate(request,password) == False or validate(request,password2) == False:
+        if validatePassword(request,password) == False or validatePassword(request,password2) == False:
             return redirect('register')
 
+        # Validate the email
+        validator = EmailValidator()
+        try:
+            validator(email)
+        except ValidationError:
+            # Handle the validation error
+            messages.error(request,'Please enter a valid email!')
+            return redirect('register')
+        
         # Check if passwords match
         if password == password2:
             # check if the username exists
@@ -85,7 +96,13 @@ def login(request):
                     user_login.wrong_password_count += 1
                 user_login.save()
             else:
-                user_login = UserLogin.objects.create(user=User.objects.get(username=username), wrong_password_count=1)
+                # If there is such a user within the database, we create a UserLogin object for him, to track the wrong-password-count
+                try:
+                    user_login = UserLogin.objects.create(user=User.objects.get(username=username), wrong_password_count=1)
+                # If there is no such user, we show an error message, and redirect him to the register page
+                except User.DoesNotExist:
+                    messages.error(request,"Unregistered Account! Register with PropertyIQ instead?")
+                    return redirect('register')
             
             # only show message if they still have attempts left
             if user_login.wrong_password_count < 3:
@@ -118,7 +135,6 @@ def login(request):
 
                 else:
                     # Reset counter and timeout if remaining time is zero or less than zero
-
                     # Reset count to 1, because if reached here, means they already failed once. hence, we set it to 1 instead of 0.
                     user_login.wrong_password_count = 1
                     user_login.wrong_password_timeout = None

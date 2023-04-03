@@ -1,7 +1,7 @@
 import re
 from django.contrib import messages
 
-def validate(request, password):
+def validatePassword(request, password):
     isValid = True
     errorText = ''
     i = 1
