@@ -80,9 +80,18 @@ def login(request):
             # If user had previous wrong password attempts, reset counter
             user_login = UserLogin.objects.filter(user=user).last()
             if user_login:
-                user_login.wrong_password_count = 0
-                user_login.wrong_password_timeout = None
-                user_login.save()
+                # Check if user is still timed out
+                if user_login.wrong_password_timeout > timezone.now():
+                    remaining_time = user_login.wrong_password_timeout - timezone.now()
+                    remaining_time_minutes, remaining_time_seconds = divmod(remaining_time.seconds, 60)
+                    remaining_time_str = f"{remaining_time_minutes} minutes and {remaining_time_seconds} seconds"
+                    context = {'remaining_time': remaining_time_str}
+                    content = render(request, 'accounts/lockedOut.html', context=context)
+                    return HttpResponseServerError(content)
+                else:
+                    user_login.wrong_password_count = 0
+                    user_login.wrong_password_timeout = None
+                    user_login.save()
             auth.login(request, user)
             return redirect('dashboard')
 
@@ -184,7 +193,7 @@ def update(request):
             # 2. 1 Uppercase Character
             # 3. 1 Lowercase Character
             # 4. At least 8 characters long
-        if validate(request,password) == False or validate(request,password2) == False:
+        if validatePassword(request,password) == False or validatePassword(request,password2) == False:
             return redirect('update')
         
         if password == password2:
