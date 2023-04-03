@@ -18,8 +18,6 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -37,10 +35,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 INSTALLED_APPS = [
     'pages',
     'listings',
-    'realtors',
     'accounts',
-    'bookmarks',
-    'contacts',
     'property',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -159,13 +154,6 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
-
-# Email config
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = getenv('GMAIL_EMAIL')
-EMAIL_HOST_PASSWORD = getenv('GMAIL_APP_PASSWORD')
-EMAIL_USE_TLS = True
 
 # Google maps Configuration
 GOOGLE_MAPS_API_KEY = getenv('GOOGLE_MAPS_KEY')

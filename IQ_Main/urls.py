@@ -23,8 +23,7 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('listings/', include('listings.urls')),
     path('properties/', include('property.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('contacts/', include('contacts.urls'))
+    path('accounts/', include('accounts.urls'))
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 # Add this line at the end of your urls.py file
