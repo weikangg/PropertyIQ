@@ -2,7 +2,7 @@ import os
 from ura_api import ura_api
 from dotenv import load_dotenv
 load_dotenv()
-from django.shortcuts import render
+from django.shortcuts import redirect
 from .models import Property
 from random import randint
 from pyproj import Proj
@@ -129,7 +129,7 @@ def savePropertyToDatabase():
 def index(request):
     if request.user.is_superuser:
         savePropertyToDatabase()
-    return render(request,'pages/about.html')
+    return redirect('index')
 
 def property(request):
     pass
