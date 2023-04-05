@@ -6,7 +6,7 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 <h2 align="center"> :hammer_and_wrench:	Prerequsite</h2>
 
 #### Internet connectivity: YES
->Prerequsite tools
+>Prerequsite software/hardware
 * Operating system: Windows 10/11, macOS Catalina above
 * Visual studio code
 * PGadmin 
@@ -17,13 +17,16 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 * URA API
 * Google maps API
 
->Prerequsite
+>Prerequsite others
 * Clone this project
 
 <h2 align="center"> :hammer_and_wrench:	Setup</h2>
+
 >Setup
 
-Please follow carefully during the setup process. The following was done using a window 11 system, macOS should be relatively simmilar. Your mileage may vary 
+Please follow carefully during the setup process. 
+
+The following was done using a window 11 system, macOS should be relatively similar. Your mileage may vary. 
 1) Create Python virtual environment in VS Code 
 2) Start virtual environment
 3) Install dependencies 
@@ -45,6 +48,7 @@ pip install -r requirements.txt
 ```
 
 4) Setup of PostgreSQL and database
+
 Download and install both pgAdmin and PostgreSQL.
 
 Install Postgres without changing anything, except entering of master **password**.
@@ -106,7 +110,9 @@ Click on server database icon top left and add the password which you entered in
 python manage.py createsuperuser
 ```
 Eg:
+
 Username: propertyIQ
+
 Password: sc2006_1234
 
 >setting up and running the server
