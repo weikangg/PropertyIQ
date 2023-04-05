@@ -1,11 +1,29 @@
 <h1 align="center"> :house_with_garden: PropertyIQ</h1>
 
-![Screenshot 2023-03-01 193840](https://user-images.githubusercontent.com/95838788/222974513-96d5ad6a-55ca-4d5b-b0d1-1ba060eaee57.png)
-
+![homepage](https://user-images.githubusercontent.com/95838788/222974513-96d5ad6a-55ca-4d5b-b0d1-1ba060eaee57.png)
 PropertyIQ is a web application that organises and makes accessible relevant market data and is the the go-to source for up-to-date information and trends in the Singapore housing rental market.
 
-<h2 align="center"> :hammer_and_wrench:	Setup</h2>
+<h2 align="center"> :hammer_and_wrench:	Prerequsite</h2>
 
+#### Internet connectivity: YES
+>Prerequsite tools
+* Operating system: Windows 10/11, macOS Catalina above
+* Visual studio code
+* PGadmin 
+* PostgreSQL 15
+* Python 3.9 above
+
+>Prerequsite API
+* URA API
+* Google maps API
+
+>Prerequsite
+* Clone this project
+
+<h2 align="center"> :hammer_and_wrench:	Setup</h2>
+>Setup
+
+Please follow carefully during the setup process. The following was done using a window 11 system, macOS should be relatively simmilar. Your mileage may vary 
 1) Create Python virtual environment in VS Code 
 2) Start virtual environment
 3) Install dependencies 
@@ -13,80 +31,106 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 https://code.visualstudio.com/docs/python/environments#_using-the-create-environment-command
 ```
 Opening the Command Palette (Ctrl+Shift+P), start typing the Python: Create Environment 
-
 Creating an environment using Venv
+Select interpreter path i.e. python
+Checked to also install dependencies
+```
 
+![Venv](https://user-images.githubusercontent.com/101249007/229971014-ef4fa6a1-12f2-4912-8f42-12f0b04175e7.png)
+![dependencies](https://user-images.githubusercontent.com/101249007/229971506-ed8eaace-682c-471a-b52d-dc5f2dea6a59.png)
+
+Note: You can also manually install dependencies using the following command
+```
 pip install -r requirements.txt
 ```
 
-4) Setup [PostgreSQL](#postgresql-setup).
-
-5) Create a .env file & store relevant information. <strong>Ensure that the names match exactly. e.g. 'POSTGRE_USER' must be stored exactly as POSTGRE_USER in the .env file without any typos. </strong>
-```
-POSTGRE_USER = <YOUR POSTGRESQL USER>
-POSTGRE_PASSWORD = <YOUR POSTGRESQL PASSWORD>
-```
-
-6) Get URA API Key from URA Website & Add it to the .env file.
-```
-URA_API_KEY = <YOUR URA API KEY>
-```
-
-7) Get Google Maps API Key & Add it to the .env file.
-```
-GOOGLE_MAPS_KEY = <YOUR GOOGLE MAPS KEY>
-```
-
-<h2 align="center">
-	<a href="https://skillicons.dev">
-      		<img src="https://skillicons.dev/icons?i=postgresql" />
-    	</a> 
-	PostgreSQL Setup
-</h2>
-
-- Download and install both pgAdmin and PostgreSQL.
+4) Setup of PostgreSQL and database
+Download and install both pgAdmin and PostgreSQL.
 
 Install Postgres without changing anything, except entering of master **password**.
 
 Open the SQL shell by entering ```psql``` in your Windows search menu.
 
+![sqlshell](https://user-images.githubusercontent.com/101249007/229972618-3caca049-d343-4fb1-a578-e0759adc9ff5.png)
+
 Inside SQL shell, keep pressing enter until it prompts you for your **password** which you created during the installation. Type your password here even though it doesn't look like it is being keyed in. Press enter once done.
 
-It should look like...
-```
-Server [localhost]:
-Database [postgres]:
-Port [5432]:
-Username [postgres]:
-Password for user postgres:
+It should look like this.
+Note: If you receive a warning on console code page, you can safety ignore.
+![sqlconsole](https://user-images.githubusercontent.com/101249007/229973960-a0ecce39-b44d-45ff-b6eb-9e1fb0a4a942.png)
 
-postgres=# 
-```
+Follow the below commands in the PSQL shell:
 
-Install pgAdmin , enter the password from psql and you should then see the following...
+To create the database of propertyiq
 
-Click on server database icon top left and add the password which you entered in psql.
-
-Follow the below commands in the PSQL shell.
+To list the databases 
 ```
 postgres=# CREATE DATABASE propertyIQ OWNER postgres;
-//To create the database of propertyiq
 postgres=# \l 
-//To list the databases 
 ```
-Finally, go to pgAdmin, and refresh the page.
+It should look like this.
 
-Note: Should you need to uninstall/re-install you will need to manually delete the folder where you have installed Postgres and pgadmin. This is even after uninstalling from system settings. For some reason, Postgres folder's don't remove entirely even though you select the option.
+![databaseConsole](https://user-images.githubusercontent.com/101249007/229973874-c69fc3fe-d975-405c-8e41-3f9c2187d87c.png)
 
-## Super-user for Django-admin
-```python manage.py createsuperuser```
+5) Create a .env file & store relevant information. 
+<strong>Ensure that the names match exactly. e.g. 'POSTGRE_USER' must be stored exactly as POSTGRE_USER in the .env file without any typos. </strong>
+```
+POSTGRE_USER = <YOUR POSTGRESQL USER>
+POSTGRE_PASSWORD = <YOUR POSTGRESQL PASSWORD>
+```
+6) Get URA API Key from URA Website & Add it to the .env file.
+```
+URA_API_KEY = <YOUR URA API KEY>
+```
+7) Get Google Maps API Key & Add it to the .env file.
+```
+GOOGLE_MAPS_KEY = <YOUR GOOGLE MAPS KEY>
+```
+It should look like this:
+![env](https://user-images.githubusercontent.com/101249007/229975509-258a53f7-6b9e-48f2-b9a9-523626318586.png)
 
-Type your password here even though it doesn't look like it is being keyed in. Press enter once done.
+> pgAdmin
 
-Username: propertyIQ    
+In the event you want to view the database you can use pgAdmin.
+In pgAdmin , enter the same **password** from **PostgreSQL** and you should then see the following.
+Click on server database icon top left and add the password which you entered in psql.
+
+![databasepgAdmin](https://user-images.githubusercontent.com/101249007/229968141-222fc0a4-7205-4476-ba8d-9bc805340bf8.png)
+![table](https://user-images.githubusercontent.com/101249007/229976693-f58bd915-b883-4978-bdee-4881f6c2d63f.png)
+
+
+<h2 align="center"> :runner: Starting the server</h2>
+
+> Create superuser
+```
+python manage.py createsuperuser
+```
+Eg:
+Username: propertyIQ
 Password: sc2006_1234
 
-<h2 align="center"> :question:	 FAQ:</h2>
+>setting up and running the server
+```
+python manage.py migrate
+python manage.py runserver
+```
+Note: duirng migrations it should be all green!
+![runserver](https://user-images.githubusercontent.com/101249007/229977063-187fcaac-ba1e-4b4c-8e98-83f9d89295b6.png)
+
+>first-time setup
+
+In the website, login as the superuser. In your dashboard and click update property list.
+#### NOTE: THIS WILL TAKE A WHILE ~5MIN ON A FAST INTERNET CONNECTION.
+
+![updatedatabase](https://user-images.githubusercontent.com/101249007/229977806-d0e7a831-7f37-4916-80fe-cc86bf740bf4.jpeg)
+
+
+<h1 align="center"> :confetti_ball: Congratulation! :confetti_ball:</h1>
+
+### Now, you can explore PropertyIQ locally on your machine!
+
+
+<h2 align="center"> :question: FAQ</h2>
 
 > <strong>1. How do I start the production server?</strong>
 ```
@@ -94,16 +138,20 @@ Run python manage.py runserver in the console.
 ```
 
 > <strong>2. How do I create a super user?</strong>
+
+Run this in the console and follow the instructions. Type your password even though it doesn't look like it is being keyed in. Press enter once done.
 ```
-Run python manage.py createsuperuser in the console and follow the instructions.
+python manage.py createsuperuser
 ```
-> <strong>3. How do I delete the properties from my database?</strong>
+
+> <strong>3. How do I delete the properties in VS code?</strong>
 ```
 python manage.py shell
 from property.models import Property
 Property.objects.all().delete()
 ```
-> <strong>4. How do I drop the database? I can't do it from the Pgadmin GUI.</strong>
+
+> <strong>4. How do I delete the database? I can't do it from the Pgadmin GUI.</strong>
 
 Open the SQL shell by entering ```psql``` in your Windows search menu.
 
@@ -119,12 +167,17 @@ Password for user postgres:
 
 postgres=# 
 ```
-RUN THESE COMMANDS and change the database name appropriately to your own database name. This should work.
+
+RUN THESE COMMANDS and replace the database name i.e.```propertyiq``` appropriately to your own database name. This should work.
+
 ```
 update pg_database set datallowconn = 'false' where datname = 'propertyiq';
 select pg_terminate_backend(pg_stat_activity.pid) from pg_stat_activity where pg_stat_activity.datname = 'propertyiq';
 drop database propertyiq;
 ```
+
+Note: Should you need to uninstall/re-install you will need to manually delete the folder where you have installed Postgres and pgadmin. This is even after uninstalling from system settings. For some reason, Postgres folder's don't remove entirely even though you select the option.
+
 > <strong>5. I don't see any properties after I set everything up. Why is that so?</strong>
 ```
 1. Create a super user by typing python manage.py createsuperuser in the console.
