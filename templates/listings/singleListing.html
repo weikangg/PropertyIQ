@@ -142,11 +142,12 @@
                     center: { lat: {{listing.latitude}} , lng: {{listing.longitude}} },
                   };
                   let map = new google.maps.Map(document.getElementById("map"), options);
+                  var rec_ar = {{ rec|tojson }};
                   var markers = [{position: { lat: {{listing.latitude}}, lng: {{listing.longitude}}} }, 
                   {position: { lat: {{rec[0].latitude}}, lng: {{rec[0].longitude}}} }
                   {position: { lat: {{rec[1].latitude}}, lng: {{rec[1].longitude}}} }
-                  {position: { lat: {{rec[2].latitude}}, lng: {{rec[2].longitude}}} }]
-                  for (var i = 0; i < markers.length; i++)
+                  {position: { lat: {{rec[2].latitude}}, lng: {{rec[2].longitude}}} }];
+                  for(var i = 0; i < markers.length; i++)
                   {
                     let marker = new google.maps.Marker({
                       position: markers[i]. position,
