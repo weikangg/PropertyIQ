@@ -61,6 +61,8 @@ def listing(request, listing_id):
     rec_temp = rec_temp.filter(Q(Q(latitude__lte = lat_range[0]) & Q(latitude__gte = lat_range[1])) | Q(Q(longitude__lte = long_range[0]) & Q(longitude__gte = long_range[1])))
     # Filtering out the properties with the same project title
     rec_temp = rec_temp.filter(~Q(project_Title__iexact = listing.project_Title))
+    
+    rec_temp = rec_temp.filter(Q(propertyType__iexact = listing.propertyType))
     # Ordering them by ascending rent.
     rec_temp.order_by("rent")
     # Show top 3 recommendations
