@@ -20,22 +20,22 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 
 > Prerequsite API Keys Required
 * URA API 
-  + https://www.ura.gov.sg/maps/api/#introduction
-    a. Register for an account. Fill in NA for Company Name, and put in arbitrary URL (e.g. https://www.google.com)
-    b. Go to your email and open the confirmation email titled 'URA Data Request - Approved'.
-    c. Click on the link and the button to generate access key.
-    d. Go back to your email and open the email titled 'URA Data Request - Access key'. 
-    e. You should see your URA API key there which is required for PropertyIQ.
+  + https://www.ura.gov.sg/maps/api/#introduction <br/>
+    a. Register for an account. Fill in NA for Company Name, and put in arbitrary URL (e.g. https://www.google.com) <br/>
+    b. Go to your email and open the confirmation email titled 'URA Data Request - Approved'. <br/>
+    c. Click on the link and the button to generate access key. <br/>
+    d. Go back to your email and open the email titled 'URA Data Request - Access key'.  <br/>
+    e. You should see your URA API key there which is required for PropertyIQ. <br/>
 * Google Maps API
-  + https://www.youtube.com/watch?v=OGTG1l7yin4 (Step-by-step tutorial on how to acquire API Key)
-    a. Go to https://console.cloud.google.com/welcome?project=capable-bliss-378816.
-    b. Create a new Project. Name it however you want.
-    c. Open the sidebar, click **API & Services**, then click on **Library**.
-    d. Search for or click on **Maps Javascript API**.
-    e. Enable it.
-    f. Open the sidebar again, click **API & Services**, then click on **Credentials**.
-    g. Click on Create Credentials, then click on API Key.
-    h. And you're done, that's the API key required for our Google Maps Services for PropertyIQ.
+  + https://www.youtube.com/watch?v=OGTG1l7yin4 (Step-by-step tutorial on how to acquire API Key) <br/>
+    a. Go to https://console.cloud.google.com/welcome?project=capable-bliss-378816. <br/>
+    b. Create a new Project. Name it however you want. <br/>
+    c. Open the sidebar, click **API & Services**, then click on **Library**. <br/>
+    d. Search for or click on **Maps Javascript API**. <br/>
+    e. Enable it. <br/>
+    f. Open the sidebar again, click **API & Services**, then click on **Credentials**. <br/>
+    g. Click on Create Credentials, then click on API Key. <br/>
+    h. And you're done, that's the API key required for our Google Maps Services for PropertyIQ. <br/>
     
 >Prerequsite (Others)
 * Clone this project
