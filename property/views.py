@@ -23,8 +23,8 @@ def savePropertyToDatabase():
 
     # Clear all the previous listings first
     Property.objects.all().delete()
-    quarters = ['23q1']
-    # quarters = ['18q1', '18q2', '18q3', '18q4', '19q1', '19q2', '19q3', '19q4', '20q1', '20q2', '20q3', '20q4', '21q1', '21q2', '21q3', '21q4', '22q1', '22q2', '22q3', '22q4', '23q1']
+    # quarters = ['23q1']
+    quarters = ['18q1', '18q2', '18q3', '18q4', '19q1', '19q2', '19q3', '19q4', '20q1', '20q2', '20q3', '20q4', '21q1', '21q2', '21q3', '21q4', '22q1', '22q2', '22q3', '22q4', '23q1']
     startTime = datetime.now()
     for quarter in quarters:
         raw_data = ura.private_residential_properties_rental_contract(quarter)
