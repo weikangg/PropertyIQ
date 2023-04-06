@@ -135,16 +135,6 @@ GMAIL_APP_PASSWORD = '<ENTER 16 DIGIT CODE HERE>'
 The final .env file should look like this: <br/>
 ![env](https://user-images.githubusercontent.com/95838788/230461214-3b7bdff1-9b87-4159-8c61-f064d0f7f8a5.png)
 
-> pgAdmin
-
-In the event you want to view the database you can use pgAdmin.
-In pgAdmin , enter the same **password** from **PostgreSQL** and you should then see the following.
-Click on server database icon top left and add the password which you entered in psql.
-
-![databasepgAdmin](https://user-images.githubusercontent.com/101249007/229968141-222fc0a4-7205-4476-ba8d-9bc805340bf8.png)
-![table](https://user-images.githubusercontent.com/101249007/229976693-f58bd915-b883-4978-bdee-4881f6c2d63f.png)
-
-
 <h2 align="center"> :runner: Starting the server</h2>
 
 > Create superuser
@@ -172,6 +162,14 @@ In the website, login as the superuser. In your dashboard and click update prope
 
 ![updatedatabase](https://user-images.githubusercontent.com/101249007/229977806-d0e7a831-7f37-4916-80fe-cc86bf740bf4.jpeg)
 
+> pgAdmin
+
+In the event you want to view the database you can use pgAdmin.
+In pgAdmin , enter the same **password** from **PostgreSQL** and you should then see the following.
+Click on server database icon top left and add the password which you entered in psql.
+
+![databasepgAdmin](https://user-images.githubusercontent.com/101249007/229968141-222fc0a4-7205-4476-ba8d-9bc805340bf8.png)
+![table](https://user-images.githubusercontent.com/101249007/229976693-f58bd915-b883-4978-bdee-4881f6c2d63f.png)
 
 <h1 align="center"> :confetti_ball: Congratulations! :confetti_ball:</h1>
 
