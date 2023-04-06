@@ -255,8 +255,8 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
 
 <h2 align="center" id = "contributors"> :family_man_man_boy_boy: Contributors:</h2>
 
-- [Chong Wei Kang](https://github.com/weikangg): Frontend, Backend <br/>
-- [Pugalia Aditya Kumar](https://github.com/AdityaPugalia): Frontend, Backend <br/> 
-- [Andrada Angel John Bernardino](https://github.com/AAJB13): Diagrams, Testing, Final Powerpoint <br/>
-- [Don Lim Zhan Chen](https://github.com/TheGreatReee): Diagrams, Testing, Final Powerpoint <br/>
-- [Nicholas Lim Jan Tuck](https://github.com/NicholasLimJT): Diagrams, Testing, Final Powerpoint <br/>
+- [Chong Wei Kang](https://github.com/weikangg): Frontend, Backend, SRS <br/>
+- [Pugalia Aditya Kumar](https://github.com/AdityaPugalia): Frontend, Backend, SRS <br/> 
+- [Andrada Angel John Bernardino](https://github.com/AAJB13): Diagrams, Testing, SRS, Final Powerpoint <br/>
+- [Don Lim Zhan Chen](https://github.com/TheGreatReee): Diagrams, Testing, SRS, Final Powerpoint <br/>
+- [Nicholas Lim Jan Tuck](https://github.com/NicholasLimJT): Diagrams, Testing, SRS, Final Powerpoint <br/>
