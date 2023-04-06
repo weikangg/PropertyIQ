@@ -124,7 +124,7 @@ GOOGLE_MAPS_KEY = '<YOUR GOOGLE MAPS KEY>'
 GMAIL_EMAIL = '<YOUR EMAIL>'
 GMAIL_APP_PASSWORD = '<ENTER 16 DIGIT CODE HERE>'
 ```
-The final .env file should look like this:
+The final .env file should look like this: <br/>
 ![env](https://user-images.githubusercontent.com/95838788/230461214-3b7bdff1-9b87-4159-8c61-f064d0f7f8a5.png)
 
 > pgAdmin
