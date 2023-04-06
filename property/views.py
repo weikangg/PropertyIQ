@@ -16,7 +16,7 @@ warnings.filterwarnings('ignore')
 
 # Create your views here.
 
-def savePropertyToDatabase():
+def savePropertyToDatabase(request):
     
     URA_API_KEY = os.getenv('URA_API_KEY')
     ura = ura_api.ura_api(URA_API_KEY)
@@ -126,10 +126,14 @@ def savePropertyToDatabase():
     users = User.objects.all()
     emails = [user.email for user in users]
     url = 'http://127.0.0.1:8000' + reverse('index')
+    try:
+        sender_mail = request.user.email
+    except Exception as e:
+        sender_mail = os.getenv('GMAIL_EMAIL')
     send_mail(
         'PropertyIQ New Listing Update',
         f'There has been new listings on PropertyIQ! Log back in to see the new updates <a href="{url}">here</a>.',
-        'chongweikang5@gmail.com',
+        sender_mail,
         emails,
         fail_silently=False,
         html_message=f'There has been new listings on PropertyIQ! Log back in to see the new updates <a href="{url}">here</a>.'
@@ -146,7 +150,7 @@ def savePropertyToDatabase():
 
 def index(request):
     if request.user.is_superuser:
-        savePropertyToDatabase()
+        savePropertyToDatabase(request)
     return redirect('index')
 
 def property(request):
