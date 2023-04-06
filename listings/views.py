@@ -64,7 +64,16 @@ def listing(request, listing_id):
     # Ordering them by ascending rent.
     rec_temp.order_by("rent")
     # Show top 3 recommendations
-    rec = rec_temp[:3]
+    rec = []
+    rec_list = {}
+    for property in rec_temp:
+        if len(rec) == 3:
+            break
+        if property.project_Title in rec_list:
+            continue
+        else:
+            rec_list[property.project_Title] = 1
+            rec.append(property)
     
     print(f'Amount of listings for recommended properties: {rec_temp.count()}')   
 
