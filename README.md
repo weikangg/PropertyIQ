@@ -3,7 +3,15 @@
 ![homepage](https://user-images.githubusercontent.com/101249007/230321118-b1974145-d0ad-4613-8c4a-dbca35f5db90.png)
 PropertyIQ is a web application that organises and makes accessible relevant market data and is the the go-to source for up-to-date information and trends in the Singapore housing rental market.
 
-<h2 align="center"> :axe:	Prerequsite</h2>
+<h2 align = "center"> Table Of Contents </h2>
+
+- [Prerequisites](#prerequisites) <br/>
+- [Setup](#setup) <br/>
+- [FAQ](#faq) <br/>
+- [Tech Stack](#tech-stack) <br/>
+- [Contributors](#contributors) <br/>
+
+<h2 align="center" id = "prerequisites"> :axe:	Prerequisites</h2>
 
 #### Internet Connectivity Required
 > Prerequsite software/hardware
@@ -25,7 +33,7 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
     b. Go to your email and open the confirmation email titled 'URA Data Request - Approved'. <br/>
     c. Click on the link and the button to generate access key. <br/>
     d. Go back to your email and open the email titled 'URA Data Request - Access key'.  <br/>
-    e. You should see your URA API key there which is required for PropertyIQ. <br/>
+    e. You should see your URA API key there which is required for PropertyIQ. **Do not lose this key!** <br/>
 * Google Maps API
   + https://www.youtube.com/watch?v=OGTG1l7yin4 (Step-by-step tutorial on how to acquire API Key) <br/>
     a. Go to https://console.cloud.google.com. <br/>
@@ -35,12 +43,21 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
     e. Enable it. <br/>
     f. Open the sidebar again, click **API & Services**, then click on **Credentials**. <br/>
     g. Click on Create Credentials, then click on API Key. <br/>
-    h. And you're done, that's the API key required for our Google Maps Services for PropertyIQ. <br/>
+    h. And you're done, that's the API key required for our Google Maps Services for PropertyIQ. **Do not lose this key!** <br/>
     
 >Prerequsite (Others)
+* Gmail App Password
+  + https://myaccount.google.com/ <br/>
+    a. Search for App Password on the search bar (Assumed that you have a valid gmail account.) <br/>
+    b. Select the option App Passwords with the subscript security. <br/> 
+    ![Picture1](https://user-images.githubusercontent.com/95838788/230461754-2f8d8904-8df0-4113-b295-534fe0b7f163.png) <br/>
+    c. **If this option does not appear, ensure that you have set up your 2FA prior to this. Gmail only supports this if 2FA has been implemented.** <br/>
+    d. Else, select App as mail. <br/>
+    e. Select device as either Mac/Windows Computer depending on the OS you are using. <br/>
+    f. And you're done, that's the Gmail App Password required to send emails to users whenever PropertyIQ has any new listings. **Do not lose this password!** <br/>
 * Clone this project
 
-<h2 align="center"> :hammer_and_wrench:	Setup</h2>
+<h2 align="center" id = "setup"> :hammer_and_wrench:	Setup</h2>
 
 >Setup
 
@@ -99,29 +116,24 @@ It should look like this.
 5) Create a .env file in the root directory & store relevant information. 
 <strong>Ensure that the names match exactly. e.g. 'POSTGRE_USER' must be stored exactly as POSTGRE_USER in the .env file without any typos. </strong>
 ```
-POSTGRE_USER = <YOUR POSTGRESQL USER>
-POSTGRE_PASSWORD = <YOUR POSTGRESQL PASSWORD>
+POSTGRE_USER = '<YOUR POSTGRESQL USER>'
+POSTGRE_PASSWORD = '<YOUR POSTGRESQL PASSWORD>'
 ```
 6) Get URA API Key from URA Website & Add it to the .env file.
 ```
-URA_API_KEY = <YOUR URA API KEY>
+URA_API_KEY = '<YOUR URA API KEY>'
 ```
 7) Get Google Maps API Key & Add it to the .env file.
 ```
-GOOGLE_MAPS_KEY = <YOUR GOOGLE MAPS KEY>
+GOOGLE_MAPS_KEY = '<YOUR GOOGLE MAPS KEY>'
 ```
-It should look like this:
-![env](https://user-images.githubusercontent.com/101249007/229975509-258a53f7-6b9e-48f2-b9a9-523626318586.png)
-
-> pgAdmin
-
-In the event you want to view the database you can use pgAdmin.
-In pgAdmin , enter the same **password** from **PostgreSQL** and you should then see the following.
-Click on server database icon top left and add the password which you entered in psql.
-
-![databasepgAdmin](https://user-images.githubusercontent.com/101249007/229968141-222fc0a4-7205-4476-ba8d-9bc805340bf8.png)
-![table](https://user-images.githubusercontent.com/101249007/229976693-f58bd915-b883-4978-bdee-4881f6c2d63f.png)
-
+8) Get Gmail App Password & add it to the .env file.
+```
+GMAIL_EMAIL = '<YOUR EMAIL>'
+GMAIL_APP_PASSWORD = '<ENTER 16 DIGIT CODE HERE>'
+```
+The final .env file should look like this: <br/>
+![env](https://user-images.githubusercontent.com/95838788/230461214-3b7bdff1-9b87-4159-8c61-f064d0f7f8a5.png)
 
 <h2 align="center"> :runner: Starting the server</h2>
 
@@ -150,13 +162,21 @@ In the website, login as the superuser. In your dashboard and click update prope
 
 ![updatedatabase](https://user-images.githubusercontent.com/101249007/229977806-d0e7a831-7f37-4916-80fe-cc86bf740bf4.jpeg)
 
+> pgAdmin
+
+In the event you want to view the database you can use pgAdmin.
+In pgAdmin , enter the same **password** from **PostgreSQL** and you should then see the following.
+Click on server database icon top left and add the password which you entered in psql.
+
+![databasepgAdmin](https://user-images.githubusercontent.com/101249007/229968141-222fc0a4-7205-4476-ba8d-9bc805340bf8.png)
+![table](https://user-images.githubusercontent.com/101249007/229976693-f58bd915-b883-4978-bdee-4881f6c2d63f.png)
 
 <h1 align="center"> :confetti_ball: Congratulations! :confetti_ball:</h1>
 
 ### Now, you can explore PropertyIQ locally on your machine!
 
 
-<h2 align="center"> :question: FAQ</h2>
+<h2 align="center" id = "faq" > :question: FAQ</h2>
 
 > <strong>1. How do I start the production server?</strong>
 ```
@@ -213,7 +233,7 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
 5. Wait for about 1-2 minutes patiently and grab a cup of coffee.
 ```
 
-<h2 align="center"> 🛠 Tech Stack:</h2>
+<h2 align="center" id = "tech-stack"> 🛠 Tech Stack:</h2>
 
 <div align="center">
   <h3>Frontend</h3>
@@ -230,3 +250,11 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
   </p>
   <br />
 </div>
+
+<h2 align="center" id = "contributors"> :family_man_man_boy_boy: Contributors:</h2>
+
+- [Chong Wei Kang](https://github.com/weikangg): Frontend, Backend, SRS <br/>
+- [Pugalia Aditya Kumar](https://github.com/AdityaPugalia): Frontend, Backend, SRS <br/> 
+- [Andrada Angel John Bernardino](https://github.com/AAJB13): Diagrams, Testing, SRS, Final Powerpoint <br/>
+- [Don Lim Zhan Chen](https://github.com/TheGreatReee): Diagrams, Testing, SRS, Final Powerpoint <br/>
+- [Nicholas Lim Jan Tuck](https://github.com/NicholasLimJT): Diagrams, Testing, SRS, Final Powerpoint <br/>
