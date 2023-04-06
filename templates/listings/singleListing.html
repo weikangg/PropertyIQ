@@ -144,9 +144,9 @@
                   let map = new google.maps.Map(document.getElementById("map"), options);
                   var rec_ar = {{ rec|tojson }};
                   var markers = [{position: { lat: {{listing.latitude}}, lng: {{listing.longitude}}} }, 
-                  {position: { lat: {{rec[0].latitude}}, lng: {{rec[0].longitude}}} }
-                  {position: { lat: {{rec[1].latitude}}, lng: {{rec[1].longitude}}} }
-                  {position: { lat: {{rec[2].latitude}}, lng: {{rec[2].longitude}}} }];
+                  {position: { lat: {{rec_ar[0].latitude}}, lng: {{rec_ar[0].longitude}}} }
+                  {position: { lat: {{rec_ar[1].latitude}}, lng: {{rec_ar[1].longitude}}} }
+                  {position: { lat: {{rec_ar[2].latitude}}, lng: {{rec_ar[2].longitude}}} }];
                   for(var i = 0; i < markers.length; i++)
                   {
                     let marker = new google.maps.Marker({
