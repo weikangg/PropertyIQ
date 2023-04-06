@@ -96,7 +96,7 @@ It should look like this.
 
 ![databaseConsole](https://user-images.githubusercontent.com/101249007/229973874-c69fc3fe-d975-405c-8e41-3f9c2187d87c.png)
 
-5) Create a .env file & store relevant information. 
+5) Create a .env file in the root directory & store relevant information. 
 <strong>Ensure that the names match exactly. e.g. 'POSTGRE_USER' must be stored exactly as POSTGRE_USER in the .env file without any typos. </strong>
 ```
 POSTGRE_USER = <YOUR POSTGRESQL USER>
