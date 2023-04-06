@@ -151,7 +151,7 @@ In the website, login as the superuser. In your dashboard and click update prope
 ![updatedatabase](https://user-images.githubusercontent.com/101249007/229977806-d0e7a831-7f37-4916-80fe-cc86bf740bf4.jpeg)
 
 
-<h1 align="center"> :confetti_ball: Congratulation! :confetti_ball:</h1>
+<h1 align="center"> :confetti_ball: Congratulations! :confetti_ball:</h1>
 
 ### Now, you can explore PropertyIQ locally on your machine!
 
