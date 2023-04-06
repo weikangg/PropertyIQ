@@ -9,10 +9,46 @@ img {
 
 .navbar {
   opacity: 0.9;
-  text-transform: uppercase; }
+  text-transform:capitalize; }
 
 .social a {
   margin-right: 0.4rem; }
+
+  #spinner {
+    display: none; /* hide the spinner by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* add a semi-transparent background */
+    z-index: 9999; /* set a high z-index to make sure the spinner is on top of everything */
+  }
+
+  .spinner-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .spinner-border {
+    width: 5rem;
+    height: 5rem;
+    border-width: 0.5rem;
+  }
+  
+  .spinner-text {
+    font-size: 2rem;
+    color: #fff;
+  }
+  /* #spinner .spinner-border {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } */
 
 #showcase {
   background: url("../img/showcase.jpg") no-repeat fixed center top/cover;
@@ -68,7 +104,7 @@ img {
 
 .listing-preview a {
   position: relative; }
-
+  
 @media (max-width: 991px) {
   #showcase {
     padding-top: 4rem; }

@@ -8,6 +8,9 @@ from random import randint
 from pyproj import Proj
 import pyproj
 from datetime import datetime
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
+from django.urls import reverse
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -20,7 +23,8 @@ def savePropertyToDatabase():
 
     # Clear all the previous listings first
     Property.objects.all().delete()
-    quarters = ['18q1', '18q2', '18q3', '18q4', '19q1', '19q2', '19q3', '19q4', '20q1', '20q2', '20q3', '20q4', '21q1', '21q2', '21q3', '21q4', '22q1', '22q2', '22q3', '22q4', '23q1']
+    quarters = ['23q1']
+    # quarters = ['18q1', '18q2', '18q3', '18q4', '19q1', '19q2', '19q3', '19q4', '20q1', '20q2', '20q3', '20q4', '21q1', '21q2', '21q3', '21q4', '22q1', '22q2', '22q3', '22q4', '23q1']
     startTime = datetime.now()
     for quarter in quarters:
         raw_data = ura.private_residential_properties_rental_contract(quarter)
@@ -116,11 +120,25 @@ def savePropertyToDatabase():
                                     photo_1 = inner_photo_link1,photo_2 = inner_photo_link2, photo_3 = inner_photo_link3)
                 property.save()
                 print(f"Saving {property}....")
+
+    # Send emails to users that there has been an update
+    print("\nSending mails to users....")
+    users = User.objects.all()
+    emails = [user.email for user in users]
+    url = 'http://127.0.0.1:8000' + reverse('index')
+    send_mail(
+        'PropertyIQ New Listing Update',
+        f'There has been new listings on PropertyIQ! Log back in to see the new updates <a href="{url}">here</a>.',
+        'chongweikang5@gmail.com',
+        emails,
+        fail_silently=False,
+        html_message=f'There has been new listings on PropertyIQ! Log back in to see the new updates <a href="{url}">here</a>.'
+    )
+    print("Mails sent!\n")
     endTime = datetime.now()
     timeTaken = endTime-startTime
     timeTakenFormatted = divmod(timeTaken.total_seconds(), 60)
     num_rows = Property.objects.count()
-    print()
 
     print("You might see the same project title being saved multiple times. This is perfectly fine as a project can have multiple rental flats. \nThe details of each rental flat will be different although their project title are the same.\n")
     print(f"Properties saved: {num_rows}")

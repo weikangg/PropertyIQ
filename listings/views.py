@@ -70,120 +70,128 @@ def listing(request, listing_id):
 
     # Trend plots (df is for Historical Trend, df2 is for Nearby Trend)
 
-    # Load the data from the Property model into a pandas dataframe
-    df = pd.DataFrame.from_records(Property.objects.all().filter(project_Title=listing.project_Title).values())
-    df2 = pd.DataFrame.from_records(rec_temp.values())
-    # Convert the leaseDate column to a pandas datetime object
-    df['leaseDate'] = pd.to_datetime(df['leaseDate'])
-    df2['leaseDate'] = pd.to_datetime(df2['leaseDate'])
-
-    # # Set the leaseDate column as the dataframe index
-    df.set_index('leaseDate', inplace=True)
-    df2.set_index('leaseDate', inplace=True)
-
-    # Resample the data to a quarterly frequency and take the mean of each quarter
-    df = df[['rent']].resample('Q').mean().reset_index()
-    df2 = df2[['rent']].resample('Q').mean().reset_index()
-
-    # Rename the columns to match ARIMA's requirements
-    df.rename(columns={'leaseDate': 'ds', 'rent': 'y'}, inplace=True)
-    df2.rename(columns={'leaseDate': 'ds', 'rent': 'y'}, inplace=True)
-
-    # Fill NAs
-    df = df.fillna(df.mean())
-    df = df[np.isfinite(df['y'])]
-
-    df2 = df2.fillna(df2.mean())
-    df2 = df2[np.isfinite(df2['y'])]
-
-    
-    try:
-        # Use auto_arima to find the optimal p, d, and q values
-        model = auto_arima(df['y'], seasonal=True, m=4, stepwise=True, suppress_warnings=True)
-        model2 = auto_arima(df2['y'], seasonal=True, m=4, stepwise=True, suppress_warnings=True)
-
-        # Fit the ARIMA model to the data
-        results = SARIMAX(df['y'], order=model.order, seasonal_order=(1, 1, 1, 4)).fit()
-        results2 = SARIMAX(df2['y'], order=model2.order, seasonal_order=(1, 1, 1, 4)).fit()
-
-    # If error for autoarima
-    except ValueError as e:
-        print('AutoArima Error.')
-        results =  SARIMAX(df['y'], order=(1,1,1), seasonal_order=(1, 1, 1, 4)).fit()
-        results2 =  SARIMAX(df['y'], order=(1,1,1), seasonal_order=(1, 1, 1, 4)).fit()
-
-    # Get the predicted values for the next 4 quarters (1 year)
-    pred = results.predict(start=len(df), end=len(df)+3, typ='levels')
-    pred2 = results2.predict(start=len(df2), end=len(df2)+3, typ='levels')
- 
-    # Create a new dataframe with the predicted values and the corresponding dates
-    pred_df = pd.DataFrame({'ds': pd.date_range(start=df['ds'].max()+pd.DateOffset(months=3), periods=4, freq='Q'), 'y': pred})
-    pred_df2 = pd.DataFrame({'ds': pd.date_range(start=df2['ds'].max()+pd.DateOffset(months=3), periods=4, freq='Q'), 'y': pred2})
-
-    # Merge the original dataframe with the predicted values dataframe
-    df = pd.concat([df, pred_df])
-    df2 = pd.concat([df2, pred_df2])
-
-    # Set the leaseDate column as the dataframe index
-    # df.set_index('ds', inplace=True)
-
-    # Set the date range for the plot to start from the first date in the DataFrame and end at the last date
-    date_range = pd.date_range(start=df['ds'].min(), end=df['ds'].max(), freq='Q')
-    date_range2 = pd.date_range(start=df2['ds'].min(), end=df2['ds'].max(), freq='Q')
-
-    # Plot the time series (historical plot)
-    fig, ax = plt.subplots(figsize=(20,12))
-    df.plot(x='ds', y='y', ax=ax, label = "Rent")
-    ax.set_xticks(date_range)
-    ax.set_xticklabels(date_range.strftime('%Y-%m-%d'), rotation='vertical', fontsize=10)
-    ax.set_xlabel('Lease Date')
-    ax.set_ylabel('Rental Price')
-    ax.set_title('Historical and Predicted Trends for {}'.format(listing.project_Title.title()))
-    # Add data labels to the bars
-    for i, row in df.iterrows():
-        ax.text(row['ds'], row['y'], f"{row['y']:.0f}", ha='center', va='bottom', fontsize=12, color='red', rotation=45)
-    ax.annotate('Predicted Prices',
-                xy=(0.87, 0.05), xycoords='axes fraction',
-                xytext=(15, 0), textcoords='offset points',
-                fontsize=14, color='red',
-                bbox=dict(facecolor='none', edgecolor='red', boxstyle='round'))
-
-    # Plot the time series (nearby plot)
-    fig2, ax = plt.subplots(figsize=(20,12))
-    df2.plot(x='ds', y='y', ax=ax, label = "Rent")
-    ax.set_xticks(date_range2)
-    ax.set_xticklabels(date_range2.strftime('%Y-%m-%d'), rotation='vertical', fontsize=10)
-    ax.set_xlabel('Lease Date')
-    ax.set_ylabel('Rental Price')
-    ax.set_title('Nearby Trends for {}'.format(listing.project_Title.title()))
-    # Add data labels to the bars
-    for i, row in df2.iterrows():
-        ax.text(row['ds'], row['y'], f"{row['y']:.0f}", ha='center', va='bottom', fontsize=12, color='red', rotation=45)
-    ax.annotate('Predicted Prices',
-                xy=(0.87, 0.05), xycoords='axes fraction',
-                xytext=(15, 0), textcoords='offset points',
-                fontsize=14, color='red',
-                bbox=dict(facecolor='none', edgecolor='red', boxstyle='round'))
-
     # Build the path for the static file
     historical_trend = f'plots/historicalTrends/{listing.id}.png'
     nearby_trend = f'plots/nearbyTrends/{listing.id}.png'
     
     plot_file_path_historical = os.path.join(settings.STATICFILES_DIRS[0], historical_trend)
     plot_file_path_nearby = os.path.join(settings.STATICFILES_DIRS[0], nearby_trend)
+
+    # Check if the file already exists
+    if os.path.isfile(plot_file_path_historical) and os.path.isfile(plot_file_path_nearby):
+        # File already exists, just use it
+        print('Plot image found, skipping model run')
+    else:
+        print('plot image not found, calculate models')
+        # Load the data from the Property model into a pandas dataframe
+        df = pd.DataFrame.from_records(Property.objects.all().filter(project_Title=listing.project_Title).values())
+        df2 = pd.DataFrame.from_records(rec_temp.values())
+        # Convert the leaseDate column to a pandas datetime object
+        df['leaseDate'] = pd.to_datetime(df['leaseDate'])
+        df2['leaseDate'] = pd.to_datetime(df2['leaseDate'])
+
+        # # Set the leaseDate column as the dataframe index
+        df.set_index('leaseDate', inplace=True)
+        df2.set_index('leaseDate', inplace=True)
+
+        # Resample the data to a quarterly frequency and take the mean of each quarter
+        df = df[['rent']].resample('Q').mean().reset_index()
+        df2 = df2[['rent']].resample('Q').mean().reset_index()
+
+        # Rename the columns to match ARIMA's requirements
+        df.rename(columns={'leaseDate': 'ds', 'rent': 'y'}, inplace=True)
+        df2.rename(columns={'leaseDate': 'ds', 'rent': 'y'}, inplace=True)
+
+        # Fill NAs
+        df = df.fillna(df.mean())
+        df = df[np.isfinite(df['y'])]
+
+        df2 = df2.fillna(df2.mean())
+        df2 = df2[np.isfinite(df2['y'])]
+
+        
+        try:
+            # Use auto_arima to find the optimal p, d, and q values
+            model = auto_arima(df['y'], seasonal=True, m=4, stepwise=True, suppress_warnings=True)
+            model2 = auto_arima(df2['y'], seasonal=True, m=4, stepwise=True, suppress_warnings=True)
+
+            # Fit the ARIMA model to the data
+            results = SARIMAX(df['y'], order=model.order, seasonal_order=(1, 1, 1, 4)).fit()
+            results2 = SARIMAX(df2['y'], order=model2.order, seasonal_order=(1, 1, 1, 4)).fit()
+
+        # If error for autoarima
+        except ValueError as e:
+            print('AutoArima Error.')
+            results =  SARIMAX(df['y'], order=(1,1,1), seasonal_order=(1, 1, 1, 4)).fit()
+            results2 =  SARIMAX(df['y'], order=(1,1,1), seasonal_order=(1, 1, 1, 4)).fit()
+
+        # Get the predicted values for the next 4 quarters (1 year)
+        pred = results.predict(start=len(df), end=len(df)+3, typ='levels')
+        pred2 = results2.predict(start=len(df2), end=len(df2)+3, typ='levels')
     
-    # Create the directory if it doesn't exist
-    os.makedirs(os.path.dirname(plot_file_path_historical), exist_ok=True)
-    os.makedirs(os.path.dirname(plot_file_path_nearby), exist_ok=True)
-    print('Saving Plot Image...')
-    # Save the plot image to the static file path
-    try:
-        fig.savefig(plot_file_path_historical, format='png')
-        fig2.savefig(plot_file_path_nearby, format='png')
-        print('Saved Plot Image.')
-    except Exception as e:
-        print(e)
-        print('Error occurred while saving the plot.')  
+        # Create a new dataframe with the predicted values and the corresponding dates
+        pred_df = pd.DataFrame({'ds': pd.date_range(start=df['ds'].max()+pd.DateOffset(months=3), periods=4, freq='Q'), 'y': pred})
+        pred_df2 = pd.DataFrame({'ds': pd.date_range(start=df2['ds'].max()+pd.DateOffset(months=3), periods=4, freq='Q'), 'y': pred2})
+
+        # Merge the original dataframe with the predicted values dataframe
+        df = pd.concat([df, pred_df])
+        df2 = pd.concat([df2, pred_df2])
+
+        # Set the leaseDate column as the dataframe index
+        # df.set_index('ds', inplace=True)
+
+        # Set the date range for the plot to start from the first date in the DataFrame and end at the last date
+        date_range = pd.date_range(start=df['ds'].min(), end=df['ds'].max(), freq='Q')
+        date_range2 = pd.date_range(start=df2['ds'].min(), end=df2['ds'].max(), freq='Q')
+
+        # Plot the time series (historical plot)
+        fig, ax = plt.subplots(figsize=(20,12))
+        df.plot(x='ds', y='y', ax=ax, label = "Rent")
+        ax.set_xticks(date_range)
+        ax.set_xticklabels(date_range.strftime('%Y-%m-%d'), rotation='vertical', fontsize=10)
+        ax.set_xlabel('Lease Date')
+        ax.set_ylabel('Rental Price')
+        ax.set_title('Historical and Predicted Trends for {}'.format(listing.project_Title.title()))
+        # Add data labels to the bars
+        for i, row in df.iterrows():
+            ax.text(row['ds'], row['y'], f"{row['y']:.0f}", ha='center', va='bottom', fontsize=12, color='red', rotation=45)
+        ax.annotate('Predicted Prices',
+                    xy=(0.87, 0.05), xycoords='axes fraction',
+                    xytext=(15, 0), textcoords='offset points',
+                    fontsize=14, color='red',
+                    bbox=dict(facecolor='none', edgecolor='red', boxstyle='round'))
+
+        # Plot the time series (nearby plot)
+        fig2, ax = plt.subplots(figsize=(20,12))
+        df2.plot(x='ds', y='y', ax=ax, label = "Rent")
+        ax.set_xticks(date_range2)
+        ax.set_xticklabels(date_range2.strftime('%Y-%m-%d'), rotation='vertical', fontsize=10)
+        ax.set_xlabel('Lease Date')
+        ax.set_ylabel('Rental Price')
+        ax.set_title('Nearby Trends for {}'.format(listing.project_Title.title()))
+        # Add data labels to the bars
+        for i, row in df2.iterrows():
+            ax.text(row['ds'], row['y'], f"{row['y']:.0f}", ha='center', va='bottom', fontsize=12, color='red', rotation=45)
+        ax.annotate('Predicted Prices',
+                    xy=(0.87, 0.05), xycoords='axes fraction',
+                    xytext=(15, 0), textcoords='offset points',
+                    fontsize=14, color='red',
+                    bbox=dict(facecolor='none', edgecolor='red', boxstyle='round'))
+
+
+        
+        # Create the directory if it doesn't exist
+        os.makedirs(os.path.dirname(plot_file_path_historical), exist_ok=True)
+        os.makedirs(os.path.dirname(plot_file_path_nearby), exist_ok=True)
+        print('Saving Plot Image...')
+        # Save the plot image to the static file path
+        try:
+            fig.savefig(plot_file_path_historical, format='png')
+            fig2.savefig(plot_file_path_nearby, format='png')
+            print('Saved Plot Image.')
+        except Exception as e:
+            print(e)
+            print('Error occurred while saving the plot.')  
 
     context = {
         'listing': listing,
