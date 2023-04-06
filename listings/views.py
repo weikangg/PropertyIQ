@@ -54,11 +54,11 @@ def listing(request, listing_id):
     # Recommendations
     rec_temp = Property.objects.all()
     # Extending the latitude 
-    lat_range = [listing.latitude + decimal.Decimal(0.002), listing.latitude - decimal.Decimal(0.002)]
+    lat_range = [listing.latitude + decimal.Decimal(0.018), listing.latitude - decimal.Decimal(0.018)]
     # Extending the longitude
-    long_range = [listing.longitude + decimal.Decimal(0.002), listing.longitude - decimal.Decimal(0.002)]
+    long_range = [listing.longitude + decimal.Decimal(0.018), listing.longitude - decimal.Decimal(0.018)]
     # Filtering nearby properties based on location
-    rec_temp = rec_temp.filter(Q(Q(latitude__lte = lat_range[0]) & Q(latitude__gte = lat_range[1])) | Q(Q(longitude__lte = long_range[0]) & Q(longitude__gte = long_range[1])))
+    rec_temp = rec_temp.filter(Q(Q(latitude__lte = lat_range[0]) & Q(latitude__gte = lat_range[1])) & Q(Q(longitude__lte = long_range[0]) & Q(longitude__gte = long_range[1])))
     # Filtering out the properties with the same project title
     rec_temp = rec_temp.filter(~Q(project_Title__iexact = listing.project_Title))
     
