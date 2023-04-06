@@ -253,7 +253,8 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
   <br />
 </div>
 
-<h2 align="center" id = "contributors"> 🧑 Contributors:</h2>
+<h2 align="center" id = "contributors"> :family_man_man_boy_boy: Contributors:</h2>
+
 - [Chong Wei Kang](https://github.com/weikangg): Frontend, Backend <br/>
 - [Pugalia Aditya Kumar](https://github.com/AdityaPugalia): Frontend, Backend <br/> 
 - [Andrada Angel John Bernardino](https://github.com/AAJB13): Diagrams, Testing, Final Powerpoint <br/>
