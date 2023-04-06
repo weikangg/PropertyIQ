@@ -254,8 +254,8 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
 </div>
 
 <h2 align="center" id = "contributors"> 🧑 Contributors:</h2>
-* [Chong Wei Kang](https://github.com/weikangg): Frontend, Backend
-* [Pugalia Aditya Kumar](https://github.com/AdityaPugalia): Frontend, Backend
-* [Andrada Angel John Bernardino](https://github.com/AAJB13): Diagrams, Testing, Final Powerpoint
-* [Don Lim Zhan Chen](https://github.com/TheGreatReee): Diagrams, Testing, Final Powerpoint
-* [Nicholas Lim Jan Tuck](https://github.com/NicholasLimJT): Diagrams, Testing, Final Powerpoint
+- [Chong Wei Kang](https://github.com/weikangg): Frontend, Backend
+- [Pugalia Aditya Kumar](https://github.com/AdityaPugalia): Frontend, Backend
+- [Andrada Angel John Bernardino](https://github.com/AAJB13): Diagrams, Testing, Final Powerpoint
+- [Don Lim Zhan Chen](https://github.com/TheGreatReee): Diagrams, Testing, Final Powerpoint
+- [Nicholas Lim Jan Tuck](https://github.com/NicholasLimJT): Diagrams, Testing, Final Powerpoint
