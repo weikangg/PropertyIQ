@@ -1,6 +1,6 @@
 <h1 align="center"> :house_with_garden: PropertyIQ</h1>
 
-![homepage](https://user-images.githubusercontent.com/95838788/222974513-96d5ad6a-55ca-4d5b-b0d1-1ba060eaee57.png)
+![homepage](https://user-images.githubusercontent.com/101249007/230321118-b1974145-d0ad-4613-8c4a-dbca35f5db90.png)
 PropertyIQ is a web application that organises and makes accessible relevant market data and is the the go-to source for up-to-date information and trends in the Singapore housing rental market.
 
 <h2 align="center"> :axe:	Prerequsite</h2>
