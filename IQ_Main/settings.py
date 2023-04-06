@@ -162,4 +162,9 @@ GOOGLE_MAPS_API_KEY = getenv('GOOGLE_MAPS_KEY')
 # except ImportError:
 #     pass
 
-
+# Email config
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = getenv('GMAIL_EMAIL')
+EMAIL_HOST_PASSWORD = getenv('GMAIL_APP_PASSWORD')
+EMAIL_USE_TLS = True

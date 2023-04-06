@@ -9,7 +9,7 @@ img {
 
 .navbar {
   opacity: 0.9;
-  text-transform: uppercase; }
+  text-transform:capitalize; }
 
 .social a {
   margin-right: 0.4rem; }
@@ -68,7 +68,7 @@ img {
 
 .listing-preview a {
   position: relative; }
-
+  
 @media (max-width: 991px) {
   #showcase {
     padding-top: 4rem; }
