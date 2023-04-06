@@ -166,9 +166,9 @@
           </div>
           {% if user.is_authenticated %}
             {% if bookmarked %}
-              <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#bookmarkModal">Remove Bookmark</button>
+              <button class="btn-primary btn-block btn-lg noOverlay" data-toggle="modal" data-target="#bookmarkModal">Remove Bookmark</button>
             {% else %}
-              <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#bookmarkModal">Add Bookmark</button>
+              <button class="btn-primary btn-block btn-lg noOverlay" data-toggle="modal" data-target="#bookmarkModal">Add Bookmark</button>
             {% endif %}
           {% else %}
             <form>
@@ -283,7 +283,7 @@
                 </div>
                 <div class = "input-group col-6 ">
                   <form>
-                    <button formaction="{% url 'bookmarks' listing.id %}" class = "btn btn-block btn-secondary bookmark">Remove Bookmark</button>
+                    <button formaction="{% url 'bookmarks' listing.id %}" class = "btn btn-block btn-secondary ">Remove Bookmark</button>
                   </form>
                 </div>
             </div>
@@ -299,7 +299,7 @@
                 </div>
                 <div class = "input-group col-6 ">
                   <form>
-                    <button formaction="{% url 'bookmarks' listing.id %}" class = "btn btn-block btn-secondary bookmark">Add Bookmark</button>
+                    <button formaction="{% url 'bookmarks' listing.id %}" class = "btn btn-block btn-secondary ">Add Bookmark</button>
                   </form>
                 </div>
             </div>
