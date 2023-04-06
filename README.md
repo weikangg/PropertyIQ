@@ -11,7 +11,7 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 - [Tech Stack](#tech-stack) <br/>
 - [Contributing](#contributing) <br/>
 
-<h2 align="center"> :axe:	Prerequsites</h2>
+<h2 align="center" id = "prerequisites"> :axe:	Prerequisites</h2>
 
 #### Internet Connectivity Required
 > Prerequsite software/hardware
