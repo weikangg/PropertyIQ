@@ -5,16 +5,21 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 
 <h2 align="center"> :axe:	Prerequsite</h2>
 
-#### Internet connectivity: YES
->Prerequsite software/hardware
+#### Internet Connectivity Required
+> Prerequsite software/hardware
 * Operating system: Windows 10/11, macOS Catalina above
-* Visual studio code
-* PGadmin 
+* Visual Studio Code
+  + https://code.visualstudio.com/
+* Pgadmin 4 (Graphical Interface to interact with Database)
+  + https://www.pgadmin.org/download/
 * PostgreSQL 15
+  + https://www.postgresql.org/download/ (WINDOWS)
+  + https://postgresapp.com/ (MAC)
 * Python 3.9 above
+  + https://www.python.org/downloads/
 
->Prerequsite API
-* URA API
+> Prerequsite API Keys Required
+* URA API 
 * Google maps API
 
 >Prerequsite others
