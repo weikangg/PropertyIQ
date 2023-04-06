@@ -28,7 +28,7 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
     e. You should see your URA API key there which is required for PropertyIQ. <br/>
 * Google Maps API
   + https://www.youtube.com/watch?v=OGTG1l7yin4 (Step-by-step tutorial on how to acquire API Key) <br/>
-    a. Go to https://console.cloud.google.com/welcome?project=capable-bliss-378816. <br/>
+    a. Go to https://console.cloud.google.com. <br/>
     b. Create a new Project. Name it however you want. <br/>
     c. Open the sidebar, click **API & Services**, then click on **Library**. <br/>
     d. Search for or click on **Maps Javascript API**. <br/>
