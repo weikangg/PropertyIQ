@@ -4,11 +4,12 @@
 PropertyIQ is a web application that organises and makes accessible relevant market data and is the the go-to source for up-to-date information and trends in the Singapore housing rental market.
 
 <h2 align = "center"> Table Of Contents </h2>
-- [Prerequisites](#prerequisites)
-- [Setup](#setup)
-- [FAQ](#faq)
-- [Tech Stack](#tech-stack)
-- [Contributing](#contributing)
+
+- [Prerequisites](#prerequisites) <br/>
+- [Setup](#setup) <br/>
+- [FAQ](#faq) <br/>
+- [Tech Stack](#tech-stack) <br/>
+- [Contributing](#contributing) <br/>
 
 <h2 align="center"> :axe:	Prerequsites</h2>
 
