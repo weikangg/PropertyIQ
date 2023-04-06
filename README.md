@@ -9,7 +9,7 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 - [Setup](#setup) <br/>
 - [FAQ](#faq) <br/>
 - [Tech Stack](#tech-stack) <br/>
-- [Contributing](#contributing) <br/>
+- [Contributors](#contributors) <br/>
 
 <h2 align="center" id = "prerequisites"> :axe:	Prerequisites</h2>
 
@@ -57,7 +57,7 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
     f. And you're done, that's the Gmail App Password required to send emails to users whenever PropertyIQ has any new listings. **Do not lose this password!** <br/>
 * Clone this project
 
-<h2 align="center"> :hammer_and_wrench:	Setup</h2>
+<h2 align="center" id = "setup"> :hammer_and_wrench:	Setup</h2>
 
 >Setup
 
@@ -178,7 +178,7 @@ In the website, login as the superuser. In your dashboard and click update prope
 ### Now, you can explore PropertyIQ locally on your machine!
 
 
-<h2 align="center"> :question: FAQ</h2>
+<h2 align="center" id = "faq" > :question: FAQ</h2>
 
 > <strong>1. How do I start the production server?</strong>
 ```
@@ -235,7 +235,7 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
 5. Wait for about 1-2 minutes patiently and grab a cup of coffee.
 ```
 
-<h2 align="center"> 🛠 Tech Stack:</h2>
+<h2 align="center" id = "tech-stack"> 🛠 Tech Stack:</h2>
 
 <div align="center">
   <h3>Frontend</h3>
@@ -252,3 +252,10 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
   </p>
   <br />
 </div>
+
+<h2 align="center" id = "contributors"> 🧑 Contributors:</h2>
+* [Chong Wei Kang](https://github.com/weikangg): Frontend, Backend
+* [Pugalia Aditya Kumar](https://github.com/AdityaPugalia): Frontend, Backend
+* [Andrada Angel John Bernardino](https://github.com/AAJB13): Diagrams, Testing, Final Powerpoint
+* [Don Lim Zhan Chen](https://github.com/TheGreatReee): Diagrams, Testing, Final Powerpoint
+* [Nicholas Lim Jan Tuck](https://github.com/NicholasLimJT): Diagrams, Testing, Final Powerpoint
