@@ -3,7 +3,7 @@
 ![homepage](https://user-images.githubusercontent.com/101249007/230321118-b1974145-d0ad-4613-8c4a-dbca35f5db90.png)
 PropertyIQ is a web application that organises and makes accessible relevant market data and is the the go-to source for up-to-date information and trends in the Singapore housing rental market.
 
-<h2 align="center"> :axe:	Prerequsite</h2>
+<h2 align="center"> :axe:	Prerequsites</h2>
 
 #### Internet Connectivity Required
 > Prerequsite software/hardware
@@ -25,7 +25,7 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
     b. Go to your email and open the confirmation email titled 'URA Data Request - Approved'. <br/>
     c. Click on the link and the button to generate access key. <br/>
     d. Go back to your email and open the email titled 'URA Data Request - Access key'.  <br/>
-    e. You should see your URA API key there which is required for PropertyIQ. <br/>
+    e. You should see your URA API key there which is required for PropertyIQ. **Do not lose this key!** <br/>
 * Google Maps API
   + https://www.youtube.com/watch?v=OGTG1l7yin4 (Step-by-step tutorial on how to acquire API Key) <br/>
     a. Go to https://console.cloud.google.com. <br/>
@@ -35,9 +35,17 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
     e. Enable it. <br/>
     f. Open the sidebar again, click **API & Services**, then click on **Credentials**. <br/>
     g. Click on Create Credentials, then click on API Key. <br/>
-    h. And you're done, that's the API key required for our Google Maps Services for PropertyIQ. <br/>
+    h. And you're done, that's the API key required for our Google Maps Services for PropertyIQ. **Do not lose this key!** <br/>
     
 >Prerequsite (Others)
+* Gmail App Password
+  + https://myaccount.google.com/ <br/>
+    a. Search for App Password on the search bar. <br/>
+    b. Select the option App Passwords with the subscript security. ![Picture1](https://user-images.githubusercontent.com/95838788/230461754-2f8d8904-8df0-4113-b295-534fe0b7f163.png) <br/>
+    c. **If this option does not appear, ensure that you have set up your 2FA prior to this. Gmail only supports this if 2FA has been implemented.** <br/>
+    d. Else, select App as mail. <br/>
+    e. Select device as either Mac/Windows Computer depending on the OS you are using. <br/>
+    f. And you're done, that's the Gmail App Password required to send emails to users whenever PropertyIQ has any new listings. **Do not lose this password!** <br/>
 * Clone this project
 
 <h2 align="center"> :hammer_and_wrench:	Setup</h2>
@@ -99,19 +107,24 @@ It should look like this.
 5) Create a .env file in the root directory & store relevant information. 
 <strong>Ensure that the names match exactly. e.g. 'POSTGRE_USER' must be stored exactly as POSTGRE_USER in the .env file without any typos. </strong>
 ```
-POSTGRE_USER = <YOUR POSTGRESQL USER>
-POSTGRE_PASSWORD = <YOUR POSTGRESQL PASSWORD>
+POSTGRE_USER = '<YOUR POSTGRESQL USER>'
+POSTGRE_PASSWORD = '<YOUR POSTGRESQL PASSWORD>'
 ```
 6) Get URA API Key from URA Website & Add it to the .env file.
 ```
-URA_API_KEY = <YOUR URA API KEY>
+URA_API_KEY = '<YOUR URA API KEY>'
 ```
 7) Get Google Maps API Key & Add it to the .env file.
 ```
-GOOGLE_MAPS_KEY = <YOUR GOOGLE MAPS KEY>
+GOOGLE_MAPS_KEY = '<YOUR GOOGLE MAPS KEY>'
 ```
-It should look like this:
-![env](https://user-images.githubusercontent.com/101249007/229975509-258a53f7-6b9e-48f2-b9a9-523626318586.png)
+8) Get Gmail App Password & add it to the .env file.
+```
+GMAIL_EMAIL = '<YOUR EMAIL>'
+GMAIL_APP_PASSWORD = '<ENTER 16 DIGIT CODE HERE>'
+```
+The final .env file should look like this:
+![env](https://user-images.githubusercontent.com/95838788/230461214-3b7bdff1-9b87-4159-8c61-f064d0f7f8a5.png)
 
 > pgAdmin
 
