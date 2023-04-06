@@ -3,21 +3,41 @@
 ![homepage](https://user-images.githubusercontent.com/95838788/222974513-96d5ad6a-55ca-4d5b-b0d1-1ba060eaee57.png)
 PropertyIQ is a web application that organises and makes accessible relevant market data and is the the go-to source for up-to-date information and trends in the Singapore housing rental market.
 
-<h2 align="center"> :hammer_and_wrench:	Prerequsite</h2>
+<h2 align="center"> :axe:	Prerequsite</h2>
 
-#### Internet connectivity: YES
->Prerequsite software/hardware
-* Operating system: Windows 10/11, macOS Catalina above
-* Visual studio code
-* PGadmin 
+#### Internet Connectivity Required
+> Prerequsite software/hardware
+* Operating System: Windows 10/11, macOS Catalina above
+* Visual Studio Code
+  + https://code.visualstudio.com/
+* Pgadmin 4 (Graphical User Interface to interact with the database)
+  + https://www.pgadmin.org/download/
 * PostgreSQL 15
+  + https://www.postgresql.org/download/ (Windows)
+  + https://postgresapp.com/ (Mac)
 * Python 3.9 above
+  + https://www.python.org/downloads/
 
->Prerequsite API
-* URA API
-* Google maps API
-
->Prerequsite others
+> Prerequsite API Keys Required
+* URA API 
+  + https://www.ura.gov.sg/maps/api/#introduction <br/>
+    a. Register for an account. Fill in NA for Company Name, and put in arbitrary URL (e.g. https://www.google.com) <br/>
+    b. Go to your email and open the confirmation email titled 'URA Data Request - Approved'. <br/>
+    c. Click on the link and the button to generate access key. <br/>
+    d. Go back to your email and open the email titled 'URA Data Request - Access key'.  <br/>
+    e. You should see your URA API key there which is required for PropertyIQ. <br/>
+* Google Maps API
+  + https://www.youtube.com/watch?v=OGTG1l7yin4 (Step-by-step tutorial on how to acquire API Key) <br/>
+    a. Go to https://console.cloud.google.com. <br/>
+    b. Create a new Project. Name it however you want. <br/>
+    c. Open the sidebar, click **API & Services**, then click on **Library**. <br/>
+    d. Search for or click on **Maps Javascript API**. <br/>
+    e. Enable it. <br/>
+    f. Open the sidebar again, click **API & Services**, then click on **Credentials**. <br/>
+    g. Click on Create Credentials, then click on API Key. <br/>
+    h. And you're done, that's the API key required for our Google Maps Services for PropertyIQ. <br/>
+    
+>Prerequsite (Others)
 * Clone this project
 
 <h2 align="center"> :hammer_and_wrench:	Setup</h2>
@@ -27,9 +47,9 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 Please follow carefully during the setup process. 
 
 The following was done using a window 11 system, macOS should be relatively similar. Your mileage may vary. 
-1) Create Python virtual environment in VS Code 
-2) Start virtual environment
-3) Install dependencies 
+1) Create a Python virtual environment in VS Code.
+2) Start the virtual environment.
+3) Install dependencies.
 
 https://code.visualstudio.com/docs/python/environments#_using-the-create-environment-command
 ```
@@ -42,7 +62,7 @@ Checked to also install dependencies
 ![Venv](https://user-images.githubusercontent.com/101249007/229971014-ef4fa6a1-12f2-4912-8f42-12f0b04175e7.png)
 ![dependencies](https://user-images.githubusercontent.com/101249007/229971506-ed8eaace-682c-471a-b52d-dc5f2dea6a59.png)
 
-Note: You can also manually install dependencies using the following command
+Note: You can also manually install dependencies using the following command in the terminal.
 ```
 pip install -r requirements.txt
 ```
@@ -76,7 +96,7 @@ It should look like this.
 
 ![databaseConsole](https://user-images.githubusercontent.com/101249007/229973874-c69fc3fe-d975-405c-8e41-3f9c2187d87c.png)
 
-5) Create a .env file & store relevant information. 
+5) Create a .env file in the root directory & store relevant information. 
 <strong>Ensure that the names match exactly. e.g. 'POSTGRE_USER' must be stored exactly as POSTGRE_USER in the .env file without any typos. </strong>
 ```
 POSTGRE_USER = <YOUR POSTGRESQL USER>
@@ -131,7 +151,7 @@ In the website, login as the superuser. In your dashboard and click update prope
 ![updatedatabase](https://user-images.githubusercontent.com/101249007/229977806-d0e7a831-7f37-4916-80fe-cc86bf740bf4.jpeg)
 
 
-<h1 align="center"> :confetti_ball: Congratulation! :confetti_ball:</h1>
+<h1 align="center"> :confetti_ball: Congratulations! :confetti_ball:</h1>
 
 ### Now, you can explore PropertyIQ locally on your machine!
 
