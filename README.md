@@ -48,7 +48,7 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 >Prerequsite (Others)
 * Gmail App Password
   + https://myaccount.google.com/ <br/>
-    a. Search for App Password on the search bar. (Assumed that you have a valid gmail account.) <br/>
+    a. Search for App Password on the search bar (Assumed that you have a valid gmail account.) <br/>
     b. Select the option App Passwords with the subscript security. <br/> 
     ![Picture1](https://user-images.githubusercontent.com/95838788/230461754-2f8d8904-8df0-4113-b295-534fe0b7f163.png) <br/>
     c. **If this option does not appear, ensure that you have set up your 2FA prior to this. Gmail only supports this if 2FA has been implemented.** <br/>
