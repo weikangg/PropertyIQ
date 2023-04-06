@@ -7,22 +7,37 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 
 #### Internet Connectivity Required
 > Prerequsite software/hardware
-* Operating system: Windows 10/11, macOS Catalina above
+* Operating System: Windows 10/11, macOS Catalina above
 * Visual Studio Code
   + https://code.visualstudio.com/
-* Pgadmin 4 (Graphical Interface to interact with Database)
+* Pgadmin 4 (Graphical User Interface to interact with the database)
   + https://www.pgadmin.org/download/
 * PostgreSQL 15
-  + https://www.postgresql.org/download/ (WINDOWS)
-  + https://postgresapp.com/ (MAC)
+  + https://www.postgresql.org/download/ (Windows)
+  + https://postgresapp.com/ (Mac)
 * Python 3.9 above
   + https://www.python.org/downloads/
 
 > Prerequsite API Keys Required
 * URA API 
-* Google maps API
-
->Prerequsite others
+  + https://www.ura.gov.sg/maps/api/#introduction
+    a. Register for an account. Fill in NA for Company Name, and put in arbitrary URL (e.g. https://www.google.com)
+    b. Go to your email and open the confirmation email titled 'URA Data Request - Approved'.
+    c. Click on the link and the button to generate access key.
+    d. Go back to your email and open the email titled 'URA Data Request - Access key'. 
+    e. You should see your URA API key there which is required for PropertyIQ.
+* Google Maps API
+  + https://www.youtube.com/watch?v=OGTG1l7yin4 (Step-by-step tutorial on how to acquire API Key)
+    a. Go to https://console.cloud.google.com/welcome?project=capable-bliss-378816.
+    b. Create a new Project. Name it however you want.
+    c. Open the sidebar, click **API & Services**, then click on **Library**.
+    d. Search for or click on **Maps Javascript API**.
+    e. Enable it.
+    f. Open the sidebar again, click **API & Services**, then click on **Credentials**.
+    g. Click on Create Credentials, then click on API Key.
+    h. And you're done, that's the API key required for our Google Maps Services for PropertyIQ.
+    
+>Prerequsite (Others)
 * Clone this project
 
 <h2 align="center"> :hammer_and_wrench:	Setup</h2>
@@ -32,9 +47,9 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 Please follow carefully during the setup process. 
 
 The following was done using a window 11 system, macOS should be relatively similar. Your mileage may vary. 
-1) Create Python virtual environment in VS Code 
-2) Start virtual environment
-3) Install dependencies 
+1) Create a Python virtual environment in VS Code.
+2) Start the virtual environment.
+3) Install dependencies.
 
 https://code.visualstudio.com/docs/python/environments#_using-the-create-environment-command
 ```
@@ -47,7 +62,7 @@ Checked to also install dependencies
 ![Venv](https://user-images.githubusercontent.com/101249007/229971014-ef4fa6a1-12f2-4912-8f42-12f0b04175e7.png)
 ![dependencies](https://user-images.githubusercontent.com/101249007/229971506-ed8eaace-682c-471a-b52d-dc5f2dea6a59.png)
 
-Note: You can also manually install dependencies using the following command
+Note: You can also manually install dependencies using the following command in the terminal.
 ```
 pip install -r requirements.txt
 ```
