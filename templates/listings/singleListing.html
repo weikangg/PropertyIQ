@@ -142,10 +142,17 @@
                     center: { lat: {{listing.latitude}} , lng: {{listing.longitude}} },
                   };
                   let map = new google.maps.Map(document.getElementById("map"), options);
-                  let marker = new google.maps.Marker({
-                    position: { lat: {{listing.latitude}}, lng: {{listing.longitude}}},
-                    map: map,
-                  });
+                  var markers = [{position: { lat: {{listing.latitude}}, lng: {{listing.longitude}}} }, 
+                  {position: { lat: {{rec[0].latitude}}, lng: {{rec[0].longitude}}} }
+                  {position: { lat: {{rec[1].latitude}}, lng: {{rec[1].longitude}}} }
+                  {position: { lat: {{rec[2].latitude}}, lng: {{rec[2].longitude}}} }]
+                  for (var i = 0; i < markers.length; i++)
+                  {
+                    let marker = new google.maps.Marker({
+                      position: markers[i]. position,
+                      map: map, 
+                    });
+                  }
                 }
               </script>
               <!-- remember to restrict this to only our website can use through https://console.cloud.google.com/apis/credentials -->
