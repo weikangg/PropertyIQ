@@ -35,7 +35,7 @@ def about(request):
         {
             'name': 'Don',
             'position': 'Wanker 3',
-            'img': 'img/Picture1.png'
+            'img': 'img/Picture3.png'
         },
         {
             'name': 'John',

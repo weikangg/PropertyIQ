@@ -8,14 +8,14 @@
     <div class="row text-center">
       <div class="col-md-12">
         <h1 class="display-4">Browse Our Properties</h1>
-        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+        <p class="lead">Find your dream rental property among our extensive listings, tailored to meet your unique needs and preferences.</p>
             <form action= {% url 'search' %}> 
               <!-- Form Row 1 -->
               <div class="form-row">
                 <div class="col-md-12 mb-3">
                   <label class="sr-only">Keywords</label>
                   <input type="text" name="keywords" class="form-control" placeholder="Keyword (Project Title, Street, etc)"
-                  {% if values.keywords %} value = {{values.keywords}}{% endif %}>
+                  {% if values.keywords %} value = "{{values.keywords|escape}}" {% endif %}>
                 </div> 
               </div>
               

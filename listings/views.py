@@ -70,8 +70,9 @@ def listing(request, listing_id):
         # We loosen the filtering by not including that.
         rec_final = rec_temp
 
-    # Ordering the queryset by ascending rent to offer the cheapest recommendations to users.
-    rec_final.order_by("rent")
+    # Ordering the queryset by lease date in descending order (most recent first) and then by ascending rent to offer the cheapest recommendations to users.
+    rec_final = rec_final.order_by("-leaseDate", "rent")
+
     # Show top 3 recommendations
     rec = []
     rec_list = {}
@@ -103,7 +104,7 @@ def listing(request, listing_id):
         print('plot image not found, calculate models')
         # Load the data from the Property model into a pandas dataframe
         df = pd.DataFrame.from_records(Property.objects.all().filter(project_Title=listing.project_Title).values())
-        df2 = pd.DataFrame.from_records(rec_temp.values())
+        df2 = pd.DataFrame.from_records(rec_final.values())
         print(df2)
         # Convert the leaseDate column to a pandas datetime object
         df['leaseDate'] = pd.to_datetime(df['leaseDate'])
@@ -233,7 +234,7 @@ def search(request):
     paginator = Paginator(queryset_list,6) # 6 property on each page
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
-
+    print(request.GET.get('keywords'))
     context = {
         'propertyType_choices': propertyType_Choices, 
         'bedroom_choices': bedroom_choices,
