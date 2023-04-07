@@ -145,7 +145,7 @@ Eg:
 
 ```
 Username: propertyIQ
-Email: **<Your valid gmail email which should be similar to the Gmail Email you used to get the Gmail App Password>**
+Email: <Your valid gmail email which should be the same as the Gmail Email you used to get the Gmail App Password>
 Password: sc2006_1234
 ```
 
@@ -155,12 +155,11 @@ python manage.py migrate
 python manage.py runserver
 ```
 Note: During migrations you should see all green for the migrations!
-![runserver](https://user-images.githubusercontent.com/101249007/229977063-187fcaac-ba1e-4b4c-8e98-83f9d89295b6.png)
 
->first-time setup
+> First-time setup
 
-In the website, login as the superuser. In your dashboard and click update property list.
-#### NOTE: THIS WILL TAKE A WHILE ~5MIN ON A FAST INTERNET CONNECTION.
+Within the website, head over to the login page and login as the superuser. Head to the dashboard and click update property list.
+#### NOTE: THIS WILL TAKE A WHILE ~2-3MIN ON A FAST INTERNET CONNECTION.
 
 ![updatedatabase](https://user-images.githubusercontent.com/101249007/229977806-d0e7a831-7f37-4916-80fe-cc86bf740bf4.jpeg)
 
