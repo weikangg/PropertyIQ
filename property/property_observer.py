@@ -1,4 +1,5 @@
 import os
+from django.urls import reverse
 from ura_api import ura_api
 from dotenv import load_dotenv
 load_dotenv()
@@ -7,44 +8,75 @@ from random import randint
 from pyproj import Proj
 import pyproj
 from datetime import datetime
+from django.core.mail import send_mail
 import warnings
 warnings.filterwarnings('ignore')
 
-class Observer:
-    def update(self, subject):
-        pass
+class EmailRecipient:
+    # Abstract method to be overridden by concrete observer classes
+    def update(self, request):
+        pass  
 
-class Subject:
+class UserObserver(EmailRecipient):
+    def __init__(self, user):
+        self.user = user  # Initialize UserObserver with a user object
+
+    def update(self, request):
+        # Implementation of the update method for UserObserver
+
+        # Send emails to the user that there has been an update
+        print(f"\nSending mail to {self.user.email}....")
+        url = 'http://127.0.0.1:8000' + reverse('index')
+        try:
+            sender_mail = request.user.email
+        except Exception as e:
+            sender_mail = os.getenv('GMAIL_EMAIL')
+        send_mail(
+            'PropertyIQ New Listing Update',
+            f'There has been new listings on PropertyIQ! Log back in to see the new updates <a href="{url}">here</a>.',
+            sender_mail,
+            [self.user.email],  # Send email to the current user only
+            fail_silently=False,
+            html_message=f'There has been new listings on PropertyIQ! Log back in to see the new updates <a href="{url}">here</a>.'
+        )
+        print("Mail sent!\n")
+
+
+class ListingNotifier:
     def __init__(self):
-        self._observers = []
+        self._observers = []  # Initialize an empty list of observers
 
     def attach(self, observer):
+        # Attach an observer to the subject
         if observer not in self._observers:
             self._observers.append(observer)
 
     def detach(self, observer):
+        # Detach an observer from the subject
         try:
             self._observers.remove(observer)
         except ValueError:
             pass
 
-    def notify(self):
+    def notify(self, request):
+        # Notify all observers with the request object
         for observer in self._observers:
-            observer.update(self)
+            observer.update(request)
 
-class PropertyListings(Subject):
+class EmailNotifier(ListingNotifier):
     def __init__(self):
-        super().__init__()
+        super().__init__()  # Call the parent class constructor
 
     def update_listings(self, request):
-        # Put your existing savePropertyToDatabase function code here
+        # Update the property listings and notify all observers
+
         URA_API_KEY = os.getenv('URA_API_KEY')
         ura = ura_api.ura_api(URA_API_KEY)
 
         # Clear all the previous listings first
         apps.get_model('property', 'Property').objects.all().delete()
-        quarters = ['23q1']
-        # quarters = ['18q1', '18q2', '18q3', '18q4', '19q1', '19q2', '19q3', '19q4', '20q1', '20q2', '20q3', '20q4', '21q1', '21q2', '21q3', '21q4', '22q1', '22q2', '22q3', '22q4', '23q1']
+        # quarters = ['23q1']
+        quarters = ['18q1', '18q2', '18q3', '18q4', '19q1', '19q2', '19q3', '19q4', '20q1', '20q2', '20q3', '20q4', '21q1', '21q2', '21q3', '21q4', '22q1', '22q2', '22q3', '22q4', '23q1']
         startTime = datetime.now()
         for quarter in quarters:
             raw_data = ura.private_residential_properties_rental_contract(quarter)
@@ -141,9 +173,9 @@ class PropertyListings(Subject):
                     property.save()
                     print(f"Saving {property}....")
         
-        # Notify the observers after saving the properties
-        self.notify()   
-          
+        # Notify observers about the new property listings
+        self.notify(request)
+
         endTime = datetime.now()
         timeTaken = endTime-startTime
         timeTakenFormatted = divmod(timeTaken.total_seconds(), 60)
