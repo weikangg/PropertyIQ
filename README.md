@@ -143,16 +143,18 @@ python manage.py createsuperuser
 ```
 Eg:
 
+```
 Username: propertyIQ
 Email: **<Your valid gmail email which should be similar to the Gmail Email you used to get the Gmail App Password>**
 Password: sc2006_1234
+```
 
->setting up and running the server
+> Setting up and running the server
 ```
 python manage.py migrate
 python manage.py runserver
 ```
-Note: duirng migrations it should be all green!
+Note: During migrations you should see all green for the migrations!
 ![runserver](https://user-images.githubusercontent.com/101249007/229977063-187fcaac-ba1e-4b4c-8e98-83f9d89295b6.png)
 
 >first-time setup
