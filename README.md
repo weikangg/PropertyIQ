@@ -3,7 +3,7 @@
 ![homepage](https://user-images.githubusercontent.com/101249007/230321118-b1974145-d0ad-4613-8c4a-dbca35f5db90.png)
 PropertyIQ is a web application that organises and makes accessible relevant market data and is the the go-to source for up-to-date information and trends in the Singapore housing rental market.
 
-<h2 align = "center"> Table Of Contents </h2>
+<h2 align = "center"> :open_book: Table Of Contents </h2>
 
 - [Prerequisites](#prerequisites) <br/>
 - [Setup](#setup) <br/>
@@ -143,22 +143,23 @@ python manage.py createsuperuser
 ```
 Eg:
 
+```
 Username: propertyIQ
-
+Email: <Your valid gmail email which should be the same as the Gmail Email you used to get the Gmail App Password>
 Password: sc2006_1234
+```
 
->setting up and running the server
+> Setting up and running the server
 ```
 python manage.py migrate
 python manage.py runserver
 ```
-Note: duirng migrations it should be all green!
-![runserver](https://user-images.githubusercontent.com/101249007/229977063-187fcaac-ba1e-4b4c-8e98-83f9d89295b6.png)
+Note: During migrations you should see all green for the migrations!
 
->first-time setup
+> First-time setup
 
-In the website, login as the superuser. In your dashboard and click update property list.
-#### NOTE: THIS WILL TAKE A WHILE ~5MIN ON A FAST INTERNET CONNECTION.
+Within the website, head over to the login page and login as the superuser. Head to the dashboard and click update property list.
+#### NOTE: THIS WILL TAKE A WHILE ~2-3MIN ON A FAST INTERNET CONNECTION.
 
 ![updatedatabase](https://user-images.githubusercontent.com/101249007/229977806-d0e7a831-7f37-4916-80fe-cc86bf740bf4.jpeg)
 
