@@ -144,7 +144,7 @@ python manage.py createsuperuser
 Eg:
 
 Username: propertyIQ
-
+Email: **<Your valid gmail email which should be similar to the Gmail Email you used to get the Gmail App Password>**
 Password: sc2006_1234
 
 >setting up and running the server
