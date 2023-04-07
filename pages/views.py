@@ -21,8 +21,32 @@ def index(request):
     return render(request,'pages/index.html', context)
 
 def about(request):
-
-    context = {
-    }
-
-    return render(request,'pages/about.html',context)
+    team_members = [
+        {
+            'name': 'Aditya',
+            'position': 'Wanker 1',
+            'img': 'img/Picture1.png'
+        },
+        {
+            'name': 'Wei Kang',
+            'position': 'Wanker 2',
+            'img': 'img/Picture1.png'
+        },
+        {
+            'name': 'Don',
+            'position': 'Wanker 3',
+            'img': 'img/Picture1.png'
+        },
+        {
+            'name': 'John',
+            'position': 'Wanker 4',
+            'img': 'img/Picture1.png'
+        },
+        {
+            'name': 'Nicholas',
+            'position': 'Wanker 5',
+            'img': 'img/Picture2.png'
+        }
+    ]
+    context = {'team_members': team_members}
+    return render(request, 'pages/about.html', context)

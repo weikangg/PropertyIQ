@@ -10,7 +10,7 @@
       <div class="row text-center">
         <div class="col-md-12">
           <h1 class="display-4">About PropertyIQ</h1>
-          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+          <p class="lead">At PropertyIQ, we are dedicated to making the housing rental market in Singapore more transparent. We strive to provide relevant and accessible market data to empower individuals to make informed economic decisions.</p>
         </div>
       </div>
     </div>
@@ -36,11 +36,9 @@
       <div class="row">
         <div class="col-md-12">
           <h2>We Search For The Perfect Home</h2>
-          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+          <p class="lead">We provide a user-friendly and comprehensive resource for individuals looking to make informed decisions in the Singapore housing rental market. Our platform includes an intuitive interface that allows users to easily browse and compare similar properties, advanced filtering options based on individual preferences and requirements, interactive maps to easily search for rental properties based on location, and detailed property profiles that provide comprehensive information on available rental properties.</p>
           <img src= {% static 'img/about.jpg' %} alt="">
-          <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis esse officia repudiandae ad saepe ex, amet
-            neque quod accusamus rem quia magnam magni dolorum facilis ullam minima perferendis? Exercitationem at quaerat
-            commodi id libero eveniet harum perferendis laborum molestias quia.</p>
+          <p class="mt-4">We strive to make the process of searching for the perfect home as easy and transparent as possible. Our team is dedicated to providing up-to-date information and trends in the Singapore housing rental market, empowering individuals to make informed decisions and find the best rental properties for their needs. </p>
         </div>
       </div>
     </div>
@@ -49,8 +47,21 @@
   <!-- Team -->
   <section id="team" class="py-5 mb-5">
     <div class="container">
-      <h1 class="text-center">Our Team</h1>
-      <h2 class="text-center">TEAM 3.0</h2>
+      <blockquote class="blockquote text-center mt-0 mb-3">
+        <h1 class="text-center">Our Team</h1>
+        <footer class="blockquote-footer">Proudly presenting <cite title="Source Title">Team 3.0</cite></footer>
+      </blockquote>
+      <div class="row text-center justify-content-between">
+        {% for member in team_members %}
+        <div class="col-12 col-md-2 mb-4">
+          <img src="{% static member.img %}" alt="" class="rounded-circle mb-3">
+          <h4>{{ member.name }}</h4>
+          <p class="text-success">
+            <i class="fas fa-award text-success mb-3"></i> {{ member.position }}</p>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </section>
+  
 {% endblock  %}

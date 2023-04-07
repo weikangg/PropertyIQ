@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.conf import settings
 from .choices import bedroom_choices, price_choices, propertyType_Choices, area_choices
+from .filters import apply_filters
 from property.models import Property,UserProperty
 from datetime import datetime
 import pandas as pd
@@ -61,7 +62,7 @@ def listing(request, listing_id):
     rec_temp = rec_temp.filter(Q(Q(latitude__lte = lat_range[0]) & Q(latitude__gte = lat_range[1])) & Q(Q(longitude__lte = long_range[0]) & Q(longitude__gte = long_range[1])))
     # Filtering out the properties with the same project title
     rec_temp = rec_temp.filter(~Q(project_Title__iexact = listing.project_Title))
-    
+    # Filtering the properties to get properties with the same property type.
     rec_temp = rec_temp.filter(Q(propertyType__iexact = listing.propertyType))
     # Ordering them by ascending rent.
     rec_temp.order_by("rent")
@@ -220,45 +221,7 @@ def listing(request, listing_id):
 
 def search(request):
     queryset_list = Property.objects.order_by('-leaseDate')
-
-    # Keywords
-    if 'keywords' in request.GET:
-        keywords = request.GET.get('keywords')
-        if keywords:
-            # Check that the title contains the keywords
-            queryset_list = queryset_list.filter(Q(project_Title__icontains=keywords) | Q(street__icontains = keywords))
-
-
-    # Property Type
-    if 'property_type' in request.GET:
-        property_type = request.GET.get('property_type')
-        if property_type != '' and property_type != 'All':
-            queryset_list = queryset_list.filter(propertyType__iexact=property_type) # Check that the property_type matches the city inputted
-
-    # Bedrooms
-    if 'bedrooms' in request.GET:
-        bedrooms = request.GET.get('bedrooms')
-        if bedrooms != '' and bedrooms != 'All':
-            queryset_list = queryset_list.filter(bedrooms__lte=bedrooms) # Check that the no of bedrooms is less than or equal to the no of bedrooms
-
-    # Price
-    if 'price' in request.GET:
-        price = request.GET.get('price')
-        if price != '' and price != 'All':
-            if price != '10001':
-                queryset_list = queryset_list.filter(rent__lte=price) # Check that the rent is less than or equal to the no of price
-            else:
-                queryset_list = queryset_list.filter(rent__gt=10000) # Check that the rent is greater than 10,000
-
-    # Area
-    if 'area' in request.GET:
-        area = request.GET.get('area')
-        if area != 'All' and area != '':
-            if area != '5001':
-                queryset_list = queryset_list.filter(sqft__lte=int(area)) # Check that the area is less than or equal to the area inserted
-            else:
-                print('reached here')
-                queryset_list = queryset_list.filter(sqft__gt=5000) # Check that the area is greater than 5000 sqft
+    queryset_list = apply_filters(queryset_list, request.GET)
 
     paginator = Paginator(queryset_list,6) # 6 property on each page
     page = request.GET.get('page')

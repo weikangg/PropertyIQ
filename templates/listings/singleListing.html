@@ -130,40 +130,13 @@
             </div>
           </div>
         </div>
-        <!-- Google Map -->
-        <div class="col-md-3">
-          <div class="card mb-3">
-            <div class="card-body" style = "height: 10rem;">
-              <div id="map" style = "width:100%; height: 100%;" >
-                <script>
-                  function initMap() {
-                    let options = {
-                      zoom: 15,
-                      center: { lat: {{listing.latitude}} , lng: {{listing.longitude}} },
-                    };
-                    let map = new google.maps.Map(document.getElementById("map"), options);
-                    let marker = new google.maps.Marker({
-                      position: { lat: {{listing.latitude}}, lng: {{listing.longitude}}},
-                      map: map,
-                      title: '{{listing.project_Title}}'
-                    });
-                    {% for prop in rec %}
-                    new google.maps.Marker({
-                      position: { lat: {{prop.latitude}}, lng: {{prop.longitude}}},
-                      map: map,
-                      title: '{{prop.project_Title}}'
-                    });
-                    {% endfor %}
-                  }
-                </script>
-              <!-- remember to restrict this to only our website can use through https://console.cloud.google.com/apis/credentials -->
-              <script
-                async defer
-                src="https://maps.googleapis.com/maps/api/js?key={{google_maps_api_key}}&callback=initMap"
-              ></script>
-              </div>
-            </div>
-          </div>
+        
+  <!-- Google Map -->
+  <div class="col-md-3">
+    <div class="card mb-3">
+      <div class="card-body" style="height: 10rem;">
+        <div id="map" class = "mb-5" style="width:100%; height: 100%; "></div>
+        <div id = "bookmark-button">
           {% if user.is_authenticated %}
             {% if bookmarked %}
               <button class="btn-primary btn-block btn-lg noOverlay" data-toggle="modal" data-target="#bookmarkModal">Remove Bookmark</button>
@@ -175,6 +148,75 @@
               <button class="btn-primary btn-block btn-lg" formaction = "{% url 'register' %}">Register/Login to Bookmark</button>
             </form>
           {% endif %}
+        <div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function initMap() {
+      let options = {
+        zoom: 15,
+        center: { lat: {{ listing.latitude }}, lng: {{ listing.longitude }} },
+      };
+      let map = new google.maps.Map(document.getElementById("map"), options);
+
+      let listingMarker = new google.maps.Marker({
+        position: { lat: {{ listing.latitude }}, lng: {{ listing.longitude }} },
+        map: map,
+        title: "{{ listing.project_Title }}",
+      });
+
+      let listingInfoWindow = new google.maps.InfoWindow({
+        content:
+          "<div>" +
+          "<h4>" +
+          "{{ listing.project_Title | title }}" +
+          "</h4>" +
+          "<p>Street: " +
+          "{{ listing.street }}" +
+          "</p>" +
+          "<p>Rent Price: " +
+          "{{ listing.rent|intcomma }}" +
+          "</p>" +
+          "<a href='{% url 'listing' listing.id %}'>View Details</a>" +
+          "</div>",
+      });
+
+      listingMarker.addListener("click", function () {
+        listingInfoWindow.open(map, listingMarker);
+      });
+
+      {% for prop in rec %}
+        addRecommendationMarker(map, {{ prop.latitude }}, {{ prop.longitude }}, "{{ prop.project_Title | title }}", "{{ prop.street | title }}", "{{ prop.rent|intcomma }}", "{% url 'listing' prop.id %}");
+      {% endfor %}
+    }
+
+    function addRecommendationMarker(map, lat, lng, title, street, rent, url) {
+      let propMarker = new google.maps.Marker({
+        position: { lat: lat, lng: lng },
+        map: map,
+        title: title,
+      });
+
+      let propInfoWindow = new google.maps.InfoWindow({
+        content:
+          "<div>" +
+          "<h4>" + title + "</h4>" +
+          "<p>Street: " + street + "</p>" +
+          "<p>Rent Price: " + rent + "</p>" +
+          "<a href='" + url + "'>View Details</a>" +
+          "</div>",
+      });
+
+      propMarker.addListener("click", function () {
+        propInfoWindow.open(map, propMarker);
+      });
+    }
+  </script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap"></script>
+
         </div>
     </div>
   </section>
