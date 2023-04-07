@@ -63,13 +63,19 @@ def listing(request, listing_id):
     # Filtering out the properties with the same project title
     rec_temp = rec_temp.filter(~Q(project_Title__iexact = listing.project_Title))
     # Filtering the properties to get properties with the same property type.
-    rec_temp = rec_temp.filter(Q(propertyType__iexact = listing.propertyType))
-    # Ordering them by ascending rent.
-    rec_temp.order_by("rent")
+    rec_final = rec_temp.filter(Q(propertyType__iexact = listing.propertyType))
+    
+    # If no properties found after filtering for same property type
+    if rec_final.count() == 0:
+        # We loosen the filtering by not including that.
+        rec_final = rec_temp
+
+    # Ordering the queryset by ascending rent to offer the cheapest recommendations to users.
+    rec_final.order_by("rent")
     # Show top 3 recommendations
     rec = []
     rec_list = {}
-    for property in rec_temp:
+    for property in rec_final:
         if len(rec) == 3:
             break
         if property.project_Title in rec_list:
@@ -78,7 +84,7 @@ def listing(request, listing_id):
             rec_list[property.project_Title] = 1
             rec.append(property)
     
-    print(f'Amount of listings for recommended properties: {rec_temp.count()}')   
+    print(f'Amount of listings for recommended properties: {rec_final.count()}')   
 
     # Trend plots (df is for Historical Trend, df2 is for Nearby Trend)
 
@@ -98,6 +104,7 @@ def listing(request, listing_id):
         # Load the data from the Property model into a pandas dataframe
         df = pd.DataFrame.from_records(Property.objects.all().filter(project_Title=listing.project_Title).values())
         df2 = pd.DataFrame.from_records(rec_temp.values())
+        print(df2)
         # Convert the leaseDate column to a pandas datetime object
         df['leaseDate'] = pd.to_datetime(df['leaseDate'])
         df2['leaseDate'] = pd.to_datetime(df2['leaseDate'])

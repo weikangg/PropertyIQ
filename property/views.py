@@ -1,19 +1,8 @@
-import os
-from ura_api import ura_api
 from dotenv import load_dotenv
 load_dotenv()
 from django.shortcuts import redirect
-from .models import Property
-from random import randint
-from pyproj import Proj
-import pyproj
-from datetime import datetime
-from django.core.mail import send_mail
 from django.contrib.auth.models import User
-from django.urls import reverse
-import warnings
 from .property_observer import EmailNotifier, UserObserver
-warnings.filterwarnings('ignore')
 
 # Create your views here.
 
