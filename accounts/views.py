@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
 from django.core.paginator import Paginator
 from .validators import validatePassword
-from property.models import Property
+from property.models import Property, Bookmark
 from django.utils import timezone   
 from django.http import HttpResponseServerError
 from .models import UserLogin
@@ -164,7 +164,7 @@ def logout(request):
 
 def dashboard(request):
     # if we find a property that has a bookmarks field with the userid within, we return it
-    bookmarks = Property.objects.filter(bookmarks=request.user)
+    bookmarks = Property.objects.filter(bookmarks=request.user).order_by('-time_added')
     queryset_length = bookmarks.count()
     paginator = Paginator(bookmarks,6) # 6 property on each page
     page = request.GET.get('page')
@@ -175,6 +175,22 @@ def dashboard(request):
     }
     return render(request,'accounts/dashboard.html', context)
 
+def dashboard(request):
+    bookmarks = Bookmark.objects.filter(user=request.user).order_by('-time_added')
+    queryset_length = bookmarks.count()
+
+    # Extract the properties from the bookmarks
+    bookmarked_properties = [bookmark.property for bookmark in bookmarks]
+
+    paginator = Paginator(bookmarked_properties, 6)  # 6 properties on each page
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
+
+    context = {
+        'bookmarks': paged_listings,
+        'queryset_length': queryset_length
+    }
+    return render(request, 'accounts/dashboard.html', context)
 def update(request):
     id = request.user.id
     user = User.objects.get(pk=id)
@@ -235,20 +251,30 @@ def update(request):
         }
         return render(request,'accounts/update.html', context)
     
+# def bookmarks(request, listing_id):
+#     property = get_object_or_404(Property, pk = listing_id)
+#     # If the user id is inside this field, the user has already added this to the bookmarks
+#     if property.bookmarks.filter(id = request.user.id).exists():
+#         # remove it 
+#         property.bookmarks.remove(request.user)
+#         messages.success(request,"Bookmark successfully removed!")
+#     else:
+#         # add it
+#         property.bookmarks.add(request.user)
+#         messages.success(request,"Bookmark successfully added!")
+#     return redirect('listing', listing_id)
+
 def bookmarks(request, listing_id):
-    property = get_object_or_404(Property, pk = listing_id)
-    # If the user id is inside this field, the user has already added this to the bookmarks
-    if property.bookmarks.filter(id = request.user.id).exists():
-        # remove it 
-        property.bookmarks.remove(request.user)
-        messages.success(request,"Bookmark successfully removed!")
+    property = get_object_or_404(Property, pk=listing_id)
+    bookmark, created = Bookmark.objects.get_or_create(user=request.user, property=property)
+
+    if created:
+        messages.success(request, "Bookmark successfully added!")
     else:
-        # add it
-        property.bookmarks.add(request.user)
-        messages.success(request,"Bookmark successfully added!")
+        bookmark.delete()
+        messages.success(request, "Bookmark successfully removed!")
+
     return redirect('listing', listing_id)
-
-
 
 def searchHistory(request):
     recentListings = Property.objects.filter(

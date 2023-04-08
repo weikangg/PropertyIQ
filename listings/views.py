@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.conf import settings
 from .choices import bedroom_choices, price_choices, propertyType_Choices, area_choices
 from .filters import apply_filters
-from property.models import Property,UserProperty
+from property.models import Property,UserProperty,Bookmark
 from datetime import datetime
 import pandas as pd
 from statsmodels.tsa.statespace.sarimax import SARIMAX
@@ -49,7 +49,7 @@ def listing(request, listing_id):
         user_property.save()
 
         # To show whether the property was already bookmarked before or not in our templates
-        if listing.bookmarks.filter(id=request.user.id).exists():
+        if Bookmark.objects.filter(user=request.user, property=listing).exists():
             bookmarked = True
 
     # Recommendations

@@ -16,10 +16,7 @@ class Property(models.Model):
     photo_main = models.CharField(max_length=200, blank=True)
     photo_1 = models.CharField(max_length=200, blank=True)
     photo_2 = models.CharField(max_length=200, blank=True)
-    photo_3 = models.CharField(max_length=200, blank=True)
-    # Every user that adds a property to their bookmarks, that individual property has a bookmarks field where the individual ID resides
-    # we can look for all the properties where the USER ID is.
-    bookmarks = models.ManyToManyField(User, related_name='bookmark', default = None, blank = True)
+    photo_3 = models.CharField(max_length=200, blank=True)  
     def __str__(self):
         return self.project_Title
 
@@ -33,3 +30,8 @@ class UserProperty(models.Model):
 
     class Meta:
         unique_together = ('user', 'property',)
+
+class Bookmark(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    time_added = models.DateTimeField(auto_now_add=True)
