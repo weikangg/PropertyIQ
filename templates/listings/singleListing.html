@@ -43,53 +43,31 @@
       <div class="row">
         <div class="col-md-9">
           <!-- Home Main Image -->
-          <img src= {% static 'img/home-1.jpg' %} alt="" class="img-main img-fluid mb-3">
+          <img src= {% static listing.photo_main %} alt="" class="img-main img-fluid mb-3">
           <!-- Thumbnails -->
           <div class="row mb-5 thumbs">
             {% if listing.photo_1 %}
                 <div class="col-md-2">
-                <a href={% static 'img/home-1.jpg' %} data-lightbox="home-images">
-                    <img src={% static 'img/home-1.jpg' %} alt="" class="img-fluid">
+                <a href={% static listing.photo_1 %} data-lightbox="home-images" class = "noOverlay">
+                    <img src={% static listing.photo_1 %} alt="" class="img-fluid">
                 </a>
                 </div>
             {% endif %}
             {% if listing.photo_2 %}
             <div class="col-md-2">
-              <a href={% static 'img/home-1.jpg' %} data-lightbox="home-images">
-                <img src={% static 'img/home-1.jpg' %} alt="" class="img-fluid">
+              <a href={% static listing.photo_2 %} data-lightbox="home-images" class = "noOverlay">
+                <img src={% static listing.photo_2 %} alt="" class="img-fluid">
               </a>
             </div>
             {% endif %}
             {% if listing.photo_3 %}
                 <div class="col-md-2">
-                    <a href={% static 'img/home-1.jpg' %} data-lightbox="home-images">
-                    <img src={% static 'img/home-1.jpg' %} alt="" class="img-fluid">
+                    <a href={% static listing.photo_3 %} data-lightbox="home-images" class = "noOverlay">
+                    <img src={% static listing.photo_3 %} alt="" class="img-fluid">
                     </a>
                 </div>           
             {% endif %}
-            {% if listing.photo_4 %}
-                <div class="col-md-2">
-                    <a href={% static 'img/home-1.jpg' %} data-lightbox="home-images">
-                    <img src={% static 'img/home-1.jpg' %} alt="" class="img-fluid">
-                    </a>
-                </div>
-            {% endif %}
 
-            {% if listing.photo_5 %}
-                <div class="col-md-2">
-                    <a href={% static 'img/home-1.jpg' %} data-lightbox="home-images">
-                    <img src={% static 'img/home-1.jpg' %} alt="" class="img-fluid">
-                    </a>
-                </div>
-            {% endif %}
-
-            {% if listing.photo_6 %}
-                <div class="col-md-2">
-                    <a href={% static 'img/home-1.jpg' %} data-lightbox="home-images">
-                    <img src={% static 'img/home-1.jpg' %} alt="" class="img-fluid">
-                    </a>
-                </div>
-            {% endif %}
 
           </div>
           <!-- Fields -->
@@ -230,7 +208,7 @@
             {% for prop in rec %}
             <div class="col-md-6 col-lg-4 mb-4">
               <div class="card listing-preview">
-                <img class="card-img-top" src= {% static 'img/home-4.jpg' %}
+                <img class="card-img-top" src= {% static prop.photo_main %}
                 alt="">
                 <div class="card-img-overlay">
                   <h2>

@@ -160,11 +160,11 @@ class EmailNotifier(ListingNotifier):
                     for i in range(3):
                         random_index = randint(1,6)
                         if i == 0:
-                            inner_photo_link1 = 'img/home-inside' + str(random_index) + '.jpg'
+                            inner_photo_link1 = 'img/home-inside-' + str(random_index) + '.jpg'
                         elif i == 1:
-                            inner_photo_link2 = 'img/home-inside' + str(random_index) + '.jpg'
+                            inner_photo_link2 = 'img/home-inside-' + str(random_index) + '.jpg'
                         else:
-                            inner_photo_link3 = 'img/home-inside' + str(random_index) + '.jpg'
+                            inner_photo_link3 = 'img/home-inside-' + str(random_index) + '.jpg'
                             
                     property = apps.get_model('property', 'Property')(project_Title = property_item.get('project_Title'),street=property_item.get('street'),latitude=property_item.get('y'),
                                         longitude = property_item.get('x'),bedrooms=property_item.get('noOfBedRoom'), sqft = property_item.get('areaSqft'),

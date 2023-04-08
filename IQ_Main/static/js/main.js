@@ -6,11 +6,11 @@ setTimeout(function() {
 }, 3000);
 
 $(document).ready(function() {
-  $('a:not(.dropdown-toggle), button:not(.noOverlay)').on('click', function() {
-    // Show the spinner when a button or link (except dropdown toggle link or bookmark button) is clicked
+  $('a:not(.dropdown-toggle):not(.noOverlay), button:not(.noOverlay)').on('click', function() {
+    // Show the spinner when a button or link (except dropdown toggle link, or elements with noOverlay class) is clicked
     $('#spinner').fadeIn();
   });
-  
+
   $(window).on('load', function() {
     // Hide the spinner once the page is fully loaded
     $('#spinner').fadeOut();
