@@ -1,6 +1,7 @@
 <h1 align="center"> :house_with_garden: PropertyIQ</h1>
 
-![homepage](https://user-images.githubusercontent.com/101249007/230321118-b1974145-d0ad-4613-8c4a-dbca35f5db90.png)
+![homepage](https://user-images.githubusercontent.com/95838788/230757684-8aaebac0-a8f7-46a0-8e8f-27a224f03d34.png)
+
 PropertyIQ is a web application that organises and makes accessible relevant market data and is the the go-to source for up-to-date information and trends in the Singapore housing rental market.
 
 <h2 align = "center"> :open_book: Table Of Contents </h2>
@@ -84,7 +85,14 @@ Note: You can also manually install dependencies using the following command in 
 pip install -r requirements.txt
 ```
 
-4) Setup of PostgreSQL and database
+> For Mac Users:
+```
+1. If you face any error installing the library psycopg2, please delete the line 'psycopg2==2.9.5' from the requirements.txt.
+2. Only install psycopg2-binary==2.9.5 by running 'pip install psycopg2-binary==2.9.5' in the terminal.
+3. That should solve any errors you face.
+```
+
+4) Setup of PostgreSQL and database 
 
 Download and install both pgAdmin and PostgreSQL.
 
@@ -114,7 +122,8 @@ It should look like this.
 ![databaseConsole](https://user-images.githubusercontent.com/101249007/229973874-c69fc3fe-d975-405c-8e41-3f9c2187d87c.png)
 
 5) Create a .env file in the root directory & store relevant information. 
-<strong>Ensure that the names match exactly. e.g. 'POSTGRE_USER' must be stored exactly as POSTGRE_USER in the .env file without any typos. </strong>
+<strong>Ensure that the names match exactly. e.g. 'POSTGRE_USER' must be stored exactly as POSTGRE_USER in the .env file without any typos. Also, the <> signs are not required. There are there only for illustrative purposes. e.g. POSTGRE_USER = 'postgres' is correct without the <> signs at the ends. Note: The default POSTGRE_USER if not set above is automatically 'postgres'. </strong>
+  
 ```
 POSTGRE_USER = '<YOUR POSTGRESQL USER>'
 POSTGRE_PASSWORD = '<YOUR POSTGRESQL PASSWORD>'
@@ -129,7 +138,7 @@ GOOGLE_MAPS_KEY = '<YOUR GOOGLE MAPS KEY>'
 ```
 8) Get Gmail App Password & add it to the .env file.
 ```
-GMAIL_EMAIL = '<YOUR EMAIL>'
+GMAIL_EMAIL = '<YOUR EMAIL>' 
 GMAIL_APP_PASSWORD = '<ENTER 16 DIGIT CODE HERE>'
 ```
 The final .env file should look like this: <br/>
@@ -141,36 +150,55 @@ The final .env file should look like this: <br/>
 ```
 python manage.py createsuperuser
 ```
-Eg:
-
+  
+Example Super User Account:
 ```
 Username: propertyIQ
 Email: <Your valid gmail email which should be the same as the Gmail Email you used to get the Gmail App Password>
 Password: sc2006_1234
 ```
+**Note:** It is normal if you can't see the password appearing on the screen even when you are typing something. This is for **security reasons!**
+
 
 > Setting up and running the server
 ```
 python manage.py migrate
 python manage.py runserver
 ```
-Note: During migrations you should see all green for the migrations!
+**Note: During migrations, you should see all green for the migrations!**
 
 > First-time setup
 
-Within the website, head over to the login page and login as the superuser. Head to the dashboard and click update property list.
+Within the website, head over to the login page and login as the superuser. Head to the dashboard and **click update property list.**
 #### NOTE: THIS WILL TAKE A WHILE ~2-3MIN ON A FAST INTERNET CONNECTION and also depends on the number of users currently registered since it needs to send emails to each and every user everytime there is a new update for new properties.
 
-![updatedatabase](https://user-images.githubusercontent.com/101249007/229977806-d0e7a831-7f37-4916-80fe-cc86bf740bf4.jpeg)
+Every registered user will receive an email like this by the website's superuser whenever the properties are updated:
+![emailUpdate](https://user-images.githubusercontent.com/95838788/230758527-8b847c5c-28ed-4dc1-b304-3c9524cb3844.png)
+
+After this, you should see some listings on the home page and the 'featured listings page'.
+![updatedatabase](https://user-images.githubusercontent.com/95838788/230758071-dac450b4-6f22-4272-99cd-fc7ac440bc34.png)
 
 > pgAdmin
 
-In the event you want to view the database you can use pgAdmin.
+The purpose of installing pgAdmin is to view the data stored in the database using a graphical interface which is much more user-friendly. **Note that pgAdmin is more for developers who want to implement some changes or see how the data is being stored. For the front-end users, pgAdmin may not be necessary.** <br/>
+
 In pgAdmin , enter the same **password** from **PostgreSQL** and you should then see the following.
 Click on server database icon top left and add the password which you entered in psql.
 
+Then, click on 'Databases' and choose the database to examine. It should be 'propertyiq' if your setup process has been the same as proposed above. <br/>
 ![databasepgAdmin](https://user-images.githubusercontent.com/101249007/229968141-222fc0a4-7205-4476-ba8d-9bc805340bf8.png)
+
+Then, click on 'Schemas'. <br/>
 ![table](https://user-images.githubusercontent.com/101249007/229976693-f58bd915-b883-4978-bdee-4881f6c2d63f.png)
+
+Then, click on 'Tables'. Thereafter, choose the table you want to examine. <br/>
+![image](https://user-images.githubusercontent.com/95838788/230758667-13a068c8-d35c-4b7f-9193-9e8011114178.png)
+
+For example, if you want to examine the property tables, simply right click 'property_property' and click 'View/Edit Data'  and select 'All Rows'.  <br/>
+![image](https://user-images.githubusercontent.com/95838788/230758694-a38aa2ae-1a70-459a-a50c-0363138ccd6c.png)
+
+This will display all of the property listing in the database to you as shown below: <br/>
+![image](https://user-images.githubusercontent.com/95838788/230758726-2974f99a-d93f-4801-928a-531de13f840f.png)
 
 <h1 align="center"> :confetti_ball: Congratulations! :confetti_ball:</h1>
 
@@ -234,6 +262,13 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
 5. Wait for about 1-2 minutes patiently and grab a cup of coffee.
 ```
 
+> <strong>6. I'm facing errors installing psycopg2 in the initial set up!! I'm a Mac User. </strong>
+```
+1. If you face any error installing the library psycopg2, please delete the line 'psycopg2==2.9.5' from the requirements.txt.
+2. Only install psycopg2-binary==2.9.5. 
+3. That should solve any errors you face.
+```
+
 <h2 align="center" id = "tech-stack"> 🛠 Tech Stack:</h2>
 
 <div align="center">
@@ -254,8 +289,11 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
 
 <h2 align="center" id = "contributors"> :family_man_man_boy_boy: Contributors:</h2>
 
-- [Chong Wei Kang](https://github.com/weikangg): Frontend, Backend, SRS <br/>
-- [Pugalia Aditya Kumar](https://github.com/AdityaPugalia): Frontend, Backend, SRS <br/> 
-- [Andrada Angel John Bernardino](https://github.com/AAJB13): Diagrams, Testing, SRS, Final Powerpoint <br/>
-- [Don Lim Zhan Chen](https://github.com/TheGreatReee): Diagrams, Testing, SRS, Final Powerpoint <br/>
-- [Nicholas Lim Jan Tuck](https://github.com/NicholasLimJT): Diagrams, Testing, SRS, Final Powerpoint <br/>
+| Profile                                                                                                                            | Name             | School                                 | Responsibilities
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------- | -------------------------------------- | ------------------------------ |
+| <a href='https://github.com/weikangg' title='weikangg'> <img src='https://github.com/weikangg.png' height='50' width='50'/></a>       | Wei Kang           | Nanyang Technological University (NTU) | Frontend, Backend, SRS |
+| <a href='https://github.com/AdityaPugalia' title='AdityaPugalia'> <img src='https://github.com/AdityaPugalia.png' height='50' width='50'/></a>    | Aditya Pugalia | Nanyang Technological University (NTU) | Frontend, Backend, SRS |
+| <a href='https://github.com/AAJB13' title='AAJB13'> <img src='https://github.com/AAJB13.png' height='50' width='50'/></a> | John   | Nanyang Technological University (NTU) | Diagrams, Testing, SRS, Final Powerpoint |
+| <a href='https://github.com/TheGreatReee' title='TheGreatReee'> <img src='https://github.com/TheGreatReee.png' height='50' width='50'/></a>       | Don          | Nanyang Technological University (NTU) | Diagrams, Testing, SRS, Final Powerpoint |
+| <a href='https://github.com/NicholasLimJT' title='NicholasLimJT'> <img src='https://github.com/NicholasLimJT.png' height='50' width='50'/></a>    | Nicholas             | Nanyang Technological University (NTU) | Diagrams, Testing, SRS, Final Powerpoint |
+
