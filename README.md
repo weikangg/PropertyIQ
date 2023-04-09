@@ -295,11 +295,11 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
 - [Don Lim Zhan Chen](https://github.com/TheGreatReee): Diagrams, Testing, SRS, Final Powerpoint <br/>
 - [Nicholas Lim Jan Tuck](https://github.com/NicholasLimJT): Diagrams, Testing, SRS, Final Powerpoint <br/>
   
-| Profile                                                                                                                            | Name             | School                                 |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------- | -------------------------------------- |
-| <a href='https://github.com/weikangg' title='weikangg'> <img src='https://github.com/weikangg.png' height='50' width='50'/></a>       | Wei Kang           | Nanyang Technological University (NTU) |
-| <a href='https://github.com/AdityaPugalia' title='AdityaPugalia'> <img src='https://github.com/AdityaPugalia.png' height='50' width='50'/></a>    | Aditya Pugalia | Nanyang Technological University (NTU) |
-| <a href='https://github.com/AAJB13' title='AAJB13'> <img src='https://github.com/AAJB13.png' height='50' width='50'/></a> | John   | Nanyang Technological University (NTU) |
-| <a href='https://github.com/TheGreatReee' title='TheGreatReee'> <img src='https://github.com/TheGreatReee.png' height='50' width='50'/></a>       | John          | Nanyang Technological University (NTU) |
-| <a href='https://github.com/NicholasLimJT' title='NicholasLimJT'> <img src='https://github.com/NicholasLimJT.png' height='50' width='50'/></a>    | Nicholas             | Nanyang Technological University (NTU) |
+| Profile                                                                                                                            | Name             | School                                 | Responsibilities
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------- | -------------------------------------- | ------------------------------ |
+| <a href='https://github.com/weikangg' title='weikangg'> <img src='https://github.com/weikangg.png' height='50' width='50'/></a>       | Wei Kang           | Nanyang Technological University (NTU) | Frontend, Backend, SRS |
+| <a href='https://github.com/AdityaPugalia' title='AdityaPugalia'> <img src='https://github.com/AdityaPugalia.png' height='50' width='50'/></a>    | Aditya Pugalia | Nanyang Technological University (NTU) | Frontend, Backend, SRS |
+| <a href='https://github.com/AAJB13' title='AAJB13'> <img src='https://github.com/AAJB13.png' height='50' width='50'/></a> | John   | Nanyang Technological University (NTU) | Diagrams, Testing, SRS, Final Powerpoint |
+| <a href='https://github.com/TheGreatReee' title='TheGreatReee'> <img src='https://github.com/TheGreatReee.png' height='50' width='50'/></a>       | John          | Nanyang Technological University (NTU) | Diagrams, Testing, SRS, Final Powerpoint |
+| <a href='https://github.com/NicholasLimJT' title='NicholasLimJT'> <img src='https://github.com/NicholasLimJT.png' height='50' width='50'/></a>    | Nicholas             | Nanyang Technological University (NTU) | Diagrams, Testing, SRS, Final Powerpoint |
 
