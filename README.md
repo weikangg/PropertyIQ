@@ -88,11 +88,11 @@ pip install -r requirements.txt
 > For Mac Users:
 ```
 1. If you face any error installing the library psycopg2, please delete the line 'psycopg2==2.9.5' from the requirements.txt.
-2. Only install psycopg2-binary==2.9.5. 
+2. Only install psycopg2-binary==2.9.5 by running 'pip install psycopg2-binary==2.9.5' in the terminal.
 3. That should solve any errors you face.
 ```
 
-4) Setup of PostgreSQL and database
+4) Setup of PostgreSQL and database 
 
 Download and install both pgAdmin and PostgreSQL.
 
@@ -122,7 +122,8 @@ It should look like this.
 ![databaseConsole](https://user-images.githubusercontent.com/101249007/229973874-c69fc3fe-d975-405c-8e41-3f9c2187d87c.png)
 
 5) Create a .env file in the root directory & store relevant information. 
-<strong>Ensure that the names match exactly. e.g. 'POSTGRE_USER' must be stored exactly as POSTGRE_USER in the .env file without any typos. </strong>
+<strong>Ensure that the names match exactly. e.g. 'POSTGRE_USER' must be stored exactly as POSTGRE_USER in the .env file without any typos. Also, the <> signs are not required. There are there only for illustrative purposes. e.g. POSTGRE_USER = 'postgres' is correct instead of POSTGRE_USER = '<postgres>'. </strong>
+  
 ```
 POSTGRE_USER = '<YOUR POSTGRESQL USER>'
 POSTGRE_PASSWORD = '<YOUR POSTGRESQL PASSWORD>'
@@ -137,7 +138,7 @@ GOOGLE_MAPS_KEY = '<YOUR GOOGLE MAPS KEY>'
 ```
 8) Get Gmail App Password & add it to the .env file.
 ```
-GMAIL_EMAIL = '<YOUR EMAIL>'
+GMAIL_EMAIL = '<YOUR EMAIL>' 
 GMAIL_APP_PASSWORD = '<ENTER 16 DIGIT CODE HERE>'
 ```
 The final .env file should look like this: <br/>
@@ -153,7 +154,7 @@ Eg:
 
 ```
 Username: propertyIQ
-Email: <Your valid gmail email which should be the same as the Gmail Email you used to get the Gmail App Password>
+Email: <Your valid gmail email **which should be the same as the Gmail Email** you used to get the Gmail App Password>
 Password: sc2006_1234
 ```
 **Note:** It is normal if you can't see the password appearing on the screen even when you are typing something. This is for **security reasons!**
@@ -164,16 +165,18 @@ Password: sc2006_1234
 python manage.py migrate
 python manage.py runserver
 ```
-Note: During migrations you should see all green for the migrations!
+**Note: During migrations, you should see all green for the migrations!**
 
 > First-time setup
 
 Within the website, head over to the login page and login as the superuser. Head to the dashboard and **click update property list.**
 #### NOTE: THIS WILL TAKE A WHILE ~2-3MIN ON A FAST INTERNET CONNECTION and also depends on the number of users currently registered since it needs to send emails to each and every user everytime there is a new update for new properties.
 
+Every registered user will receive an email like this whenever the properties are updated:
+![emailUpdate](https://user-images.githubusercontent.com/95838788/230758527-8b847c5c-28ed-4dc1-b304-3c9524cb3844.png)
+
 After this, you should see some listings on the home page and the 'featured listings page'.
 ![updatedatabase](https://user-images.githubusercontent.com/95838788/230758071-dac450b4-6f22-4272-99cd-fc7ac440bc34.png)
-
 
 > pgAdmin
 
