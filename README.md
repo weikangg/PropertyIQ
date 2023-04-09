@@ -149,7 +149,6 @@ The final .env file should look like this: <br/>
 > Create superuser
 ```
 python manage.py createsuperuser
-  
 ```
   
 Example Super User Account:
@@ -195,10 +194,10 @@ Then, click on 'Schemas'. <br/>
 Then, click on 'Tables'. Thereafter, choose the table you want to examine. <br/>
 ![image](https://user-images.githubusercontent.com/95838788/230758667-13a068c8-d35c-4b7f-9193-9e8011114178.png)
 
-For example, if you want to examine the property tables, simply right click 'property_property' and click 'View/Edit Data'  and select 'All Rows'. 
+For example, if you want to examine the property tables, simply right click 'property_property' and click 'View/Edit Data'  and select 'All Rows'.  <br/>
 ![image](https://user-images.githubusercontent.com/95838788/230758694-a38aa2ae-1a70-459a-a50c-0363138ccd6c.png)
 
-This will display all of the property listing in the database to you as shown below:
+This will display all of the property listing in the database to you as shown below: <br/>
 ![image](https://user-images.githubusercontent.com/95838788/230758726-2974f99a-d93f-4801-928a-531de13f840f.png)
 
 <h1 align="center"> :confetti_ball: Congratulations! :confetti_ball:</h1>
