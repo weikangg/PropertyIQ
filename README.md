@@ -159,10 +159,12 @@ Note: During migrations you should see all green for the migrations!
 
 > First-time setup
 
-Within the website, head over to the login page and login as the superuser. Head to the dashboard and click update property list.
+Within the website, head over to the login page and login as the superuser. Head to the dashboard and **click update property list.**
 #### NOTE: THIS WILL TAKE A WHILE ~2-3MIN ON A FAST INTERNET CONNECTION and also depends on the number of users currently registered since it needs to send emails to each and every user everytime there is a new update for new properties.
 
-![updatedatabase](https://user-images.githubusercontent.com/101249007/229977806-d0e7a831-7f37-4916-80fe-cc86bf740bf4.jpeg)
+After this, you should see some listings on the home page and the 'featured listings page'.
+![updatedatabase](https://user-images.githubusercontent.com/95838788/230758071-dac450b4-6f22-4272-99cd-fc7ac440bc34.png)
+
 
 > pgAdmin
 
