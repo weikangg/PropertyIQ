@@ -24,27 +24,27 @@ def about(request):
     team_members = [
         {
             'name': 'Aditya',
-            'position': 'Wanker 1',
-            'img': 'img/Picture1.png'
+            'position': 'CEO',
+            'img': 'img/Picture5.png'
         },
         {
             'name': 'Wei Kang',
-            'position': 'Wanker 2',
+            'position': 'CTO',
             'img': 'img/Picture1.png'
         },
         {
             'name': 'Don',
-            'position': 'Wanker 3',
+            'position': 'Doc Master',
             'img': 'img/Picture3.png'
         },
         {
             'name': 'John',
-            'position': 'Wanker 4',
-            'img': 'img/Picture1.png'
+            'position': 'Slides Ninja',
+            'img': 'img/Picture4.png'
         },
         {
             'name': 'Nicholas',
-            'position': 'Wanker 5',
+            'position': 'Diagrams Guru',
             'img': 'img/Picture2.png'
         }
     ]

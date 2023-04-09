@@ -228,9 +228,10 @@ def listing(request, listing_id):
     return render(request,'listings/singleListing.html', context)
 
 def search(request):
-    queryset_list = Property.objects.order_by('-leaseDate')
+    queryset_list = Property.objects.all()
     queryset_list = apply_filters(queryset_list, request.GET)
-
+    queryset_list = queryset_list.order_by('-leaseDate')
+    
     paginator = Paginator(queryset_list,6) # 6 property on each page
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
