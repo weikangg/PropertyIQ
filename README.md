@@ -149,12 +149,13 @@ The final .env file should look like this: <br/>
 > Create superuser
 ```
 python manage.py createsuperuser
+  
 ```
-Eg:
-
+  
+Example Super User Account:
 ```
 Username: propertyIQ
-Email: <Your valid gmail email **which should be the same as the Gmail Email** you used to get the Gmail App Password>
+Email: <Your valid gmail email which should be the same as the Gmail Email you used to get the Gmail App Password>
 Password: sc2006_1234
 ```
 **Note:** It is normal if you can't see the password appearing on the screen even when you are typing something. This is for **security reasons!**
@@ -172,7 +173,7 @@ python manage.py runserver
 Within the website, head over to the login page and login as the superuser. Head to the dashboard and **click update property list.**
 #### NOTE: THIS WILL TAKE A WHILE ~2-3MIN ON A FAST INTERNET CONNECTION and also depends on the number of users currently registered since it needs to send emails to each and every user everytime there is a new update for new properties.
 
-Every registered user will receive an email like this whenever the properties are updated:
+Every registered user will receive an email like this by the website's superuser whenever the properties are updated:
 ![emailUpdate](https://user-images.githubusercontent.com/95838788/230758527-8b847c5c-28ed-4dc1-b304-3c9524cb3844.png)
 
 After this, you should see some listings on the home page and the 'featured listings page'.
@@ -180,7 +181,7 @@ After this, you should see some listings on the home page and the 'featured list
 
 > pgAdmin
 
-The purpose of installing pgAdmin is to view the data stored in the database using a graphical interface which is much more user-friendly. Note that pgAdmin is more for developers who want to implement some changes or see how the data is being stored. For the front-end users, pgAdmin may not be necessary. <br/>
+The purpose of installing pgAdmin is to view the data stored in the database using a graphical interface which is much more user-friendly. **Note that pgAdmin is more for developers who want to implement some changes or see how the data is being stored. For the front-end users, pgAdmin may not be necessary.** <br/>
 
 In pgAdmin , enter the same **password** from **PostgreSQL** and you should then see the following.
 Click on server database icon top left and add the password which you entered in psql.
