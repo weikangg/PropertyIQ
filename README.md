@@ -289,12 +289,6 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
 
 <h2 align="center" id = "contributors"> :family_man_man_boy_boy: Contributors:</h2>
 
-- [Chong Wei Kang](https://github.com/weikangg): Frontend, Backend, SRS <br/>
-- [Pugalia Aditya Kumar](https://github.com/AdityaPugalia): Frontend, Backend, SRS <br/> 
-- [Andrada Angel John Bernardino](https://github.com/AAJB13): Diagrams, Testing, SRS, Final Powerpoint <br/>
-- [Don Lim Zhan Chen](https://github.com/TheGreatReee): Diagrams, Testing, SRS, Final Powerpoint <br/>
-- [Nicholas Lim Jan Tuck](https://github.com/NicholasLimJT): Diagrams, Testing, SRS, Final Powerpoint <br/>
-  
 | Profile                                                                                                                            | Name             | School                                 | Responsibilities
 | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------- | -------------------------------------- | ------------------------------ |
 | <a href='https://github.com/weikangg' title='weikangg'> <img src='https://github.com/weikangg.png' height='50' width='50'/></a>       | Wei Kang           | Nanyang Technological University (NTU) | Frontend, Backend, SRS |
