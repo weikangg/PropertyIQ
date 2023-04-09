@@ -186,8 +186,20 @@ The purpose of installing pgAdmin is to view the data stored in the database usi
 In pgAdmin , enter the same **password** from **PostgreSQL** and you should then see the following.
 Click on server database icon top left and add the password which you entered in psql.
 
+Then, click on 'Databases' and choose the database to examine. It should be 'propertyiq' if your setup has been the same as proposed above.
 ![databasepgAdmin](https://user-images.githubusercontent.com/101249007/229968141-222fc0a4-7205-4476-ba8d-9bc805340bf8.png)
+
+Then, click on 'Schemas'.
 ![table](https://user-images.githubusercontent.com/101249007/229976693-f58bd915-b883-4978-bdee-4881f6c2d63f.png)
+
+Then, click on 'Tables'. Thereafter, choose the table you want to examine.
+![image](https://user-images.githubusercontent.com/95838788/230758667-13a068c8-d35c-4b7f-9193-9e8011114178.png)
+
+For example, if you want to examine the property tables, simply right click 'property_property' and click 'View/Edit Data'  and select 'All Rows'. 
+![image](https://user-images.githubusercontent.com/95838788/230758694-a38aa2ae-1a70-459a-a50c-0363138ccd6c.png)
+
+This will display all of the property listing in the database to you as shown below:
+![image](https://user-images.githubusercontent.com/95838788/230758726-2974f99a-d93f-4801-928a-531de13f840f.png)
 
 <h1 align="center"> :confetti_ball: Congratulations! :confetti_ball:</h1>
 
