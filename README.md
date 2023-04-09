@@ -85,6 +85,13 @@ Note: You can also manually install dependencies using the following command in 
 pip install -r requirements.txt
 ```
 
+> For Mac Users:
+```
+1. If you face any error installing the library psycopg2, please delete the line 'psycopg2==2.9.5' from the requirements.txt.
+2. Only install psycopg2-binary==2.9.5. 
+3. That should solve any errors you face.
+```
+
 4) Setup of PostgreSQL and database
 
 Download and install both pgAdmin and PostgreSQL.
@@ -149,6 +156,8 @@ Username: propertyIQ
 Email: <Your valid gmail email which should be the same as the Gmail Email you used to get the Gmail App Password>
 Password: sc2006_1234
 ```
+**Note:** It is normal if you can't see the password appearing on the screen even when you are typing something. This is for **security reasons!**
+
 
 > Setting up and running the server
 ```
@@ -168,7 +177,8 @@ After this, you should see some listings on the home page and the 'featured list
 
 > pgAdmin
 
-In the event you want to view the database you can use pgAdmin.
+The purpose of installing pgAdmin is to view the data stored in the database using a graphical interface which is much more user-friendly. Note that pgAdmin is more for developers who want to implement some changes or see how the data is being stored. For the front-end users, pgAdmin may not be necessary. <br/>
+
 In pgAdmin , enter the same **password** from **PostgreSQL** and you should then see the following.
 Click on server database icon top left and add the password which you entered in psql.
 
@@ -235,6 +245,13 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
 3. Go to the Dashboard.
 4. Press Update Listings Button.
 5. Wait for about 1-2 minutes patiently and grab a cup of coffee.
+```
+
+> <strong>6. I'm facing errors installing psycopg2 in the initial set up!! I'm a Mac User. </strong>
+```
+1. If you face any error installing the library psycopg2, please delete the line 'psycopg2==2.9.5' from the requirements.txt.
+2. Only install psycopg2-binary==2.9.5. 
+3. That should solve any errors you face.
 ```
 
 <h2 align="center" id = "tech-stack"> 🛠 Tech Stack:</h2>
