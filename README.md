@@ -8,6 +8,7 @@ PropertyIQ is a web application that organises and makes accessible relevant mar
 
 - [Prerequisites](#prerequisites) <br/>
 - [Setup](#setup) <br/>
+- [Key Features](#key-features) <br/>
 - [FAQ](#faq) <br/>
 - [Tech Stack](#tech-stack) <br/>
 - [Contributors](#contributors) <br/>
@@ -200,10 +201,32 @@ For example, if you want to examine the property tables, simply right click 'pro
 This will display all of the property listing in the database to you as shown below: <br/>
 ![image](https://user-images.githubusercontent.com/95838788/230758726-2974f99a-d93f-4801-928a-531de13f840f.png)
 
-<h1 align="center"> :confetti_ball: Congratulations! :confetti_ball:</h1>
+<h2 align="center"> :confetti_ball: Congratulations! :confetti_ball:</h2>
 
 ### Now, you can explore PropertyIQ locally on your machine!
 
+<h2 align="center" id = "key-features"> :old_key:	Key Features</h2>
+
+- **Search Bar:** Users can search for their desired properties using keywords or using the multiple filters the website offers. <br/><br/>
+![search_bar](https://user-images.githubusercontent.com/95838788/230784589-609201ab-c552-49e9-a83e-6b6b02ad1907.png)
+
+- **Bookmarks:** Users can bookmark properties and remove their bookmarks. Users can also view their bookmarked properties on the dashboard. <br/><br/>
+![bookmarks](https://user-images.githubusercontent.com/95838788/230784690-8a8432b2-2c4c-45b6-843c-89809916f307.png)
+
+- **Recommendations:** PropertyIQ provides recommendations to the users based on proximity to the selected location and rent price. <br/><br/>
+![recommendations](https://user-images.githubusercontent.com/95838788/230784760-9a30b551-0748-42da-9935-19db9661b992.png)
+
+- **Trends:** PropertyIQ provides historical trends of the particular project of the selected property as well as nearby trends of properties near the selected property. <br/><br/>
+![trends](https://user-images.githubusercontent.com/95838788/230784841-77be9f0c-56d7-4079-9454-dc9ae7b08aa1.png)
+
+- **Maps:** PropertyIQ integrates Google Maps to show the location of the selected property and the recommended properties. <br/><br/>
+![maps](https://user-images.githubusercontent.com/95838788/230785712-3f69eacb-2718-47b2-9b86-b7fc204e6181.png)
+
+- **Locked Out:** PropertyIQ will lock the user out for an hour if the user repeatedly fails to log in after 3 tries. <br/><br/>
+![locked_out](https://user-images.githubusercontent.com/95838788/230786403-fc908953-fcf9-4ff7-b528-90e1b4780a8a.png)
+
+- **Recently Viewed Properties:** PropertyIQ will store whatever you have viewed before for you in case you forget whatever you have viewed before. <br/><br/>
+![recently_viewed](https://user-images.githubusercontent.com/95838788/230786494-478cccaa-a8a8-4faa-b7a9-85c0456a26f5.png)
 
 <h2 align="center" id = "faq" > :question: FAQ</h2>
 
@@ -296,4 +319,3 @@ Note: Should you need to uninstall/re-install you will need to manually delete t
 | <a href='https://github.com/AAJB13' title='AAJB13'> <img src='https://github.com/AAJB13.png' height='50' width='50'/></a> | John   | Nanyang Technological University (NTU) | Diagrams, Testing, SRS, Final Powerpoint |
 | <a href='https://github.com/TheGreatReee' title='TheGreatReee'> <img src='https://github.com/TheGreatReee.png' height='50' width='50'/></a>       | Don          | Nanyang Technological University (NTU) | Diagrams, Testing, SRS, Final Powerpoint |
 | <a href='https://github.com/NicholasLimJT' title='NicholasLimJT'> <img src='https://github.com/NicholasLimJT.png' height='50' width='50'/></a>    | Nicholas             | Nanyang Technological University (NTU) | Diagrams, Testing, SRS, Final Powerpoint |
-
